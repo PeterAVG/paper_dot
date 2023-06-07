@@ -105,6 +105,8 @@ def simulate_4th_order_model(
         Tzu_sim[0] = setpoint_uz[0]
         Twl_sim[0] = setpoint_lz[0]
         Twu_sim[0] = setpoint_uz[0]
+        p_up[0] = r1_kw_uz_ss if regime[start] == 0 else r2_kw_uz_ss
+        p_low[0] = r1_kw_lz_ss
 
     if p_up[0] > 400:
         Q1_up, Q2_up = 1, 1
@@ -237,9 +239,9 @@ tmp["KW_UZ_SS"] = p_up_ss
 tmp["KW_LZ_SS"] = p_low_ss
 tmp["Twu_sim_ss"] = Twu_sim_ss
 tmp["Twl_sim_ss"] = Twl_sim_ss
-tmp[["regime_UZ", "KW_UZ_SS", "KW_LZ_SS", "Twu_sim_ss", "Twl_sim_ss"]].to_csv(
-    "data/chunk_v1.csv", index=False
-)
+# tmp[["regime_UZ", "KW_UZ_SS", "KW_LZ_SS", "Twu_sim_ss", "Twl_sim_ss"]].to_csv(
+#     "data/chunk_v1.csv", index=False
+# )
 
 f, ax = plt.subplots(3, 1, sharex=True, figsize=(14, 18))
 ax = ax.ravel()
@@ -247,11 +249,76 @@ _x = x[start:end]
 
 ax[0].set_title(r"4th order model")
 ax[0].step(
-    _x, p_up + p_low, label="kW ON/OFF", color="black", linestyle="--", alpha=0.3
+    # _x, p_up + p_low, label="kW ON/OFF", color="black", linestyle="--", alpha=0.3
+    _x,
+    p_up_data[start:end] + p_low_data[start:end],
+    label="kW ON/OFF",
+    color="black",
+    linestyle="--",
+    alpha=0.3,
+)
+ax[0].step(_x, p_up + p_low, label="kW", color="green", linewidth=2)
+ax[0].legend(loc="best")
+ax[0].set_ylabel("[kW]")
+ax[0].set_ylim([0, None])
+ax[0].set_title("Power consumption")
+
+ax[1].plot(
+    _x, twu_data[start:end], label=r"Twu data", color="black", linestyle="--", alpha=0.3
+)
+ax[1].plot(
+    _x,
+    setpoint_uz[start:end],
+    label="Setpoint",
+    linewidth=3,
+    alpha=0.3,
+    color="black",
+)
+# ax[1].plot(_x, Twu_sim, label="Twu", alpha=1.0, color="orange")
+ax[1].plot(_x, Twu_sim, label="Twu", color="green", linewidth=2)
+ax[1].legend(loc="best")
+ax[1].set_ylabel(r"[$^\circ$C]")
+ax[1].set_title("Upper zone")
+
+ax[2].plot(
+    _x, twl_data[start:end], label=r"Twl data", color="black", linestyle="--", alpha=0.3
+)
+ax[2].plot(
+    _x,
+    setpoint_lz[start:end],
+    label="Setpoint",
+    linewidth=3,
+    alpha=0.3,
+    color="black",
+)
+# ax[2].plot(_x, Twl_sim, label="Twl", alpha=1.0, color="orange")
+ax[2].plot(_x, Twl_sim, label="Twl", color="green", linewidth=2)
+ax[2].legend(loc="best")
+ax[2].set_ylabel(r"[$^\circ$C]")
+ax[2].set_title("Lower zone")
+ax[2].xaxis.set_tick_params(rotation=45)
+
+_set_font_size(ax, legend=18)
+plt.savefig(BASE_FOLDER + "4thOrderModelVisualization.png", dpi=300)
+
+f, ax = plt.subplots(3, 1, sharex=True, figsize=(14, 18))
+ax = ax.ravel()
+_x = x[start:end]
+
+ax[0].set_title("Power consumption")
+ax[0].step(
+    # _x, p_up + p_low, label="kW ON/OFF", color="black", linestyle="--", alpha=0.3
+    _x,
+    p_up_data[start:end] + p_low_data[start:end],
+    label="kW ON/OFF",
+    color="black",
+    linestyle="--",
+    alpha=0.3,
 )
 ax[0].step(_x, p_up_ss + p_low_ss, label="kW Steady-state", color="green", linewidth=2)
 ax[0].legend(loc="best")
 ax[0].set_ylabel("[kW]")
+ax[0].set_ylim([0, None])
 
 ax[1].plot(
     _x, twu_data[start:end], label=r"Twu data", color="black", linestyle="--", alpha=0.3
@@ -268,6 +335,7 @@ ax[1].plot(
 ax[1].plot(_x, Twu_sim_ss, label="Twu steady-state", color="green", linewidth=2)
 ax[1].legend(loc="best")
 ax[1].set_ylabel(r"[$^\circ$C]")
+ax[1].set_title("Upper zone")
 
 ax[2].plot(
     _x, twl_data[start:end], label=r"Twl data", color="black", linestyle="--", alpha=0.3
@@ -285,8 +353,9 @@ ax[2].plot(_x, Twl_sim_ss, label="Twl steady-state", color="green", linewidth=2)
 ax[2].legend(loc="best")
 ax[2].set_ylabel(r"[$^\circ$C]")
 ax[2].xaxis.set_tick_params(rotation=45)
+ax[2].set_title("Lower zone")
 
 _set_font_size(ax, legend=18)
-plt.savefig(BASE_FOLDER + "4thOrderModelVisualization.png", dpi=300)
+plt.savefig(BASE_FOLDER + "4thOrderModelVisualizationSteadyState.png", dpi=300)
 
 plt.show()

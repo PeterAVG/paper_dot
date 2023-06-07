@@ -6,10 +6,10 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 
-from src.base import Case
+from src.base import SCENARIO_PATH, Case
 from src.common.utils import _set_font_size
 from src.experiment_manager.cache import load_cache
-from src.prepare_problem_v2 import get_scenarios_fcr
+from src.prepare_problem_v2 import build_oos_scenarios, get_scenarios_fcr
 
 # matplotlib.pyplot.ion()
 
@@ -272,8 +272,7 @@ def plot_fcr_prices() -> None:
         for h in _hours
     ]
 
-    # NOTE: base temperature have jumps due to aggregation of p_base to hourly resolution
-    fig, ax = plt.subplots(1, 1, figsize=(8, 4))
+    fig, ax = plt.subplots(1, 1, figsize=(8, 5))
     # lineplots of prices
     ax.step(
         hours,
@@ -296,10 +295,66 @@ def plot_fcr_prices() -> None:
     ax.set_ylabel("Price [DKK/kWh]")
     ax.legend(loc="best")
     ax.xaxis.set_tick_params(rotation=45)
-    plt.tight_layout()
     _set_font_size(ax, legend=16)
+    plt.tight_layout()
 
     plt.savefig("tex/figures/fcr_prices", dpi=300)
+
+
+def plot_mfrr_prices() -> None:
+
+    df_scenarios = pd.read_csv(
+        SCENARIO_PATH,
+        parse_dates=["HourUTC"],
+    ).query(f"HourUTC.dt.year == {2022}")
+
+    scenarios = build_oos_scenarios(df_scenarios)
+    mfrr_prices = scenarios.lambda_mfrr.reshape(-1)  # type:ignore
+    spot_prices = scenarios.lambda_spot.reshape(-1)  # type:ignore
+    rp_prices = scenarios.lambda_rp.reshape(-1)  # type:ignore
+    rp_diff = rp_prices - spot_prices
+    rp_diff_ordered = np.sort(rp_diff)
+    rp_diff_ordered_ix = np.argsort(rp_diff)
+
+    ix = abs(rp_diff) > 0.5
+
+    fig, ax = plt.subplots(1, 1, figsize=(8, 5))
+    # ax = ax.ravel()
+    # barplots of prices
+    ax.bar(
+        np.arange(len(mfrr_prices)),
+        mfrr_prices[rp_diff_ordered_ix],
+        label=r"$\lambda_{h}^{mFRR}$",
+        color="blue",
+        edgecolor="blue",
+        fill=True,
+        width=0.1,
+    )
+    ax.bar(
+        np.arange(len(rp_diff_ordered)),
+        rp_diff_ordered,
+        label=r"$\lambda_{h}^{B} - \lambda_{h}^{S}$",
+        color="red",
+        edgecolor="red",
+        fill=True,
+        width=0.01,
+    )
+
+    # horizontal line at 0 for ax[1]
+    ax.axhline(0, color="black", linestyle="--", alpha=0.5)
+
+    # ax.set_xlim([0, .2])
+    ax.set_ylim([-5, 10])
+    ax.set_ylabel("Price [DKK/kWh]")
+    ax.set_xlabel("2022 hours (sorted)")
+    # ax[1].set_ylabel("Price [DKK/kWh]")
+    ax.legend(loc="best")
+    # ax[1].legend(loc="best")
+    ax.xaxis.set_tick_params(rotation=45)
+    _set_font_size(ax, legend=16)
+    plt.tight_layout()
+
+    plt.savefig("tex/figures/mfrr_prices", dpi=300)
 
 
 def plot_yearly_earnings() -> None:
@@ -370,14 +425,16 @@ def plot_yearly_earnings() -> None:
     # plt.show()
 
 
-def plot_profit_vs_delta_max() -> None:
+def plot_profit_vs_delta_max(case: Case) -> None:
+
+    assert case.name in ["FCR", "mFRR_AND_ENERGY"]
 
     cache = load_cache()
 
     all_fcr_results = [
         (eval(k)["delta_max"], v)
         for k, v in cache.items()
-        if (eval(k)["case"] == Case.FCR.name and eval(k)["delta_max"] <= 10)
+        if (eval(k)["case"] == case.name and eval(k)["delta_max"] <= 10)
     ]
     print(len(all_fcr_results))
 
@@ -407,17 +464,19 @@ def plot_profit_vs_delta_max() -> None:
     _set_font_size(ax, legend=16)
 
     plt.tight_layout()
-    plt.savefig("tex/figures/profit_vs_delta_temp.png", dpi=300)
+    plt.savefig(f"tex/figures/profit_vs_delta_temp_{case.name.lower()}.png", dpi=300)
     plt.show()
 
 
 def main() -> None:
     if True:
-        plot_mFRR_case_result()
-        plot_fcr_case_result()
-        plot_yearly_earnings()
-        plot_fcr_prices()
-        plot_profit_vs_delta_max()
+        # plot_mFRR_case_result()
+        # plot_fcr_case_result()
+        # plot_yearly_earnings()
+        # plot_fcr_prices()
+        # plot_mfrr_prices()
+        plot_profit_vs_delta_max(Case.FCR)
+        plot_profit_vs_delta_max(Case.mFRR_AND_ENERGY)
 
 
 if __name__ == "__main__":

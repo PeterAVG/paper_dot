@@ -517,7 +517,7 @@ class FCRSolverInstance:
             )
 
         solver = SolverFactory("gurobi")
-        if value(model_instance._nb_scenarios) > 1:  # type:ignore
+        if value(model_instance._nb_scenarios) >= 1:  # type:ignore
             solver.options["TimeLimit"] = 60 * 4
             solver.options["MIPGap"] = 0.025
         #     pass

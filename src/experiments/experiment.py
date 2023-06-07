@@ -17,22 +17,25 @@ class Experiment(ETLComponent):
         run_oos = [True]
         year = [2022]
         for _run_oos, _year in zip(run_oos, year):
-            params = {
-                "elafgift": 0.0,
-                "moms": 0.0,
-                "year": _year,
-                "delta_max": 50,
-                "one_lambda": False,
-                "analysis": "analysis1",
-                "run_oos": _run_oos,
-            }
-            case = Case.mFRR_AND_ENERGY
-            params["case"] = case.name
+            # temperature_deltas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 50]
+            temperature_deltas = [1, 2, 3, 4, 5, 6, 7, 10, 50]
+            for delta_max in temperature_deltas:
+                params = {
+                    "elafgift": 0.0,
+                    "moms": 0.0,
+                    "year": _year,
+                    "delta_max": delta_max,
+                    "one_lambda": False,
+                    "analysis": "analysis1",
+                    "run_oos": _run_oos,
+                }
+                case = Case.mFRR_AND_ENERGY
+                params["case"] = case.name
 
-            partition = params.__repr__()
-            logger.info(partition, kwargs)
+                partition = params.__repr__()
+                logger.info(partition, kwargs)
 
-            run_mfrr_spot_optmization(partition, **kwargs)
+                run_mfrr_spot_optmization(partition, **kwargs)
 
     def experiment_run_fcr(self, **kwargs: Any) -> None:
         run_oos = [True]
