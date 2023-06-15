@@ -318,7 +318,7 @@ def plot_mfrr_prices() -> None:
 
     ix = abs(rp_diff) > 0.5
 
-    fig, ax = plt.subplots(1, 1, figsize=(8, 5))
+    fig, ax = plt.subplots(1, 1, figsize=(8.5, 6.0))
     # ax = ax.ravel()
     # barplots of prices
     ax.bar(
@@ -474,9 +474,9 @@ def main() -> None:
         # plot_fcr_case_result()
         # plot_yearly_earnings()
         # plot_fcr_prices()
-        # plot_mfrr_prices()
-        plot_profit_vs_delta_max(Case.FCR)
-        plot_profit_vs_delta_max(Case.mFRR_AND_ENERGY)
+        plot_mfrr_prices()
+        # plot_profit_vs_delta_max(Case.FCR)
+        # plot_profit_vs_delta_max(Case.mFRR_AND_ENERGY)
 
 
 if __name__ == "__main__":

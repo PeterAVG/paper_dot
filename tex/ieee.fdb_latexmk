@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex ieee"] 1685093110 "ieee.aux" "ieee.bbl" "ieee" 1685093120
+["bibtex ieee"] 1686814439 "ieee.aux" "ieee.bbl" "ieee" 1686815292
   "/usr/local/texlive/2022/texmf-dist/bibtex/bst/ieeetran/IEEEtran.bst" 1440712899 57748 7c8250ecf02814ce6ddc0cdbb63df1dd ""
-  "bibliography/Bibliography.bib" 1685092502 33653 9a2226922c4dd44e9f5f2cb3b247e272 ""
-  "ieee.aux" 1685093120 9207 a4624bb5d37f3402e732cd78115fc859 "pdflatex"
+  "bibliography/Bibliography.bib" 1686116497 33654 759f1ecc69aeff908d78ed23a158f954 ""
+  "ieee.aux" 1686815292 9207 a4624bb5d37f3402e732cd78115fc859 "pdflatex"
   (generated)
   "ieee.bbl"
   "ieee.blg"
-["pdflatex"] 1685093110 "/Users/petergade/Repositories/paper_dot/tex/ieee.tex" "ieee.pdf" "ieee" 1685093120
+["pdflatex"] 1686815285 "/Users/petergade/Repositories/paper_dot/tex/ieee.tex" "ieee.pdf" "ieee" 1686815292
   "/Users/petergade/Library/texlive/2022/texmf-var/fonts/pk/ljfour/public/bbm/bbm10.600pk" 1664878749 6964 e6de9051f00f8345257ec8689636180f ""
-  "/Users/petergade/Repositories/paper_dot/tex/ieee.tex" 1685093099 44772 f04082a6a9cb40de283570e626f46999 ""
+  "/Users/petergade/Repositories/paper_dot/tex/ieee.tex" 1686815284 44886 125616df4b19b7ce48203a1272eeb8b8 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2022/texmf-dist/fonts/tfm/adobe/times/ptmb7t.tfm" 1136768653 2172 fd0c924230362ff848a33632ed45dc23 ""
@@ -282,13 +282,13 @@
   "figures/fcr_prices.png" 1685092972 253325 9cbabed16a79166be8182f9bc1b04e0e ""
   "figures/fcr_single_case.png" 1684739567 605293 e17343e81f20a09333eff798a993995a ""
   "figures/furnace_schematic_tikz.tex" 1675260380 3861 7af0fd228b63aef3b5cdb01a3992bc4f ""
-  "figures/mfrr_prices.png" 1685092991 235085 322ab3b2d5ec6260ca86fa8e7a118d06 ""
+  "figures/mfrr_prices.png" 1686815278 230188 ca572e8a857ca02841f3494c51f6cee5 ""
   "figures/mfrr_single_case.png" 1684739564 527008 5c98e8134fbac22663f4c41839856625 ""
   "figures/profit_vs_delta_temp_fcr.png" 1685092994 120003 4608449f40662ead44a46176f39d523d ""
   "figures/profit_vs_delta_temp_mfrr_and_energy.png" 1685093008 124760 f609eae5846c4937c9048ab009692102 ""
-  "ieee.aux" 1685093120 9207 a4624bb5d37f3402e732cd78115fc859 "pdflatex"
-  "ieee.bbl" 1685093110 4434 aeb9b25f773da9cf91bbf53ad4473ccb "bibtex ieee"
-  "ieee.tex" 1685093099 44772 f04082a6a9cb40de283570e626f46999 ""
+  "ieee.aux" 1686815292 9207 a4624bb5d37f3402e732cd78115fc859 "pdflatex"
+  "ieee.bbl" 1686814439 4434 aeb9b25f773da9cf91bbf53ad4473ccb "bibtex ieee"
+  "ieee.tex" 1686815284 44886 125616df4b19b7ce48203a1272eeb8b8 ""
   "sections/acknowledgement.tex" 1685092553 936 a487fb76662b3ea1a0c7515613beff1e ""
   "sections/conclusion.tex" 1675452647 21 5263826852d7c88eadf74b948137ff83 ""
   "sections/introduction.tex" 1675452647 42 28ec458da29625954d3af60cb647d78c ""

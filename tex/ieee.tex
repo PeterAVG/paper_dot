@@ -55,7 +55,7 @@
 
 \begin{abstract}
     % \input{sections/abstract}
-    In order to reach carbon emission goals, current infrastructure can and should help balance the power grid. Single-state industry processes can be particularly suited for this purpose which is exemplified using a real-world case study of a zinc galvanizing process. It is shown how modest investments into the power control of the furnace enables flexible provision in two ancillary services, FCR and mFRR, with a pay-back time potentially as low as a year. The monetary value of both services are significant with FCR being the preferable service as its impact on the temperature of the zinc is negligible. This paper serves to illustrate how current inflexible demand can become flexible and profitable while aiding the green transition.
+    In order to reach carbon emission goals, current infrastructure can and should help balance the power grid. Single-state industry processes can be particularly suited for balancing the power grid while earning money and reducing emissions. Using a real-world case study of a zinc galvanizing process it is shown how modest investments into the power control of the furnace enable flexible provision in two ancillary services, FCR and mFRR, with a pay-back times potentially within a year. The monetary value of both services are significant with FCR being the preferable service as its impact on the temperature of the zinc is negligible. This paper serves to illustrate how current inflexible demand can become flexible and profitable while aiding the green transition by balancing the power grid.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -64,28 +64,30 @@
 
 \input{sections/introduction}
 
-Power prices have increased massively in 2022, and the increasing share of renewable energy stresses the grid at to an unprecedented degree. In 2022, the Danish transmission operator (TSO), Energinet, spent 2.7 bil. on ancillary services, an increase of 1.3 billion from 2021 \cite{energinetOmkostninger}. Energinet expect this cost will only increase further as the green transition demands more renewable energy and a clean power grid with less to none CO$_{2}$ emissions.
+Power prices have increased massively in 2022, and the increasing share of renewable energy stresses the grid to an unprecedented level. In 2022, the Danish transmission operator (TSO), Energinet, spent 2.7 billion on ancillary services, an increase of 1.3 billion from 2021 \cite{energinetOmkostninger}. Energinet expect this cost will only increase further as more renewable, intermittent energy requires more balancing of the power grid.
 
-To facilitate the green transition by using greener technologies to balance the power grid, existing infrastructure can readily be used. In particular, existing power demand can to some degree become flexible, i.e., the power consumption can vary within some thresholds for a certain amount of time as a response from an \textit{aggregator}. IBM has created a solution, Flex Platform, that harness demand-side flexibility to be bid into various ancillary service markets. Power demand in the industrial sector is significant and for simple, single-state industry processes, modest investments can enable it to become flexible.
+To facilitate the green transition by using greener technologies to balance the power grid, existing infrastructure can readily be used. In particular, existing power demand can to some degree become flexible, i.e., the power consumption can vary within some thresholds for a certain amount of time as facilitated by an \textit{aggregator}. IBM has created a solution, the Flex Platform, that harness demand-side flexibility to be bid into various ancillary service markets. Power demand in the industrial sector is significant and for simple, single-state industry processes, modest investments can enable them to become flexible.
 
-Single-state processes are characterized by being solely sequential, i.e., the next step occurs after the previous step is done. They are repetitive and well, relatively simple and uncomplicated. The \textit{state} is often a temperature, e.g., zinc temperature in a galvanizing furnace as shown later. Such processes are prone to become flexible with respect to their power consumption as it required very little to none extra effort or adjustments to the process.
+Single-state processes are characterized by being solely sequential, i.e., the next step occurs after the previous step is done. They are repetitive as well, relatively simple and uncomplicated. Their \textit{state} is often a temperature, e.g., zinc temperature in a galvanizing furnace as shown later. Such processes are prone to become flexible with respect to their power consumption as it requires little to no extra efforts or adjustments to their industry process.
 
-In the European Union and Denmark, there is an increased focus in on $CO_{2}$ \textit{accounting}. Companies, small and large, all need to look seriously into their current carbon emissions and especially initiatives that reduce them. Demand-side flexibility is an obvious choice for energy intensive single-state industry process as it allows them to balance the power grid\footnote{With the assumption that it would otherwise be done by fossil fuel power plants.}. Other initiatives include energy optimization and energy efficiency which can be done to a certain degree.
+In the European Union and Denmark, there is an increased focus in on $CO_{2}$ \textit{accounting}. Companies, small and large, all need to look seriously into their current carbon emissions and especially initiatives that reduce them. Demand-side flexibility is an obvious choice for energy intensive single-state industry processes as it allows them to balance the power grid.\footnote{With the assumption that it would otherwise be done by fossil fuel power plants.} Other initiatives include energy optimization and energy efficiency which can only be done to a certain degree.
 
-In this work, an industry process is investigated, as exemplified by a zinc galvanizing furnace using real data (see Section \ref{sec:zinc_furnace_description} for details). First, we describe the process in detail and show how the thermal characteristics of the zinc and furnace can be described. Second, we show how investments into a more granular, continuous control of the power supply to the furnace enables it to deliver power flexibility. Two quite different ancillary services are targeted: frequency containment reserves (FCR) and manual frequency restoration reserves (mFRR). For both, full-hindsight optimization are provided to compute upper-bound potentials for 2022. Lastly, an analysis of the zinc temperature's impact on the flexibility potential is carried out.
+In this work, an industry process is investigated, as exemplified by a zinc galvanizing furnace using real data from their process (see Section \ref{sec:zinc_furnace_description} for details). First, we describe the process in detail and show how the thermal characteristics of the zinc furnace can be formulated. Second, we show how investments into a more granular, continuous control of the power supply to the furnace enables it to deliver power flexibility. Two quite different ancillary services are targeted: frequency containment reserves (FCR) and manual frequency restoration reserves (mFRR). For both, full-hindsight optimizations are provided to compute upper-bound potentials. Lastly, an analysis of the zinc temperature's impact on the flexibility potential is carried out.
 
 \subsection{Research questions}
 
 In this work, we investigate how its viable for zinc furnace to adapt for provision of power flexibility through ancillary services. We do so from a techno-economic perspective while also investigating different ancillary services. The research questions we investigate are therefore:
 
+\IEEEpubidadjcol
+
 \begin{itemize}
-    \item Are there incentives for an energy intensive industry process position to deliver power flexibility to the grid?
+    \item Are there incentives for an energy intensive industry process to deliver power flexibility to the grid?
     \item How can it adapt its industry process to provide power flexibility?
-    \item What types of ancillary services are well suited to an energy intensive industry process?
-    \item What is the monetary impact of the degrees of freedom (temperature thresholds) in the process?
+    \item What types of ancillary services are well suited to such a process?
+    \item What is the monetary impact of temperature thresholds?
 \end{itemize}
 
-The first question is answered by looking at the overall case study, combining carbon emission and monetary incentives. The second question is answered by thoroughly investigating the operational baseline power consumption profile of the zinc furnace, and giving recommendations on the investments needed to cater for power flexibility provision. The third question looks at the two revenue streams for the zinc furnace's flexibility potential: FCR with a low but fast energy delivery and mFRR with a high but slow energy delivery. The fourth question is answered by conducting a sensitivity analysis on allowed temperature deviation of the zinc together with a qualitative comparison of FCR and mFRR.
+The first question is answered by qualitatively assessing the overall case study, combining carbon emission and monetary incentives. The second question is answered by thoroughly investigating the operational baseline power consumption profile of the zinc furnace, and giving recommendations on the investments needed to cater for power flexibility provision. The third question looks at the two revenue streams for the zinc furnace's flexibility potential: FCR with a small but fast energy delivery and mFRR with a large but slow energy delivery. The fourth question is answered by conducting a sensitivity analysis on allowed temperature deviation of the zinc together with a qualitative comparison of FCR and mFRR.
 
 
 \subsection{Investments should facilitate power flexibility}
@@ -94,7 +96,7 @@ New investments into equipment and improvements in the industry process can be t
 
 \subsection{Value streams from power flexibility: FCR and mFRR}
 
-Power consumption can potentially be flexible if the underlying industry process has a  degree of freedom in its operation. For example, power consumption to heat up zinc can be controlled as long as the temperature of the zinc is within some pre-specified thresholds that determines the degrees of freedom. For the zinc furnace, the lower temperature threshold specify solidification of molten zinc which must not happen as it can crack the furnace itself.
+Power consumption can potentially be flexible if the underlying industry process has a  degree of freedom in its operation. For example, power consumption to heat up zinc can be controlled as long as the temperature of the zinc is within some pre-specified thresholds. These determine the degrees of freedom in the operation. For the zinc furnace, the lower temperature threshold specify solidification of molten zinc which must not happen as it can crack the furnace wall.
 
 The ability to deviate from the operational baseline power consumption consumption can be monetized by participating in ancillary services such as FCR and mFRR. Furthermore, if these services are normally delivered by fossil fuel power plants, these are partly displaced and a CO$_{2}$ emission reduction is realized.
 
@@ -102,9 +104,7 @@ The ability to deviate from the operational baseline power consumption consumpti
 
 \subsection{Literature review}
 
-Many studies have investigated demand-side flexibility. While most have focused on flexibility from residential households in an aggregated portfolio, some have also looked at industry processes with a significant electric energy consumption. None, though, specifically look at single-state industrial processes with in a real-life setting.
-
-\IEEEpubidadjcol
+Many studies have investigated demand-side flexibility. While most have focused on flexibility from residential households in an aggregated portfolio, some have also looked at industry processes with a significant electric energy consumption. None, though, specifically look at single-state industrial processes in a real-life setting while addressing their incentives to deliver power flexibility.
 
 Of these, freezers have been investigated thoroughly both with respect to mathematical representation \cite{shafiei2013modeling}, \cite{pedersen2016improving}  and as a source of flexibility \cite{sossan2016grey}, \cite{o2013modelling}, \cite{de2019leveraging}, \cite{misaghian2022fast}, \cite{vrettos2016fast}. Freezers are potentially a great source of flexibility because of the thermal inertia in the frozen food. However, supermarket freezers are complicated systems where individual freezer displays are dependent as they are fed cold air from the same compressor rack. Furthermore, there are many food regulations that complicates control of freezers with respect to allowed temperature deviations.
 
@@ -112,7 +112,7 @@ Much work has also gone into understanding heat dynamics of medium-large buildin
 
 In \cite{junker2020stochastic}, a water tower is characterized using stochastic differential equations for best planning how water should be pumped in relation to spot prices. Although not specifically for ancillary services, this serves as an illustrative example how operational control can benefit from knowledge of electricity prices in a fairly simple industry process.
 
-The most simple mathematical model of a thermostatically controlled load (TCL), was presented in Hao et. al. \cite{hao2014aggregate}. Here, a first-order model with two terms fully characterized the TCL: a term that explains temperature losses due to temperature differences and a term that explains temperature gains due to a power source. We expand upon this model in this paper, using instead a 4th order model to characterize a zinc furnace.
+The most simple mathematical model of a thermostatically controlled load (TCL), was presented in Hao et. al. \cite{hao2014aggregate}. Here, a first-order model with two terms fully characterized the TCL: a term that explains temperature losses due to temperature differences and a term that explains temperature gains due to a power source. We expand upon this model in this paper, using instead a 4$^{\text{th}}$ order model to characterize a zinc furnace.
 
 While a simple, linear model is used for modelling FCR provision in this paper, the model introduced in (cite own paper) is used to model mFRR provision.
 
@@ -124,9 +124,9 @@ For a realistic energy intensive industry process using real data, we investigat
 
 Specifically, we investigate a real-life industry process using actual (anonymized) data collected from 2022. We describe the process in detail and show how it can be adapted to cater for power flexibility by switching from ON/OFF power control to continuous power control.
 
-The monetary value from the power flexibility is shown for FCR and mFRR provision in DK1\footnote{DK1 is the western part of Denmark and shares the same frequency as continental Europe} in Denmark. We provide an upper bound of flexibility earnings using a full hindsight optimization of each service and its impact on the temperature, i.e., the state of the industry process, is analyzed. We discuss and show how the allowed degrees of freedom in the temperature deviation impact the monetary value of flexibility provision.
+The monetary value from power flexibility is shown for FCR and mFRR provision in DK1\footnote{DK1 is the western part of Denmark and shares the same frequency as continental Europe} in Denmark. We provide an upper bound of flexibility earnings using a full hindsight optimization of each service and its impact on the temperature, i.e., the state of the industry process, is analyzed. We discuss and show how the allowed degrees of freedom in the temperature deviation impact the monetary value of flexibility provision.
 
-\textbf{Should we instead provide paper structure here??}
+    {\color{red}Should we instead provide paper structure here??}
 
 \section{Adapting an industry process to provide flexibility}\label{sec:zinc_furnace_description}
 
@@ -164,10 +164,10 @@ To model the temperature dynamics in both zones, a fourth-order state space mode
 
 \begin{subequations}\label{eq:StateSpaceModel}
     \begin{align}
-        T^{\text{zu}}_{t+1} & = T^{\text{zu}}_{t} + dt \cdot \frac{1}{C^{\text{zu}}}\Bigl( \frac{1}{R^{\text{zuzl}}} (T^{\text{zl}}_{t} - T^{\text{zu}}_{t}) \notag                     \\ & \mspace{5mu} + \frac{1}{R^{\text{wz}}} (T^{\text{wu}}_{t} - T^{\text{zu}}_{t}) \Bigr) \label{eq1:StateSpaceModel} \\
-        T^{\text{zl}}_{t+1} & = T^{\text{zl}}_{t} + dt \cdot \frac{1}{C^{\text{zl}}}\Bigl( \frac{1}{R^{\text{zuzl}}} (T^{\text{zu}}_{t} - T^{\text{zl}}_{t}) \notag                     \\ & \mspace{5mu} + \frac{1}{R^{\text{wz}}} (T^{\text{wl}}_{t} - T^{\text{zl}}_{t}) \Bigr) \label{eq2:StateSpaceModel} \\
-        T^{\text{wu}}_{t+1} & = T^{\text{wu}}_{t} + dt \cdot \frac{1}{C^{\text{wu}}}\Bigl( (1-\mathbbm{1}^{\text{lid}}) \frac{1}{R^{\text{wua},1}} (T^{a} - T^{\text{wu}}_{t}) \notag + \\ & \mspace{5mu} \mathbbm{1}^{\text{lid}} \frac{1}{R^{\text{wua},2}} (T^{\text{a}} - T^{\text{wu}}_{t}) + \frac{1}{R^{\text{ww}}} (T^{\text{wl}}_{t} - T^{\text{wu}}_{t}) \notag \\ & \mspace{5mu} + \frac{1}{R^{\text{wz}}} (T^{\text{zu}}_{t} - T^{\text{wu}}_{t}) + p^{\text{u}}_{t} \Bigr) \label{eq3:StateSpaceModel} \\
-        T^{\text{wl}}_{t+1} & = T^{\text{wl}}_{t} + dt \cdot \frac{1}{C^{\text{wl}}}\Bigl( \frac{1}{R^{\text{wla}}} (T^{\text{a}} - T^{\text{wl}}_{t}) \notag                           \\ & \mspace{5mu} + \frac{1}{R^{\text{ww}}} (T^{\text{wu}}_{t} - T^{\text{wl}}_{t}) + \frac{1}{R^{\text{wz}}} (T^{\text{zl}}_{t} - T^{\text{wl}}_{t}) + p^{\text{l}}_{t} \Bigr) \label{eq4:StateSpaceModel}
+        T^{\text{zu}}_{t+1} & = T^{\text{zu}}_{t} + dt \cdot \frac{1}{C^{\text{zu}}}\Bigl( \frac{1}{R^{\text{zuzl}}} (T^{\text{zl}}_{t} - T^{\text{zu}}_{t}) \notag                            \\ & \mspace{5mu} + \frac{1}{R^{\text{wz}}} (T^{\text{wu}}_{t} - T^{\text{zu}}_{t}) \Bigr) \label{eq1:StateSpaceModel} \\
+        T^{\text{zl}}_{t+1} & = T^{\text{zl}}_{t} + dt \cdot \frac{1}{C^{\text{zl}}}\Bigl( \frac{1}{R^{\text{zuzl}}} (T^{\text{zu}}_{t} - T^{\text{zl}}_{t}) \notag                            \\ & \mspace{5mu} + \frac{1}{R^{\text{wz}}} (T^{\text{wl}}_{t} - T^{\text{zl}}_{t}) \Bigr) \label{eq2:StateSpaceModel} \\
+        T^{\text{wu}}_{t+1} & = T^{\text{wu}}_{t} + dt \cdot \frac{1}{C^{\text{wu}}}\Bigl( (1-\mathbbm{1}^{\text{lid}}) \frac{1}{R^{\text{wua},1}} (T^{\text{a}} - T^{\text{wu}}_{t}) \notag + \\ & \mspace{5mu} \mathbbm{1}^{\text{lid}} \frac{1}{R^{\text{wua},2}} (T^{\text{a}} - T^{\text{wu}}_{t}) + \frac{1}{R^{\text{ww}}} (T^{\text{wl}}_{t} - T^{\text{wu}}_{t}) \notag \\ & \mspace{5mu} + \frac{1}{R^{\text{wz}}} (T^{\text{zu}}_{t} - T^{\text{wu}}_{t}) + p^{\text{u}}_{t} \Bigr) \label{eq3:StateSpaceModel} \\
+        T^{\text{wl}}_{t+1} & = T^{\text{wl}}_{t} + dt \cdot \frac{1}{C^{\text{wl}}}\Bigl( \frac{1}{R^{\text{wla}}} (T^{\text{a}} - T^{\text{wl}}_{t}) \notag                                  \\ & \mspace{5mu} + \frac{1}{R^{\text{ww}}} (T^{\text{wu}}_{t} - T^{\text{wl}}_{t}) + \frac{1}{R^{\text{wz}}} (T^{\text{zl}}_{t} - T^{\text{wl}}_{t}) + p^{\text{l}}_{t} \Bigr) \label{eq4:StateSpaceModel}
     \end{align}
 \end{subequations}
 
@@ -200,7 +200,7 @@ Using the model in (\ref{eq:StateSpaceModel}), we can estimate the steady-state 
 
 Here, $T^{\text{l},\text{sp}}$ and $T^{\text{u},\text{sp}}$ are the pre-specified setpoints in the lower and upper zone, respectively, and $p^{\text{u},\text{SS},1}$ and $p^{\text{u},\text{SS},2}$ are the steady-state power consumption when the lid is OFF and ON, respectively, for the upper zone. Finally, $p^{\text{l},\text{SS}}$ is the steady-state power consumption for the lower zone.
 
-Figure \ref{fig:4thOrderModelVisualizationSteadyState} shows a 24-hour simulation (1440 time steps) of (\ref{eq:StateSpaceModel}) which was chosen to include both regimes where the lid either on or off. The original data is shown in dashed, black lines and it can clearly be seen how the steady-state power consumptions (\ref{eq:steady-state-power}) and temperatures are much more stable and predictable. To achieve this, a controller would need be needed to keep the temperature at the setpoint. The purpose of the steady-state operation is to highlight the benefit of flexibility provision from a more predictable, operational baseline consumption.
+Figure \ref{fig:4thOrderModelVisualizationSteadyState} shows a 24-hour simulation (1440 time steps) of (\ref{eq:StateSpaceModel}) which was chosen to include both regimes where the lid either on or off. The original data is shown in dashed, black lines and it can clearly be seen how the steady-state power consumptions in eq. (\ref{eq:steady-state-power}) and temperatures are much more stable and predictable. To achieve this, a controller is needed to keep the temperature at the setpoint. The purpose of the steady-state operation is to highlight the benefit of flexibility provision from a more predictable, operational baseline consumption.
 
 \begin{figure}[!t]
     \centering
@@ -209,7 +209,7 @@ Figure \ref{fig:4thOrderModelVisualizationSteadyState} shows a 24-hour simulatio
     \label{fig:4thOrderModelVisualizationSteadyState}
 \end{figure}
 
-Furthermore, other benefits of using a more continuous power control include more optimal use of the heat in the furnace by being able to integrate the dipping schedule to the power consumption. Hence, smarter feed forward planning of the lid can be achieved and made possible by utilizing a smarter control of the power sources.
+Furthermore, other benefits of using a more continuous power control include more optimal use of the heat in the furnace by being able to integrate the dipping schedule to the power consumption. Hence, smarter feed forward planning of the lid can be achieved and made possible by utilizing continuous power control.
 
 \subsection{FCR}
 
@@ -232,7 +232,7 @@ mFRR is an ancillary service operated by the TSO. It is the last service deploye
 
 As described in (cite own paper), procurement of mFRR reserves happens before the day-ahead market clearing, and the subsequent balancing bid happens after the day-ahead market clearing. mFRR providers are paid at the marginal price according to the capacity they offer. In real-time, activation of reserves happens when the TSO demands it which leads to a balancing price higher than the spot price. mFRR providers are paid according to the amount they activate and penalized if they do not deliver their promised capacity. For flexible demand with rebound, such as a zinc furnace, there will be an inevitable rebound which requires additional energy.
 
-Figure \ref{fig:mfrr_prices_2022} shows the distribution of balancing minus spot prices (also called balance price differentials) ordered from low to high in red. Corresponding capacity prices are shown in blue. When balance price differentials are below zero, the power grid down-regulated, i.e., suppler was greater than demand. When price differentials are above zero, the power grid up-regulated, i.e., demand was higher than supply. mFRR capacity is for up-regulation but flexible providers can both down-regulate and up-regulate in the real-time balancing market if they choose. Here, however, we only consider the mFRR up-regulation capacity market where the zinc furnace is paid for both capacity (as shown in blue in Figure \ref{fig:mfrr_prices_2022}) and actual up-regulations (as shown in blue in Figure \ref{fig:mfrr_prices_2022} when balance price differential is above zero).
+Figure \ref{fig:mfrr_prices_2022} shows the distribution of balancing minus spot prices (referred to as balance price differentials) ordered from low to high in red. Corresponding capacity prices are shown in blue. When balance price differentials are below zero, the power grid down-regulated, i.e., suppler was greater than demand. When price differentials are above zero, the power grid up-regulated, i.e., demand was higher than supply. mFRR capacity is for up-regulation but flexible providers can both down-regulate and up-regulate in the real-time balancing market if they choose. Here, however, we only consider the mFRR up-regulation capacity market where the zinc furnace is paid for both capacity (as shown in blue in Figure \ref{fig:mfrr_prices_2022}) and actual up-regulations (as shown in blue in Figure \ref{fig:mfrr_prices_2022} when the balance price differential is above zero).
 
 \begin{figure}[!t]
     \centering
@@ -247,14 +247,14 @@ The optimization models for FCR and mFRR are presented in this section. First, t
 
 \subsection{FCR}
 
-The linear optimization model for FCR reserve bidding and activation is shown in compact form in (\ref{P1:compact_model_fcr}) with bold indicating time vectors. The objective in (\ref{P1:eq1}) maximizes revenue from capacity payments and minimizes penalties. The aggregator incurs a penalty cost of at $\bm{\lambda}^{\text{Pen}}$ DKK/kWh whenever the reserve, $\bm{p}^{r}$ cannot be met.
+The linear optimization model for FCR reserve bidding and activation is shown in compact form in eq. (\ref{P1:compact_model_fcr}) with bold indicating time vectors. The objective in eq. (\ref{P1:eq1}) maximizes revenue from capacity payments and minimizes penalties. The aggregator incurs a penalty cost of at $\lambda^{\text{Pen}}$ DKK/kWh whenever the reserve, $\bm{p}^{r}$ cannot be met.
 
 Variables related to bidding capacity and penalty are indexed by hours, $\bm{\Gamma}^{h}$, and variables related to real-time control are indexed by minute, $\bm{\Gamma}^{t}$.
 
 % # TODO: be aware of different time scale: minute vs hourly!!
 \begin{subequations}\label{P1:compact_model_fcr}
     \begin{align}
-        \underset{\bm{\Gamma}^{h},\bm{\Gamma}^{t}}{\textrm{max}} \quad & \bm{p}^{r} \bm{\lambda}^{\text{FCR}} - \bm{s}\bm{\lambda}^{\text{Pen}} \label{P1:eq1}
+        \underset{\bm{\Gamma}^{h},\bm{\Gamma}^{t}}{\textrm{max}} \quad & \bm{p}^{r} \bm{\lambda}^{\text{FCR}} - \bm{s}\lambda^{\text{Pen}} \label{P1:eq1}
         \\
         s.t \quad                                                      & q(\bm{\Gamma}^{h}, ) \leq 0 \label{P1:eq2}                                                                                                                                                  \\
         \quad                                                          & \text{State-space model in } (\ref{eq:StateSpaceModel}) \label{P1:eq8}                                                                                                                      \\
@@ -265,7 +265,7 @@ Variables related to bidding capacity and penalty are indexed by hours, $\bm{\Ga
     \end{align}
 \end{subequations}
 
-The inequality constraints in (\ref{P1:eq2}) are shown in \ref{P1:constraints}. Since FCR is a symmetric service, auxilliary variables $\bm{s}^{\prime}$ are introduced to account for the power not delivered as shown in (\ref{P1:co3})-(\ref{P1:co4}). The index $z$ denotes the two zones in the zinc furnace, and the total reserve from the zinc furnace is simply the sum of these as seen in (\ref{P1:co6})-(\ref{P1:co7}).
+The inequality constraints in eq. (\ref{P1:eq2}) are shown in eq. (\ref{P1:constraints}) below. Since FCR is a symmetric service, auxiliary variables $\bm{s}^{\prime}$ are introduced to account for the power not delivered as shown in eq. (\ref{P1:co3})-(\ref{P1:co4}). The index $z$ denotes the two zones in the zinc furnace, and the total reserve from the zinc furnace is simply the sum of these as seen in eq. (\ref{P1:co6})-(\ref{P1:co7}).
 
 \begin{subequations} \label{P1:constraints}
     \begin{align}
@@ -314,7 +314,7 @@ The optimization model for mFRR is identical to (cite own paper) with no scenari
 
 \section{Results and discussion}
 
-The results have the following structure: First, we discuss monetary savings for both FCR and mFRR. Second, we investigate worst-case days (in terms of total up-regulation) in 2022 for both FCR in mFRR. This includes explanations of the zinc furnace's their behavior in those days. Third, the zinc temperature's impact on monetary savings is presented and analyzed.
+This section is structured as follows. First, we discuss monetary savings for both FCR and mFRR. Second, we investigate worst-case days (in terms of total up-regulation) in 2022 for both FCR in mFRR. This includes explanations of the zinc furnace's their behavior in those days. Third, the zinc temperature's impact on monetary savings is presented and analyzed.
 
 Figure \ref{fig:cumulative_cost_comparison} shows the cumulative operational costs in 2022 for the zinc furnace participating in FCR, mFRR, and state of today as a reference. Clearly, FCR provided significant revenue during the summer when prices were high. Revenues for FCR compared to mFRR seem to be mostly due to this as FCR stagnates a bit after September (where FCR bidding was open to all of Europe and not just Western Denmark).
 
@@ -359,7 +359,7 @@ To assess the available flexibility in the zinc furnace, it is prudent to invest
     \label{fig:profit_vs_delta_temp_fcr}
 \end{figure}
 
-The same can not be said of mFRR as seen in Figure \ref{fig:profit_vs_delta_temp_mfrr} and alluded to previously in Figure \ref{fig:mfrr_single_case}. Figure \ref{fig:profit_vs_delta_temp_mfrr} clearly shows diminishing value at lower temperature deviations while the best savings are obtained when allowing temperature deviations of at least 6 $^{\circ}$.
+The same can not be said of mFRR as seen in Figure \ref{fig:profit_vs_delta_temp_mfrr} and alluded to previously in Figure \ref{fig:mfrr_single_case}. Figure \ref{fig:profit_vs_delta_temp_mfrr} clearly shows diminishing value at lower temperature deviations while the best savings are obtained when allowing temperature deviations of at least 6 C$^{\circ}$.
 % (which is of course unrealistic to cope with for the zinc furnace operator).
 
 \begin{figure}[!t]
@@ -370,9 +370,9 @@ The same can not be said of mFRR as seen in Figure \ref{fig:profit_vs_delta_temp
 \end{figure}
 
 
-One has to remember that the revenue generated from FCR and mFRR needs to be shared between the aggregator and flexible consumer as explained in \cite{gade2022ecosystem}. Hence, the provided upper bound savings reported are also bound to individual payment agreements with the aggregator. That can potentially make it less attractive for flexible demand to participate in ancillary services. However, FCR still seems like an obvious option and likewise for the investments made to enable FCR provision. mFRR, however, is not too attractive as it can have a detrimental impact on the zinc temperature on days with severe up-regulation. Other, perhaps less profitable, mFRR strategies must be employed. For example, only providing real-time balancing without reserves is a viable option since no commitments are made beforehand.
+One has to remember that the revenue generated from FCR and mFRR needs to be shared between the aggregator and flexible consumer as explained in \cite{gade2022ecosystem}. Hence, the provided upper bound savings reported are also bound to a payment agreement with the aggregator. That can potentially make it less attractive for flexible demand to participate in ancillary services. However, FCR still seems like an obvious option and likewise for the investments made to enable FCR provision. mFRR, however, is too attractive as it can have a detrimental impact on the zinc temperature on days with severe up-regulation. Other, although perhaps less profitable, mFRR strategies can be employed. For example, only providing real-time balancing without reserves is a viable option since no commitments are made beforehand.
 
-Other revenue streams, such as load shifting and aFRR, were not considered here, but they can potentially also be profitable in certain market regimes with high aFRR demand or very volatile spot prices.
+Other revenue streams such as load shifting and aFRR were not considered here, but they can potentially also be profitable in certain market regimes with high aFRR demand or very volatile spot prices.
 
 \input{sections/conclusion}
 
