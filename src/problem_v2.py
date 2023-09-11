@@ -1734,9 +1734,9 @@ class SolverInstance:
             )
 
         solver = SolverFactory("gurobi")
-        if value(model_instance._nb_scenarios) > 1:  # type:ignore
+        if value(model_instance._nb_scenarios) >= 1:  # type:ignore
             solver.options["TimeLimit"] = 60 * 4
-            solver.options["MIPGap"] = 0.025
+            solver.options["MIPGap"] = 0.05
         #     pass
         # solver.options["MIPFocus"] = 1
         results = solver.solve(model_instance, tee=tee)

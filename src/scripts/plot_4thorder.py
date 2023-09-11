@@ -5,13 +5,15 @@ from typing import Tuple
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import seaborn as sns
 
 from src.common.utils import _set_font_size
 
+# import seaborn as sns
+
+
 # matplotlib.pyplot.ion()
-sns.set_theme()
-sns.set(font_scale=1.5)
+# sns.set_theme()
+# sns.set(font_scale=1.5)
 
 BASE_FOLDER = "tex/figures/"
 
@@ -259,12 +261,17 @@ ax[0].step(
 )
 ax[0].step(_x, p_up + p_low, label="kW", color="green", linewidth=2)
 ax[0].legend(loc="best")
-ax[0].set_ylabel("[kW]")
+ax[0].set_ylabel("kW")
 ax[0].set_ylim([0, None])
 ax[0].set_title("Power consumption")
 
 ax[1].plot(
-    _x, twu_data[start:end], label=r"Twu data", color="black", linestyle="--", alpha=0.3
+    _x,
+    twu_data[start:end],
+    label=r"T^{wu} data",
+    color="black",
+    linestyle="--",
+    alpha=0.3,
 )
 ax[1].plot(
     _x,
@@ -275,13 +282,18 @@ ax[1].plot(
     color="black",
 )
 # ax[1].plot(_x, Twu_sim, label="Twu", alpha=1.0, color="orange")
-ax[1].plot(_x, Twu_sim, label="Twu", color="green", linewidth=2)
+ax[1].plot(_x, Twu_sim, label=r"T^{wu}", color="green", linewidth=2)
 ax[1].legend(loc="best")
 ax[1].set_ylabel(r"[$^\circ$C]")
 ax[1].set_title("Upper zone")
 
 ax[2].plot(
-    _x, twl_data[start:end], label=r"Twl data", color="black", linestyle="--", alpha=0.3
+    _x,
+    twl_data[start:end],
+    label=r"T^{wl} data",
+    color="black",
+    linestyle="--",
+    alpha=0.3,
 )
 ax[2].plot(
     _x,
@@ -292,13 +304,14 @@ ax[2].plot(
     color="black",
 )
 # ax[2].plot(_x, Twl_sim, label="Twl", alpha=1.0, color="orange")
-ax[2].plot(_x, Twl_sim, label="Twl", color="green", linewidth=2)
+ax[2].plot(_x, Twl_sim, label=r"T^{wl}", color="green", linewidth=2)
 ax[2].legend(loc="best")
 ax[2].set_ylabel(r"[$^\circ$C]")
 ax[2].set_title("Lower zone")
 ax[2].xaxis.set_tick_params(rotation=45)
 
 _set_font_size(ax, legend=18)
+plt.tight_layout()
 plt.savefig(BASE_FOLDER + "4thOrderModelVisualization.png", dpi=300)
 
 f, ax = plt.subplots(3, 1, sharex=True, figsize=(14, 18))
@@ -310,18 +323,23 @@ ax[0].step(
     # _x, p_up + p_low, label="kW ON/OFF", color="black", linestyle="--", alpha=0.3
     _x,
     p_up_data[start:end] + p_low_data[start:end],
-    label="kW ON/OFF",
+    label=r"$P^{Base}$ ON/OFF",
     color="black",
     linestyle="--",
     alpha=0.3,
 )
-ax[0].step(_x, p_up_ss + p_low_ss, label="kW Steady-state", color="green", linewidth=2)
+ax[0].step(_x, p_up_ss + p_low_ss, label=r"$P^{Base}$", color="green", linewidth=2)
 ax[0].legend(loc="best")
-ax[0].set_ylabel("[kW]")
+ax[0].set_ylabel("kW")
 ax[0].set_ylim([0, None])
 
 ax[1].plot(
-    _x, twu_data[start:end], label=r"Twu data", color="black", linestyle="--", alpha=0.3
+    _x,
+    twu_data[start:end],
+    label=r"$T^{wu}$ ON/OFF",
+    color="black",
+    linestyle="--",
+    alpha=0.3,
 )
 ax[1].plot(
     _x,
@@ -332,13 +350,19 @@ ax[1].plot(
     color="black",
 )
 # ax[1].plot(_x, Twu_sim, label="Twu", alpha=1.0, color="orange")
-ax[1].plot(_x, Twu_sim_ss, label="Twu steady-state", color="green", linewidth=2)
+ax[1].plot(_x, Twu_sim_ss, label=r"$T^{wu, Base}$", color="green", linewidth=2)
 ax[1].legend(loc="best")
 ax[1].set_ylabel(r"[$^\circ$C]")
 ax[1].set_title("Upper zone")
+ax[1].set_yticks([])
 
 ax[2].plot(
-    _x, twl_data[start:end], label=r"Twl data", color="black", linestyle="--", alpha=0.3
+    _x,
+    twl_data[start:end],
+    label=r"$T^{wl}$ ON/OFF",
+    color="black",
+    linestyle="--",
+    alpha=0.3,
 )
 ax[2].plot(
     _x,
@@ -349,13 +373,15 @@ ax[2].plot(
     color="black",
 )
 # ax[2].plot(_x, Twl_sim, label="Twl", alpha=1.0, color="orange")
-ax[2].plot(_x, Twl_sim_ss, label="Twl steady-state", color="green", linewidth=2)
+ax[2].plot(_x, Twl_sim_ss, label=r"$T^{wl, Base}$", color="green", linewidth=2)
 ax[2].legend(loc="best")
 ax[2].set_ylabel(r"[$^\circ$C]")
 ax[2].xaxis.set_tick_params(rotation=45)
 ax[2].set_title("Lower zone")
+ax[2].set_yticks([])
 
 _set_font_size(ax, legend=18)
+plt.tight_layout()
 plt.savefig(BASE_FOLDER + "4thOrderModelVisualizationSteadyState.png", dpi=300)
 
 plt.show()

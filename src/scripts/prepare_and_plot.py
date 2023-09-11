@@ -7,13 +7,15 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import seaborn as sns
 
 from src.common.utils import _set_font_size
 
+# import seaborn as sns
+
+
 # matplotlib.pyplot.ion()
-sns.set_theme()
-sns.set(font_scale=1.5)
+# sns.set_theme()
+# sns.set(font_scale=1.5)
 
 BASE_FOLDER = "tex/figures/"
 
@@ -105,22 +107,22 @@ ax = ax.ravel()
 ax[0].step(
     x,
     df.KW.tolist(),
-    label="kW-data",
+    label=r"$P^{Base}$",
     linestyle="--",
     color="black",
     linewidth=6,
     alpha=0.7,
 )
 # ax[0].step(x, df["KW-reconstructed"], label="kW-reconstruct1")
-ax[0].step(x, df.KW_LZ + df.KW_UZ, label="kW-LZ+kW-UZ")
-ax[0].step(x, df.KW_LZ, label="kW-LZ", linewidth=2, color="red")
-ax[0].step(x, df.KW_UZ, label="kW-UZ", linewidth=2, color="green")
+# ax[0].step(x, df.KW_LZ + df.KW_UZ, label="kW-LZ+kW-UZ")
+ax[0].step(x, df.KW_LZ, label=r"$P_{l}^{Base}$", linewidth=2, color="red")
+ax[0].step(x, df.KW_UZ, label=r"$P_{u}^{Base}$", linewidth=2, color="green")
 ax[0].set_title("Power consumption")
 # ax[0].set_title(
 #     "KW lower and upper zone | RMSE: {:.2f} | MAE: {:.2f}".format(rmse, mae)
 # )
 ax[0].set_ylabel("kW")
-ax[1].plot(x, df.Temp_Upp_Dec, label=r"[$^\circ$C]")
+ax[1].plot(x, df.Temp_Upp_Dec, label=r"$T^{wu}$")
 ax[1].plot(
     x, df.SetpunktOppe, label="Setpoint", linestyle="--", alpha=0.5, color="black"
 )
@@ -146,10 +148,14 @@ ax2.set_ylim([0, 5])
 ax2.legend(loc="lower left")
 ax2.tick_params(length=2)
 ax2.set_yticklabels(["OFF", "ON"])
+_set_font_size(ax2)
 
 ax[1].set_title(r"Upper zone")
 ax[1].set_ylabel(r"[$^\circ$C]")
-ax[2].plot(x, df.Temp_Down_Dec, label=r"[$^\circ$C]")
+# remove yticks from ax[1]
+ax[1].set_yticks([])
+
+ax[2].plot(x, df.Temp_Down_Dec, label=r"$T^{wl}$")
 ax[2].plot(
     x, df.SetpunktNede, label="Setpoint", linestyle="--", alpha=0.5, color="black"
 )
@@ -174,9 +180,11 @@ ax2.set_ylim([0, 5])
 ax2.legend(loc="lower left")
 ax2.tick_params(length=2)
 ax2.set_yticklabels(["OFF", "ON"])
+_set_font_size(ax2)
 
 ax[2].set_title(r"Lower zone")
 ax[2].set_ylabel(r"[$^\circ$C]")
+ax[2].set_yticks([])
 ax[0].legend(loc="upper left")
 ax[1].legend(loc="upper right")
 ax[2].legend(loc="upper right")
@@ -187,6 +195,7 @@ ax[2].xaxis.set_tick_params(rotation=45)
 
 _set_font_size(ax)
 
+plt.tight_layout()
 plt.savefig(BASE_FOLDER + "data_visualization.png", dpi=300)
 
 plt.show()

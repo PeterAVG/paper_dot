@@ -2,50 +2,29 @@ from typing import Any, Callable, Dict, Optional
 
 import cloudpickle
 import numpy as np
-from pyomo.environ import (
-    AbstractModel,
-    Constraint,
-    NonNegativeReals,
-    NonPositiveReals,
-    Objective,
-    Param,
-    RangeSet,
-    Reals,
-    SolverFactory,
-    Var,
-    floor,
-    maximize,
-    value,
-)
+from pyomo.environ import (AbstractModel, Constraint, NonNegativeReals,
+                           NonPositiveReals, Objective, Param, RangeSet, Reals,
+                           SolverFactory, Var, floor, maximize, value)
 from pyomo.opt import SolverStatus, TerminationCondition
-from tex.dot_nordic.scripts.base import (
-    PICKLE_FOLDER,
-    FCRInstanceInformation,
-    OptimizationInstanceZincFurnace,
-    OptimizationResult,
-)
-from tex.dot_nordic.scripts.constraints import (
-    delta_constraint,
-    twl_baseline_constraint,
-    twl_constraint,
-    twu_baseline_constraint,
-    twu_constraint,
-    tzl_baseline_constraint,
-    tzl_constraint,
-    tzl_constraint_1,
-    tzl_constraint_2,
-    tzu_baseline_constraint,
-    tzu_constraint,
-    tzu_constraint_1,
-    tzu_constraint_2,
-)
+from tex.dot_nordic.scripts.base import (PICKLE_FOLDER, FCRInstanceInformation,
+                                         OptimizationInstanceZincFurnace,
+                                         OptimizationResult)
+from tex.dot_nordic.scripts.constraints import (delta_constraint,
+                                                twl_baseline_constraint,
+                                                twl_constraint,
+                                                twu_baseline_constraint,
+                                                twu_constraint,
+                                                tzl_baseline_constraint,
+                                                tzl_constraint,
+                                                tzl_constraint_1,
+                                                tzl_constraint_2,
+                                                tzu_baseline_constraint,
+                                                tzu_constraint,
+                                                tzu_constraint_1,
+                                                tzu_constraint_2)
 from tex.dot_nordic.scripts.objective_functions import (
-    o_expected_fcr_balance_settlement,
-    o_expected_fcr_energy_consumption,
-    o_expected_fcr_reserve_payment,
-    o_fcr_penalty,
-    o_rule_fcr_energy,
-)
+    o_expected_fcr_balance_settlement, o_expected_fcr_energy_consumption,
+    o_expected_fcr_reserve_payment, o_fcr_penalty, o_rule_fcr_energy)
 
 from src.problem_v2 import OptimizationInstance
 
@@ -518,7 +497,7 @@ class FCRSolverInstance:
 
         solver = SolverFactory("gurobi")
         if value(model_instance._nb_scenarios) >= 1:  # type:ignore
-            solver.options["TimeLimit"] = 60 * 4
+            solver.options["TimeLimit"] = 60
             solver.options["MIPGap"] = 0.025
         #     pass
         # solver.options["MIPFocus"] = 1

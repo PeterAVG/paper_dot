@@ -28,10 +28,12 @@ M.~Plechinger, ``Omkostninger til reservekraft eksploderer,''
   \url{"https://energiwatch.dk/Energinyt/Politik___Markeder/article14846461.ece"}
 \BIBentrySTDinterwordspacing
 
-\bibitem{shafiei2013modeling}
-S.~E. Shafiei, H.~Rasmussen, and J.~Stoustrup, ``Modeling supermarket
-  refrigeration systems for demand-side management,'' \emph{Energies}, vol.~6,
-  no.~2, pp. 900--920, 2013.
+\bibitem{energinet:scenario_report_2022}
+\BIBentryALTinterwordspacing
+``Energinet scenario report 2022,'' \emph{Energinet}, 2023, accessed:
+  2023-09-05. [Online]. Available:
+  \url{https://energinet.dk/el/systemydelser/nyheder-om-systemydelser/2022/10/31-10-2022-scenarierapport/}
+\BIBentrySTDinterwordspacing
 
 \bibitem{pedersen2016improving}
 R.~Pedersen, J.~Schwensen, B.~Biegel, T.~Green, and J.~Stoustrup, ``Improving
@@ -48,11 +50,12 @@ F.~Sossan, V.~Lakshmanan, G.~T. Costanzo, M.~Marinelli, P.~J. Douglass, and
 \bibitem{o2013modelling}
 N.~O’Connell, H.~Madsen, P.~Pinson, and M.~O’Malley, ``Modelling and
   assessment of the capabilities of a supermarket refrigeration system for the
-  provision of regulating power,'' \emph{Kgs. Lyngby}, 2013.
+  provision of regulating power,'' \emph{Technical University of Denmark},
+  2013.
 
 \bibitem{de2019leveraging}
-G.~De~Zotti, ``Leveraging consumers flexibility for the provision of ancillary
-  services,'' 2019.
+G.~De~Zotti and H.~Madsen, ``Leveraging consumers flexibility for the provision
+  of ancillary services,'' \emph{PhD thesis}, 2019.
 
 \bibitem{misaghian2022fast}
 M.~S. Misaghian, C.~O'Dwyer, and D.~Flynn, ``Fast frequency response provision
@@ -90,9 +93,27 @@ H.~Hao, B.~M. Sanandaji, K.~Poolla, and T.~L. Vincent, ``Aggregate flexibility
   of thermostatically controlled loads,'' \emph{IEEE Transactions on Power
   Systems}, vol.~30, no.~1, pp. 189--198, 2014.
 
+\bibitem{gade2023load}
+P.~A.~V. Gade, T.~Skjøtskift, C.~Ziras, H.~W. Bindner, and J.~Kazempour,
+  ``Load shifting versus manual frequency reserve: Which one is more appealing
+  to flexible loads?'' 2023.
+
 \bibitem{juhl2016ctsmr}
 R.~Juhl, J.~K. M{\o}ller, and H.~Madsen, ``ctsmr-continuous time stochastic
   modeling in r,'' \emph{arXiv preprint arXiv:1606.00242}, 2016.
+
+\bibitem{code}
+\BIBentryALTinterwordspacing
+``Github repository,'' 2023. [Online]. Available:
+  \url{https://github.com/PeterAVG/paper_dot}
+\BIBentrySTDinterwordspacing
+
+\bibitem{energinet:prequalification}
+\BIBentryALTinterwordspacing
+``Prequalification of units and aggregated portfolios,'' \emph{Energinet},
+  2023, accessed 2023-09-11. [Online]. Available:
+  \url{https://en.energinet.dk/Electricity/Ancillary-Services/Prequalification-and-test}
+\BIBentrySTDinterwordspacing
 
 \bibitem{gade2022ecosystem}
 P.~A. Gade, T.~Skj{\o}tskift, H.~W. Bindner, and J.~Kazempour, ``Ecosystem for

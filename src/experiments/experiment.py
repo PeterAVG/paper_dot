@@ -13,12 +13,13 @@ logger = logging.getLogger(__name__)
 class Experiment(ETLComponent):
     def experiment_run_mfrr(self, **kwargs: Any) -> None:
         # run_oos = [False, True]
-        # year = [2021, 2022]
-        run_oos = [True]
-        year = [2022]
+        run_oos = [True, True, True]
+        year = [2021, 2022, 2023]
         for _run_oos, _year in zip(run_oos, year):
             # temperature_deltas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 50]
-            temperature_deltas = [1, 2, 3, 4, 5, 6, 7, 10, 50]
+            temperature_deltas = (
+                [1, 2, 3, 4, 5, 6, 7, 10, 50] if _year == 2022 else [50]
+            )
             for delta_max in temperature_deltas:
                 params = {
                     "elafgift": 0.0,
@@ -38,10 +39,14 @@ class Experiment(ETLComponent):
                 run_mfrr_spot_optmization(partition, **kwargs)
 
     def experiment_run_fcr(self, **kwargs: Any) -> None:
-        run_oos = [True]
-        year = [2022]
-        temperature_deltas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        run_oos = [True, True, True]
+        year = [2021, 2022, 2023]
+        year = [2021]
         for _run_oos, _year in zip(run_oos, year):
+            temperature_deltas = (
+                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] if _year == 2022 else [5]
+            )
+            print(_run_oos, _year)
             for delta_max in temperature_deltas:
                 params = {
                     "elafgift": 0.0,

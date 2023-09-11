@@ -6,7 +6,7 @@ import numpy as np
 
 from src.objective import _o_energy_cost, o_rule, o_rule_fcr_energy
 
-SCENARIO_PATH = "data/scenarios_v2_DK1.csv"
+SCENARIO_PATH = "data/scenarios_v3_DK1.csv"
 
 
 class Case(Enum):

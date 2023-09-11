@@ -499,17 +499,20 @@ def get_scenarios_fcr(
     date_cols = ["DATE_FROM", "DATE_TO"]
     df1 = pd.read_csv("data/fcr_2021.csv", parse_dates=date_cols)
     df2 = pd.read_csv("data/fcr_2022.csv", parse_dates=date_cols)
+    df3 = pd.read_csv("data/fcr_2023.csv", parse_dates=date_cols)
 
     dk1 = ["DK_SETTLEMENTCAPACITY_PRICE_[EUR/MW]"]
     dk2 = ["DENMARK_SETTLEMENTCAPACITY_PRICE_[EUR/MW]"]
 
     df1 = df1[date_cols + dk1]
     df2 = df2[date_cols + dk2]
+    df3 = df3[date_cols + dk2]
 
     df1.rename(columns={dk1[0]: "DK_PRICE"}, inplace=True)
     df2.rename(columns={dk2[0]: "DK_PRICE"}, inplace=True)
+    df3.rename(columns={dk2[0]: "DK_PRICE"}, inplace=True)
 
-    df = pd.concat([df1, df2]).sort_values(by=date_cols).reset_index(drop=True)
+    df = pd.concat([df1, df2, df3]).sort_values(by=date_cols).reset_index(drop=True)
 
     df.DK_PRICE = df.DK_PRICE.apply(
         lambda x: x.replace(",", ".").replace("-", "nan")
@@ -573,8 +576,9 @@ def get_scenarios_fcr(
     )
 
     # grid frequency
-    min1 = pd.read_csv("data/germany_merger_1min.csv", parse_dates=["datetime"])
-    min1.sort_values(by="datetime", inplace=True)
+    min1 = pd.read_csv("data/germany_merger_1min_v2.csv")
+    # min1 = pd.read_csv("data/germany_merger_1min_v2.csv", parse_dates=["datetime"])
+    # min1.sort_values(by="datetime", inplace=True)
     # min1.drop_duplicates("datetime", inplace=True)
     min1.Hz = (min1.Hz.values - 50) * 1000
     print(min1.shape)
