@@ -29,10 +29,11 @@
 
 \begin{document}
 
+\title{Energy Intensive Industries Providing Flexibility Services: A Real Case Study of Zinc Galvanizing Process}
 
-\title{A New Paradigm for Energy Intensive Industries: Adapting to Provide Power Flexibility}
+%\title{A New Paradigm for Energy Intensive Industries: Adapting to Provide Power Flexibility}
 
-\author{Peter A.V. Gade\textsuperscript{*}\textsuperscript{\textdagger}, Trygve Skjøtskift\textsuperscript{\textdagger}, Charalampos Ziras\textsuperscript{*}, Henrik W. Bindner\textsuperscript{*}, Jalal Kazempour\textsuperscript{*} \\
+\author{Peter A.V. Gade\textsuperscript{*}\textsuperscript{\textdagger}, Trygve Skjøtskift\textsuperscript{\textdagger}, Henrik W. Bindner\textsuperscript{*}, Jalal Kazempour\textsuperscript{*} \\
     \textsuperscript{*}Department of Wind and Energy Systems, Technical University of Denmark, Kgs. Lyngby, Denmark \\
     \textsuperscript{\textdagger}IBM Client Innovation Center, Copenhagen, Denmark
     % <-this % stops a space
@@ -69,7 +70,7 @@ Power prices have increased massively in 2022, and the increasing share of renew
 
 To facilitate the green transition by using greener technologies to balance the power grid, existing infrastructure can readily be used. In particular, existing power demand can to some degree become flexible, i.e., the power consumption can vary within some thresholds for a certain amount of time as facilitated by an \textit{aggregator}. IBM has created a solution, the Flex Platform, that harness demand-side flexibility to be bid into various ancillary service markets. Power demand in the industrial sector is significant and for simple, single-state industry processes, modest investments can enable them to become flexible.
 
-Single-state processes are characterized by being solely sequential, i.e., the next step occurs after the previous step is done. They are repetitive as well, relatively simple and uncomplicated. Their \textit{state} is often a temperature. They exist everywhere: iron and steel foundries, cooling houses, and a zinc galvanizing operation as shown later. Such processes are prone to become flexible with respect to their power consumption as it requires little to no extra effort or adjustment.
+Single-state processes are characterized by being solely sequential, i.e., the next step occurs after the previous step is done. They are repetitive as well, relatively simple and uncomplicated. Their \textit{state} is often a temperature. They exist everywhere: iron and steel foundries, cooling houses, and a zinc galvanizing operation as shown later (see \cite{paulus2011potential} for an extensive list of energy intensive industry processes). Such processes are prone to become flexible with respect to their power consumption as it requires little to no extra effort or adjustment.
 
 In the European Union and Denmark, there is an increased focus on $CO_{2}$ \textit{accounting}. Companies, small and large, all need to look thoroughly into their current carbon emissions and especially initiatives that reduce them. Demand-side flexibility is an obvious choice for energy intensive single-state industry processes as it allows them to balance the power grid.\footnote{With the assumption that it would otherwise be provided by fossil fuel power plants.} Other initiatives include energy optimization and energy efficiency, but both have diminishing returns.
 
@@ -109,11 +110,13 @@ The demand for FCR and mFRR is expected to increase significantly in Denmark due
 
 \subsection{Literature review}
 
-Many studies have investigated demand-side flexibility. While most have focused on flexibility from residential households in an aggregated portfolio, some have also looked at industry processes with a significant electric energy consumption. None, though, specifically look at single-state industrial processes in a real-life setting while addressing their incentives to deliver power flexibility.
+Many studies have investigated demand-side flexibility. While most have focused on flexibility from residential households in an aggregated portfolio, some have also looked at industry processes with a significant electric energy consumption. For example, \cite{paulus2011potential} show the huge potential for energy intensive industry processes to provide balancing reserves. According to the authors knowledge, none specifically look at single-state industrial processes in a real-life setting while addressing their incentives to deliver power flexibility.
 
 Of these, freezers have been investigated thoroughly both with respect to mathematical representation \cite{pedersen2016improving}  and as a source of flexibility \cite{sossan2016grey}, \cite{o2013modelling}, \cite{de2019leveraging}, \cite{misaghian2022fast}, \cite{vrettos2016fast}. Freezers are potentially a great source of flexibility because of the thermal inertia in the frozen food. However, supermarket freezers are complicated systems in which individual freezer displays are dependent of each other as they are fed cold air from the same compressor rack. Furthermore, there are many food regulations that complicate control of freezers with respect to allowed temperature deviations.
 
 Much work has also gone into understanding heat dynamics of medium-large buildings \cite{thilker2021non} in order to operate them intelligently with respect to electricity prices and the grid \cite{contreras2018tractable}, \cite{finck2018quantifying}. However, this operation also comes with complexity in terms of control with potentially many different (dependent) heterogeneous assets such as ventilation units, heat pumps, water tanks, and heating units. Many single-state industrial processes are likely better suited for flexibility provision as they are more simple and easily modifiable.
+
+In \cite{mallapragada2023decarbonization}, it is argued that energy intensive chemical processes can benefit from investments into electrification. The payback time of the investments can be reduced significantly by exploiting the capabilities of power electronics to deliver balancing services to the grid. Likewise, it is shown in \cite{samani2022flexible} how a chemical process can deliver FCR to the grid while still maintaining the same operational quality.
 
 In \cite{junker2020stochastic}, a water tower is characterized using stochastic differential equations for best planning how water should be pumped in relation to spot prices. Although not specifically for ancillary services, this serves as an illustrative example how operational control can benefit from knowledge of electricity prices in a fairly simple industry process.
 
