@@ -37,6 +37,27 @@ def load_cache() -> Dict[str, Any]:
     return cache
 
 
+def load_tmp_cache(path: str) -> Dict[int, Any]:
+    try:
+        with open(
+            path,
+            mode="rb",
+        ) as _file:
+            cache = cloudpickle.load(_file)
+    except FileNotFoundError:
+        print("Cache not found. Initializing empty cache.")
+        cache = {}
+    return cache
+
+
+def save_to_tmp_cache(cache: Any, path: str) -> None:
+    with open(
+        path,
+        mode="wb",
+    ) as file:
+        cloudpickle.dump(cache, file)
+
+
 def cache(func: Callable) -> Callable:
 
     func.cache: Dict[str, Any] = load_cache()  # type:ignore

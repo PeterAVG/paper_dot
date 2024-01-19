@@ -310,7 +310,7 @@ ax[2].set_ylabel(r"[$^\circ$C]")
 ax[2].set_title("Lower zone")
 ax[2].xaxis.set_tick_params(rotation=45)
 
-_set_font_size(ax, legend=18)
+_set_font_size(ax, misc=22,legend=20)
 plt.tight_layout()
 plt.savefig(BASE_FOLDER + "4thOrderModelVisualization.png", dpi=300)
 
@@ -380,7 +380,7 @@ ax[2].xaxis.set_tick_params(rotation=45)
 ax[2].set_title("Lower zone")
 ax[2].set_yticks([])
 
-_set_font_size(ax, legend=18)
+_set_font_size(ax, misc=22,legend=20)
 plt.tight_layout()
 plt.savefig(BASE_FOLDER + "4thOrderModelVisualizationSteadyState.png", dpi=300)
 

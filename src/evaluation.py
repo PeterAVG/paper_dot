@@ -1,10 +1,10 @@
-from time import time
+import time
 from typing import Any, Dict, List, cast
 
 import numpy as np
 
 from src.base import OBJECTIVE_FUNCTION, Case
-from src.experiment_manager.cache import load_cache
+from src.experiment_manager.cache import load_cache, load_tmp_cache, save_to_tmp_cache
 from src.objective import _o_energy_cost
 from src.prepare_problem_v2 import (
     OptimizationResult,
@@ -132,12 +132,25 @@ def evaluate_oos(
     opt_results = []
     res_instances = []
 
+    tmp_cache = "tmp2.pkl"
+    tmp = load_tmp_cache(tmp_cache)
+    # assert len(tmp) == 0, "tmp cache should be empty"
+
     print(f"Preparing evaluation results with chunk size {chunk_size} ...")
-    start = time()
+    start = time.time()
 
     for i, chunk_instance in enumerate(instance.chunk_generator(chunk_size)):
         assert chunk_instance.nb_scenarios == 1, "We only support one scenario for OOS"
         print(f"   Evaluating chunk {i}...")
+
+        if i in tmp:
+            print(
+                f"   Chunk {i} already evaluated and is present in tmp cache. Skipping..."
+            )
+            res_inst, opt_result = tmp[i]
+            opt_results.append(opt_result)
+            res_instances.append(res_inst)
+            continue
 
         # neccessary to avoid error as penalty is at 20 DKK/kWh (for mFRR)
         chunk_instance.lambda_rp = np.minimum(19, chunk_instance.lambda_rp)
@@ -154,7 +167,14 @@ def evaluate_oos(
             # fix_p_up_reserve_only(problem, chunk_instance, deepcopy(params))
             pass
 
-        opt_result = problem.solve(tee=True)
+        try:
+            opt_result = problem.solve(tee=True)
+        except Exception as e:
+            print(f"\n\nError in chunk {i}:\n{e}\n\n")
+            opt_results.append(None)
+            res_instances.append(None)
+            continue
+
         res_inst = get_variables_and_params(problem.res_instance, case)
 
         if case.name == Case.SPOT.name:
@@ -171,7 +191,13 @@ def evaluate_oos(
         opt_results.append(opt_result)
         res_instances.append(res_inst)
 
-    print(f"Evaluation done in {time() - start} seconds")
+        tmp[i] = (res_inst, opt_result)
+        save_to_tmp_cache(tmp, tmp_cache)
+
+    # delete tmp cache
+    save_to_tmp_cache({}, tmp_cache)
+
+    print(f"Evaluation done in {time.time() - start} seconds")
 
     # TODO: if not equal probability for all scenarios, this is not correct
     return res_instances, opt_results  # type:ignore

@@ -193,7 +193,7 @@ end = 7800
 ax[0].set_xlim([x[start], x[end]])
 ax[2].xaxis.set_tick_params(rotation=45)
 
-_set_font_size(ax)
+_set_font_size(ax, misc=22,legend=20)
 
 plt.tight_layout()
 plt.savefig(BASE_FOLDER + "data_visualization.png", dpi=300)

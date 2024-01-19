@@ -113,7 +113,7 @@ def plot_mFRR_case_result() -> None:
     ax[3].set_ylabel("Price [DKK/kWh]")
     ax[3].set_xlabel("Time [h]")
     # plt.rcParams.update({"font.size": 20})
-    _set_font_size(ax, legend=16)
+    _set_font_size(ax, misc=22,legend=20)
     plt.tight_layout()
 
     plt.savefig("tex/figures/mFRR_single_case", dpi=300)
@@ -256,7 +256,7 @@ def plot_fcr_case_result() -> None:
     ax[3].set_xlabel("Time [h]")
     ax[3].set_xlim([0, 24])
     # plt.rcParams.update({"font.size": 20})
-    _set_font_size(ax, legend=16)
+    _set_font_size(ax, misc=22,legend=20)
     plt.tight_layout()
 
     plt.savefig("tex/figures/fcr_single_case", dpi=300)
@@ -321,7 +321,7 @@ def plot_fcr_prices() -> None:
     ax.set_ylabel("DKK/kWh")
     ax.legend(loc="best")
     ax.xaxis.set_tick_params(rotation=45)
-    _set_font_size(ax, legend=12)
+    _set_font_size(ax, misc=22,legend=20)
     plt.tight_layout()
 
     plt.savefig("tex/figures/fcr_prices", dpi=300)
@@ -377,7 +377,7 @@ def plot_mfrr_prices() -> None:
     ax.legend(loc="best")
     # ax[1].legend(loc="best")
     ax.xaxis.set_tick_params(rotation=45)
-    _set_font_size(ax, legend=12)
+    _set_font_size(ax, misc=22,legend=20)
     plt.tight_layout()
 
     plt.savefig("tex/figures/mfrr_prices", dpi=300)
@@ -451,7 +451,7 @@ def plot_yearly_earnings() -> None:
     ax.set_ylabel("Cumulative operational cost [DKK]")
     ax.legend(loc="best")
     ax.xaxis.set_tick_params(rotation=45)
-    _set_font_size(ax, legend=14)
+    _set_font_size(ax, misc=22,legend=20)
     plt.tight_layout()
     plt.savefig("tex/figures/cumulative_cost_comparison.png", dpi=300)
     # plt.show()
@@ -498,7 +498,7 @@ def plot_profit_vs_delta_max(case: Case) -> None:
     ax.set_ylabel("Savings [DKK]")
     # ax.legend(loc="best")
     ax.xaxis.set_tick_params(rotation=45)
-    _set_font_size(ax, legend=8)
+    _set_font_size(ax, misc=22,legend=20)
 
     plt.tight_layout()
     plt.savefig(f"tex/figures/profit_vs_delta_temp_{case.name.lower()}.png", dpi=300)
@@ -507,13 +507,13 @@ def plot_profit_vs_delta_max(case: Case) -> None:
 
 def main() -> None:
     if True:
-        plot_mFRR_case_result()
-        plot_fcr_case_result()
+        # plot_mFRR_case_result()
+        # plot_fcr_case_result()
         # plot_yearly_earnings()
-        # plot_fcr_prices()
-        # plot_mfrr_prices()
-        # plot_profit_vs_delta_max(Case.FCR)
-        # plot_profit_vs_delta_max(Case.mFRR_AND_ENERGY)
+        plot_fcr_prices()
+        plot_mfrr_prices()
+        plot_profit_vs_delta_max(Case.FCR)
+        plot_profit_vs_delta_max(Case.mFRR_AND_ENERGY)
 
 
 if __name__ == "__main__":

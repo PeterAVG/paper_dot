@@ -137,6 +137,9 @@ venv_julia
 data/
 *.xlsx
 src/experiments/cache/
+src/experiments/dry_runs/
+tmp.pkl
+tmp2.pkl
 
 tex/*.aux
 tex/*.bbl
