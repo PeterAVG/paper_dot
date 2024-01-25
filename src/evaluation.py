@@ -132,8 +132,8 @@ def evaluate_oos(
     opt_results = []
     res_instances = []
 
-    tmp_cache = "tmp2.pkl"
-    tmp = load_tmp_cache(tmp_cache)
+    # tmp_cache = "tmp2.pkl"
+    # tmp = load_tmp_cache(tmp_cache)
     # assert len(tmp) == 0, "tmp cache should be empty"
 
     print(f"Preparing evaluation results with chunk size {chunk_size} ...")
@@ -143,14 +143,14 @@ def evaluate_oos(
         assert chunk_instance.nb_scenarios == 1, "We only support one scenario for OOS"
         print(f"   Evaluating chunk {i}...")
 
-        if i in tmp:
-            print(
-                f"   Chunk {i} already evaluated and is present in tmp cache. Skipping..."
-            )
-            res_inst, opt_result = tmp[i]
-            opt_results.append(opt_result)
-            res_instances.append(res_inst)
-            continue
+        # if i in tmp:
+        #     print(
+        #         f"   Chunk {i} already evaluated and is present in tmp cache. Skipping..."
+        #     )
+        #     res_inst, opt_result = tmp[i]
+        #     opt_results.append(opt_result)
+        #     res_instances.append(res_inst)
+        #     continue
 
         # neccessary to avoid error as penalty is at 20 DKK/kWh (for mFRR)
         chunk_instance.lambda_rp = np.minimum(19, chunk_instance.lambda_rp)
@@ -191,11 +191,11 @@ def evaluate_oos(
         opt_results.append(opt_result)
         res_instances.append(res_inst)
 
-        tmp[i] = (res_inst, opt_result)
-        save_to_tmp_cache(tmp, tmp_cache)
+        # tmp[i] = (res_inst, opt_result)
+        # save_to_tmp_cache(tmp, tmp_cache)
 
     # delete tmp cache
-    save_to_tmp_cache({}, tmp_cache)
+    # save_to_tmp_cache({}, tmp_cache)
 
     print(f"Evaluation done in {time.time() - start} seconds")
 

@@ -469,15 +469,15 @@ def plot_profit_vs_delta_max(case: Case) -> None:
         for k, v in cache.items()
         if (
             eval(k)["case"] == case.name
-            and eval(k)["delta_max"] <= 10
+            and eval(k)["delta_max"] <= 50
             and eval(k)["year"] == year
         )
     ]
     print(len(all_results))
 
     delta_max = [e[0] for e in all_results]
-    cost = [[sum(q.total_cost for q in e[1][1])] for e in all_results]
-    base_cost = [[sum(q.base_cost_today for q in e[1][1])] for e in all_results]
+    cost = [[sum(q.total_cost if q is not None else 0.0 for q in e[1][1])] for e in all_results]
+    base_cost = [[sum(q.base_cost_today if q is not None else 0.0 for q in e[1][1])] for e in all_results]
     idx_sorted = np.argsort(delta_max)
 
     for d, f, b in zip(delta_max, cost, base_cost):
@@ -510,9 +510,9 @@ def main() -> None:
         # plot_mFRR_case_result()
         # plot_fcr_case_result()
         # plot_yearly_earnings()
-        plot_fcr_prices()
-        plot_mfrr_prices()
-        plot_profit_vs_delta_max(Case.FCR)
+        # plot_fcr_prices()
+        # plot_mfrr_prices()
+        # plot_profit_vs_delta_max(Case.FCR)
         plot_profit_vs_delta_max(Case.mFRR_AND_ENERGY)
 
 
