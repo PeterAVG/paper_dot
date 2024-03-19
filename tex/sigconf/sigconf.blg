@@ -1,0 +1,100 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: sigconf.aux
+The style file: ACM-Reference-Format.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: bibliography/sigconf_bib.bib
+Warning--entry type for "code" isn't style-file defined
+--line 1337 of file bibliography/sigconf_bib.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--no key, author, or editor in energinet:prequalification
+Warning--no author, editor, organization, or key in energinet:prequalification
+Warning--to sort, need author, editor, or key in energinet:prequalification
+Warning--no key, author, or editor in energinet:scenario_report_2022
+Warning--no author, editor, organization, or key in energinet:scenario_report_2022
+Warning--to sort, need author, editor, or key in energinet:scenario_report_2022
+Warning--no key, author in code
+Warning--no author, editor, organization, or key in code
+Warning--to sort, need author or key in code
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Warning--no key, author in code
+Warning--no key, author in code
+Warning--no key, author, or editor in energinet:scenario_report_2022
+Warning--no key, author, or editor in energinet:scenario_report_2022
+Warning--no key, author, or editor in energinet:prequalification
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--no key, author, or editor in energinet:scenario_report_2022
+Warning--neither author and editor supplied for energinet:scenario_report_2022
+Warning--no number and no volume in energinet:scenario_report_2022
+Warning--page numbers missing in both pages and numpages fields in energinet:scenario_report_2022
+Warning--no key, author in code
+Warning--empty author in code
+Warning--no key, author, or editor in energinet:prequalification
+Warning--neither author and editor supplied for energinet:prequalification
+Warning--no number and no volume in energinet:prequalification
+Warning--page numbers missing in both pages and numpages fields in energinet:prequalification
+Warning--no number and no volume in de2019leveraging
+Warning--page numbers missing in both pages and numpages fields in de2019leveraging
+Warning--no journal in gade2023load
+Warning--no number and no volume in gade2023load
+Warning--page numbers missing in both pages and numpages fields in gade2023load
+Warning--no number and no volume in juhl2016ctsmr
+Warning--page numbers missing in both pages and numpages fields in juhl2016ctsmr
+Warning--no number and no volume in misaghian2022fast
+Warning--page numbers missing in both pages and numpages fields in misaghian2022fast
+Warning--no number and no volume in o2013modelling
+Warning--page numbers missing in both pages and numpages fields in o2013modelling
+Warning--no number and no volume in pedersen2016improving
+Warning--page numbers missing in both pages and numpages fields in pedersen2016improving
+Warning--no number and no volume in energinetOmkostninger
+Warning--page numbers missing in both pages and numpages fields in energinetOmkostninger
+Warning--no number and no volume in sossan2016grey
+Warning--page numbers missing in both pages and numpages fields in sossan2016grey
+Warning--no number and no volume in vrettos2016fast
+Warning--page numbers missing in both pages and numpages fields in vrettos2016fast
+You've used 21 entries,
+            5981 wiz_defined-function locations,
+            1741 strings with 24476 characters,
+and the built_in function-call counts, 23584 in all, are:
+= -- 3569
+> -- 760
+< -- 0
++ -- 263
+- -- 251
+* -- 1680
+:= -- 2095
+add.period$ -- 104
+call.type$ -- 21
+change.case$ -- 161
+chr.to.int$ -- 20
+cite$ -- 75
+duplicate$ -- 1918
+empty$ -- 1376
+format.name$ -- 319
+if$ -- 6221
+int.to.chr$ -- 3
+int.to.str$ -- 1
+missing$ -- 80
+newline$ -- 229
+num.names$ -- 126
+pop$ -- 838
+preamble$ -- 1
+purify$ -- 326
+quote$ -- 0
+skip$ -- 616
+stack$ -- 0
+substring$ -- 1441
+swap$ -- 171
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 347
+warning$ -- 43
+while$ -- 85
+width$ -- 0
+write$ -- 444
+(There were 44 warnings)

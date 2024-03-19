@@ -1,108 +1,121 @@
-\documentclass[lettersize,journal]{IEEEtran}
-\usepackage{amsmath,amsfonts}
-\usepackage{algorithmic}
-\usepackage{algorithm}
-\usepackage{array}
-\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
-\usepackage{textcomp}
-\usepackage{stfloats}
-\usepackage{url}
-\usepackage{verbatim}
-\usepackage{graphicx}
-\usepackage{cite}
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
 
-% added packages from authors
-\usepackage{xcolor}
-\usepackage{booktabs} % for \midrule in tables
-\usepackage{hhline}
-\usepackage{bbm}
-\usepackage{bm}
-\usepackage{makecell}
-\usepackage[mode=buildnew]{standalone}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage[version=4]{mhchem}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{siunitx}
+\usepackage{eurosym}
+\usepackage{mhchem}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{eurosym}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\usepackage{url}
+
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\figspace}{\vspace{-0.5cm}}
+\newcommand{\paragraphspace}{\vspace{-0.3cm}}
+
+
 \usepackage{tikz}
 \usetikzlibrary{calc,arrows,patterns,intersections}
 \usepackage{pgfplots}
+\usepackage{bbm}
+\usepackage{bm}
+\usepackage{adjustbox}
 \usepackage{xcolor}
 \usepgfplotslibrary{fillbetween}
 
-\hyphenation{op-tical net-works semi-conduc-tor IEEE-Xplore}
+\usepackage{alphalph}
+\usepackage{etoolbox}
+
+\newcommand{\alphalphval}[1]{\alphalph{\value{#1}}}
+
+\AtBeginDocument{%
+  \AtBeginEnvironment{subequations}{%
+    \let\alph\alphalphval%
+  }
+}
+
+
+\definecolor{RectangleColor}{RGB}{197,210,180}
+
 
 \begin{document}
 
 \title{Energy Intensive Industries Providing Flexibility Services: A Real Case Study of Zinc Galvanizing Process}
 
-%\title{A New Paradigm for Energy Intensive Industries: Adapting to Provide Power Flexibility}
-
 \author{Peter A.V. Gade\textsuperscript{*}\textsuperscript{\textdagger}, Trygve Skjøtskift\textsuperscript{\textdagger}, Henrik W. Bindner\textsuperscript{*}, Jalal Kazempour\textsuperscript{*} \\
     \textsuperscript{*}Department of Wind and Energy Systems, Technical University of Denmark, Kgs. Lyngby, Denmark \\
     \textsuperscript{\textdagger}IBM Client Innovation Center, Copenhagen, Denmark
     % <-this % stops a space
-    \thanks{Corresponding author. Tel.: +45 24263865. \\ Email addresses: pega@dtu.dk (P.A.V. Gade), Trygve.Skjotskift@ibm.com (T. Skjøtskift), hwbi@dtu.dk (H.W. Bindner), jalal@dtu.dk (J. Kazempour).}% <-this % stops a space
-    \thanks{Manuscript received April 19, 2021; revised August 16, 2021.}}
+    \thanks{
+        %Corresponding author. Tel.: +45 24263865. \\
+        Email addresses: pega@dtu.dk (P.A.V. Gade), Trygve.Skjotskift@ibm.com (T. Skjøtskift), hwbi@dtu.dk (H.W. Bindner), jalal@dtu.dk (J. Kazempour).}% <-this % stops a space
+    %    \thanks{Manuscript received April 19, 2021; revised August 16, 2021.} \\
 
-% \footnote{Corresponding author. Tel.: +45 24263865. \\ Email addresses: pega@dtu.dk (P.A.V. Gade), Trygve.Skjotskift@ibm.com (T. Skjøtskift), hwbi@dtu.dk (H.W. Bindner), jalal@dtu.dk (J. Kazempour).}
-
-% The paper headers
-% \markboth{Journal of \LaTeX\ Class Files,~Vol.~14, No.~8, August~2021}%
-% {Shell \MakeLowercase{\textit{et al.}}: A Sample Article Using IEEEtran.cls for IEEE Journals}
-
-% \IEEEpubid{0000--0000/00\$00.00~\copyright~2021 IEEE}
-% Remember, if you use this you must call \IEEEpubidadjcol in the second
-% column for its text to clear the IEEEpubid mark.
+    \vspace{-3mm}
+}
 
 \maketitle
 
-% \tableofcontents
+\IEEEaftertitletext{\vspace{-0.8\baselineskip}}
+\maketitle
+\thispagestyle{plain}
+\pagestyle{plain}
 
+% \tableofcontents
 \begin{abstract}
-    % \input{sections/abstract}
-    In order to reach carbon emission goals, incumbent industries can adapt to help balance the power grid. Single-state industry processes are particularly suited for balancing the power grid while earning money and reducing emissions. Using a real-world case study of a zinc galvanizing process, it is shown how modest investments into the power control of the furnace enable flexible provision in two ancillary services, frequency containment reserves (FCR) and manual
-    frequency restoration reserves (mFRR), with a pay-back time potentially within a year. The monetary value of both services are significant with FCR being the preferable service as its impact on the temperature of the zinc is negligible. This paper serves to illustrate how current inflexible demand can become flexible and profitable while aiding the green transition by balancing the power grid.
+    Incumbent industrial power consumers can adapt to help balance the power grid. Single-state industry processes are particularly suited for balancing the power grid while cost saving and reducing emissions. This paper serves to illustrate how current inflexible energy-intensive industries can become flexible and profitable while aiding the green transition by balancing the power grid. By using a real-world case study of a zinc galvanizing process in Denmark, we develop several convex optimization models and show how a modest investment in power control of the furnace enables the provision of various flexibility services. In particular, we consider two types of services, namely frequency containment reserve (FCR) and manual frequency restoration reserve (mFRR). We numerically conclude that the monetary value of both services is significant, such that the pay-back time of investment is potentially within a year. The FCR service provision is more preferable as its impact on the temperature of the zinc is negligible.
 \end{abstract}
 
+
 \begin{IEEEkeywords}
-    Demand-side flexibility.
+    Demand-side flexibility, thermostatically controlled loads; ancillary services
 \end{IEEEkeywords}
 
-\input{sections/introduction}
 
-Power prices have increased massively in 2022, and the increasing share of renewable energy stresses the grid to an unprecedented level. In 2022, the Danish transmission operator (TSO), Energinet, spent 2.7 billion on ancillary services, an increase of 1.3 billion from 2021 \cite{energinetOmkostninger}. Energinet expect this cost will only increase further as more renewable, intermittent energy requires more balancing of the power grid.
+\section{Introduction}
 
-To facilitate the green transition by using greener technologies to balance the power grid, existing infrastructure can readily be used. In particular, existing power demand can to some degree become flexible, i.e., the power consumption can vary within some thresholds for a certain amount of time as facilitated by an \textit{aggregator}. IBM has created a solution, the Flex Platform, that harness demand-side flexibility to be bid into various ancillary service markets. Power demand in the industrial sector is significant and for simple, single-state industry processes, modest investments can enable them to become flexible.
+Power prices in Europe increased massively in 2022. Meanwhile, the increasing share of renewable energy sources with stochastic production stresses the grid to an unprecedented level. In 2022, the Danish transmission operator (TSO), Energinet, spent 2.7 billion DKK on ancillary services, an increase of 1.3 billion DKK from 2021 \cite{energinetOmkostninger}. Energinet expects this cost will increase further as the integration of additional renewable sources requires more balancing of the power grid.
 
-Single-state processes are characterized by being solely sequential, i.e., the next step occurs after the previous step is done. They are repetitive as well, relatively simple and uncomplicated. Their \textit{state} is often a temperature. They exist everywhere: iron and steel foundries, cooling houses, and a zinc galvanizing operation as shown later (see \cite{paulus2011potential} for an extensive list of energy intensive industry processes). Such processes are prone to become flexible with respect to their power consumption as it requires little to no extra effort or adjustment.
+To facilitate the green transition by using greener technologies to balance the power grid, existing infrastructure can readily be used. In particular, existing power demand can to some degree become flexible, i.e., the power consumption can vary within some thresholds for a certain amount of time as facilitated by a flexibility aggregator. IBM has created a platform, the \textit{Flex Platform}, that harnesses demand-side flexibility to be offered into various ancillary service markets. Power demand in the industrial sector is significant and for simple, single-state industry processes, modest investments can enable them to become flexible.
 
-In the European Union and Denmark, there is an increased focus on $CO_{2}$ \textit{accounting}. Companies, small and large, all need to look thoroughly into their current carbon emissions and especially initiatives that reduce them. Demand-side flexibility is an obvious choice for energy intensive single-state industry processes as it allows them to balance the power grid.\footnote{With the assumption that it would otherwise be provided by fossil fuel power plants.} Other initiatives include energy optimization and energy efficiency, but both have diminishing returns.
+Single-state processes are characterized by being solely sequential, i.e., the next step occurs after the previous step is done. They are repetitive as well, relatively simple and uncomplicated. Their \textit{state} is often a temperature level. They exist everywhere: iron and steel foundries, cooling houses, and a zinc galvanizing operation as shown later (see \cite{paulus2011potential} for an extensive list of energy intensive industry processes). Such processes are prone to become flexible with respect to their power consumption as it requires little to no extra effort or adjustment. Furthermore, it is beneficial and advantageous to harness the flexibility from one big asset as supposed to several hundreds smaller assets\footnote{This might not be the case for flexibility required for grid congestion management, while for frequency services needed for balancing the system, the location does not matter. Our focus in this paper is on flexibility resources for frequency services.}.
 
-In this work, an industry process is investigated as exemplified by a zinc galvanizing furnace using real data from their process (see Section \ref{sec:zinc_furnace_description} for details). The learnings from this case study readily generalizes to other single-state processes.
+In the European Union and Denmark, there is an increased focus on $\rm{CO_{2}}$ accounting. Companies, small and large, all need to look thoroughly into their current carbon emissions and especially initiatives that reduce them. Demand-side flexibility is an obvious choice for energy intensive single-state industry processes as it allows them to balance the power grid.\footnote{With the assumption that it would otherwise be provided by fossil fuel power plants.} Other initiatives include energy optimization and energy efficiency, but both have diminishing returns. In Denmark, Energinet has now created a set of rules allowing stochastic demand (or production) to participate with their flexibility \cite{energinet:prequalification}. By allowing for industrial power demand to participate with their flexibility, liquidity in ancillary services increases.
 
-\subsection{Research questions}
+In this work, an industry process is investigated as exemplified by a zinc galvanizing furnace using real data from their process. The learnings from this case study can be readily generalized to other single-state processes.
 
-We investigate how its viable for zinc furnace to adapt for provision of power flexibility through ancillary services such as FCR and mFRR. We do so from a techno-economic perspective while also investigating the temperature impact of delivering flexibility. The research questions addressed are therefore:
 
-\IEEEpubidadjcol
+\subsection{Research questions and context}
 
-\begin{itemize}
-    \item Are there incentives for an energy intensive industry process to deliver power flexibility to the grid?
-    \item How can it adapt its industry process to provide power flexibility?
-    \item Are ancillary services such as FCR and mFRR suited for such a process?
-    \item What is the monetary impact of temperature thresholds?
-\end{itemize}
+We investigate how it is viable for a zinc furnace to adapt for provision of power flexibility through various ancillary services such as frequency containment reserve (FCR) and manual frequency restoration reserve (mFRR). We do so from a techno-economic perspective while also investigating the temperature impact of delivering flexibility. In particular, we address four research questions: (\textit{i}) Are there incentives for an energy intensive industry process to deliver power flexibility to the grid? (\textit{ii}) How can it adapt its industry process to provide power flexibility? (\textit{iii}) Are ancillary services such as FCR and mFRR suited for such a process? and eventually (\textit{iv})  What is the monetary impact of temperature thresholds?
 
 The first question is answered by qualitatively assessing the overall case study, combining carbon emission and monetary incentives. The second question is answered by thoroughly investigating the operational baseline power consumption profile of the zinc furnace, and giving recommendations on the \textit{investments} needed to cater for power flexibility provision. The third question looks at the two revenue streams for the zinc furnace's flexibility potential: FCR with a small but fast energy delivery and mFRR with a large but slow energy delivery. The fourth question is answered by conducting a sensitivity analysis on allowed temperature deviation of the zinc together with a qualitative comparison of FCR and mFRR.
 
 
-\subsection{Investments should facilitate power flexibility}
+%\subsection{Investments should facilitate power flexibility}
+%\subsection{Value streams from power flexibility}
 
 New investments into equipment and improvements in the industry process can be tailored to facilitate power flexibility. For example, instead of relying on mechanical relay switches for power lines, frequency transformers or thyristors can be used instead for a modest marginal extra cost. The pay-back time for such an investment should ideally be within a few years, and other benefits could potentially be exploited as well, e.g., better feed forward planning.
 
 % Early indications for the owner of the zinc furnace indicate a one-time cost of 0.5 mio. DKK into equipment that allows for granular power control to the furnace.
 
-\subsection{Value streams from power flexibility: FCR and mFRR}
+%\subsection{Value streams from power flexibility: FCR and mFRR}
 
-Power consumption can potentially be flexible if the underlying operation has a  degree of freedom. For example, power consumption to heat up zinc can be controlled as long as the temperature of the zinc is within some pre-specified thresholds. These determine the degrees of freedom in the operation. For the zinc furnace, the lower temperature threshold specify solidification of molten zinc which can have a detrimental impact as it can crack the furnace wall.
-
-The ability to deviate from the operational baseline power consumption can be monetized by participating in ancillary services such as FCR and mFRR. Furthermore, if these services are normally delivered by fossil fuel power plants, these are partly displaced and a CO$_{2}$ emission reduction is realized.
+Power consumption can potentially be flexible if the underlying operation has a  degree of freedom. For example, power consumption to heat up zinc can be controlled as long as the temperature level of the zinc is within some pre-specified thresholds. These determine the degrees of freedom in the operation. For the zinc furnace, the lower temperature threshold specify solidification of molten zinc which can have a detrimental impact as it can crack the furnace wall.
+%
+The ability to deviate from the operational baseline power consumption can be monetized by participating in various ancillary services such as FCR and mFRR. Furthermore, if these services are normally delivered by fossil fuel power plants, these are partly displaced and a CO$_{2}$ emission reduction is realized.
 
 The demand for FCR and mFRR is expected to increase significantly in Denmark due to massive penetration of intermittent solar and wind energy in the power grid \cite{energinet:scenario_report_2022}. Hence, both markets provide medium to long-term opportunities for monetizing power flexibility.
 
@@ -110,41 +123,40 @@ The demand for FCR and mFRR is expected to increase significantly in Denmark due
 
 \subsection{Literature review}
 
-Many studies have investigated demand-side flexibility. While most have focused on flexibility from residential households in an aggregated portfolio, some have also looked at industry processes with a significant electric energy consumption. For example, \cite{paulus2011potential} show the huge potential for energy intensive industry processes to provide balancing reserves. According to the authors knowledge, none specifically look at single-state industrial processes in a real-life setting while addressing their incentives to deliver power flexibility.
+Many studies have investigated demand-side flexibility. While most have focused on flexibility from residential households in an aggregated portfolio, some have also looked at industry processes with a significant electric energy consumption. For example, \cite{paulus2011potential} shows a great potential for energy intensive industry processes to provide balancing reserves. According to the best of our knowledge, none specifically looks at single-state industrial processes in a real-life setting while addressing their incentives to deliver power flexibility.
 
 Of these, freezers have been investigated thoroughly both with respect to mathematical representation \cite{pedersen2016improving}  and as a source of flexibility \cite{sossan2016grey}, \cite{o2013modelling}, \cite{de2019leveraging}, \cite{misaghian2022fast}, \cite{vrettos2016fast}. Freezers are potentially a great source of flexibility because of the thermal inertia in the frozen food. However, supermarket freezers are complicated systems in which individual freezer displays are dependent of each other as they are fed cold air from the same compressor rack. Furthermore, there are many food regulations that complicate control of freezers with respect to allowed temperature deviations.
 
 Much work has also gone into understanding heat dynamics of medium-large buildings \cite{thilker2021non} in order to operate them intelligently with respect to electricity prices and the grid \cite{contreras2018tractable}, \cite{finck2018quantifying}. However, this operation also comes with complexity in terms of control with potentially many different (dependent) heterogeneous assets such as ventilation units, heat pumps, water tanks, and heating units. Many single-state industrial processes are likely better suited for flexibility provision as they are more simple and easily modifiable.
-
+%
 In \cite{mallapragada2023decarbonization}, it is argued that energy intensive chemical processes can benefit from investments into electrification. The payback time of the investments can be reduced significantly by exploiting the capabilities of power electronics to deliver balancing services to the grid. Likewise, it is shown in \cite{samani2022flexible} how a chemical process can deliver FCR to the grid while still maintaining the same operational quality.
-
+%
 In \cite{junker2020stochastic}, a water tower is characterized using stochastic differential equations for best planning how water should be pumped in relation to spot prices. Although not specifically for ancillary services, this serves as an illustrative example how operational control can benefit from knowledge of electricity prices in a fairly simple industry process.
 
-The most simple mathematical model of a thermostatically controlled load (TCL), was presented in Hao et. al. \cite{hao2014aggregate}. Here, a first-order model with two terms fully characterized the TCL: a term that explains temperature losses due to temperature differences and a term that explains temperature gains due to a power source. We expand upon this model in this paper, using instead a 4$^{\text{th}}$ order model to characterize a zinc furnace.
-
-While a simple, linear model is used for modelling FCR provision in this paper, the model introduced in \cite{gade2023load} is used to model mFRR provision.
+A straightforward mathematical model of a thermostatically controlled load (TCL) is presented in  \cite{hao2014aggregate}, where a first-order model with two terms characterizes the TCL: a term that explains temperature losses due to temperature differences and a term that explains temperature gains due to a power source. We expand upon this model in this paper, using instead a 4$^{\text{th}}$ order model to characterize a zinc furnace. While a linear model is used for modelling FCR provision in this paper, the model introduced in \cite{gade2023load} is used to model mFRR provision.
 
 
 
-\subsection{Our contribution}
+\subsection{Our contributions}
 
-For a real-life energy intensive industry process using real data, we investigate if there is any incentive to provide power flexibility or to invest in equipment for the enablement of flexibility provision.
-
+For a real-life energy intensive industry process using real data, we investigate if there is any incentive to provide power flexibility or to invest in equipment, enabling the flexibility provision.
+%
 Specifically, we investigate such a case using actual (anonymized) data collected from 2022 and price- and frequency data for 2021-2023. We describe the process in detail and show how it can be adapted to cater for power flexibility by switching from ON/OFF power control to continuous power control.
 
-The monetary value from power flexibility is shown for FCR and mFRR provision in DK1\footnote{DK1 is the western part of Denmark and shares the same frequency as continental Europe.} in Denmark. We provide an upper bound of flexibility earnings using a full hindsight optimization of each service and its impact on the temperature, i.e., the state of the industry process, is analyzed. We discuss and show how the allowed degrees of freedom in the temperature deviation impact the monetary value of flexibility provision.
-
+%The monetary value from power flexibility is shown for FCR and mFRR provision in DK1\footnote{DK1 is the western part of Denmark and shares the same frequency as continental Europe.} in Denmark.
+We provide an upper bound of flexibility earnings using a full hindsight optimization of each service and its impact on the temperature. This means we analyze the state of the industry process and how it is impacted by the flexibility provision. We discuss and show how the allowed degrees of freedom in the temperature deviation impact the monetary value of flexibility provision.
 Our case study naturally generalizes to many similar single-state industry processes seen in, e.g., foundries where the state in question is temperature related.
 
 % {\color{red}Should we instead provide paper structure here??}
 
-The rest of the paper is organized as follows. First, we describe the process in detail and show how the thermal characteristics of the zinc furnace can be formulated. Second, we show how investments into a more granular, continuous control of the power supply to the furnace enables it to deliver power flexibility. Two quite different ancillary services are targeted: FCR and mFRR. For both, full-hindsight optimizations are provided to compute upper-bound potentials. Lastly, an analysis of the zinc temperature's impact on the flexibility potential is carried out.
+The rest of the paper is organized as follows. First, we describe the process in detail and explain how the thermal characteristics of the zinc furnace can be formulated. Second, we show how investments into a more granular, continuous control of the power supply to the furnace enables it to deliver power flexibility. Two quite different ancillary services, i.e., FCR and mFRR, are targeted. For both services, full-hindsight optimizations are provided to compute upper-bound profit potentials. Lastly, an analysis of the zinc temperature's impact on the flexibility potential is carried out.
+
 
 \section{Adapting a single-state industry process to provide flexibility}\label{sec:zinc_furnace_description}
 
 In this section, the zinc galvanizing process is described in detail along with its ability to provide power flexibility by converting to a continuous control mechanism.
-
-We first describe how the temperature of the molten zinc can be characterized using state-space models. Then it is shown how this model can be used for subsequent simulation of continuous control. Afterwards, it it shown how power flexibility can be monetized in FCR and mFRR.
+%
+We first describe how the temperature of the molten zinc can be characterized using state-space models. Then, it is shown how this model can be used for subsequent simulation of continuous control. Finally, we explain how power flexibility can be monetized in FCR and mFRR.
 
 \subsection{Characterizing a zinc furnace as a TCL}
 
@@ -152,60 +164,55 @@ We first describe how the temperature of the molten zinc can be characterized us
 
 \subsubsection{Description of zinc furnace in a galvanizing process}
 
-The industry process exemplified in this paper is a galvanization process, in which the authors have kindly been allowed to see and learn about by the owner, DOT Nordic. Steel elements are galvanized by lowering them into a molten zinc furnace at a high temperature setpoint. As seen in Figure \ref{fig:furnace_schematic_tikz}, the furnace is heated up by resistive elements placed on the sides of the furnace (in an inner cavity). The upper and lower zones of the furnace are controlled separately with $P^{\text{u}}$ and $P^{\text{l}}$ representing the power supplied to the upper and lower zone, respectively. Temperature sensors are placed in each zone at the end of the furnace on the wall as denoted by $T^{\text{wu}}$ and $T^{\text{wl}}$, hence the actual zinc temperatures, $(T^{\text{zu}})$ and $(T^{\text{zl}})$, are latent, unobserved states. The lid of the furnace is removed when lowering steel into the furnace.
+The industry process exemplified in this paper is a galvanization process, in which the authors have kindly been allowed to visit and learn about by the owner, DOT Nordic. Steel elements are galvanized by lowering them into a molten zinc furnace at a high temperature setpoint. As illustrated in Figure \ref{fig:furnace_schematic_tikz}, the furnace is heated up by resistive elements placed on the sides of the furnace (in an inner cavity). The upper and lower zones of the furnace are controlled separately with $P^{\text{u}}$ and $P^{\text{l}}$ representing the power supplied to the upper and lower zone, respectively. Temperature sensors are placed in each zone at the end of the furnace on the wall as denoted by $T^{\text{wu}}$ and $T^{\text{wl}}$, hence the actual zinc temperatures, $(T^{\text{zu}})$ and $(T^{\text{zl}})$, are latent, unobserved states. The lid of the furnace is removed when lowering steel into the furnace.
 
 \begin{figure}[t]
     \centering
-    \includestandalone[width=0.5\columnwidth]{figures/furnace_schematic_tikz}
-    \caption{Schematic of the zinc furnace. Resistive elements are places on both sides of the furnace in inner cavities for both zones. The power consumptions of the resistive elements are denoted $P^{\text{u}}$ and $P^{\text{l}}$. At the end of the furnace, two temperature sensors are located, measuring the wall temperatures, $T^{\text{wu}}$ and $T^{\text{wl}}$. Hence, the actual zinc temperatures are unobserved. The lid is off during the galvanizing process. QU1 and QU2 are the contactors for the upper zone, and QL3 and QL4 are the contactors for the lower zone.}
+    \input{../figures/furnace_schematic_tikz.tikz}
+    \caption{Schematic of the zinc furnace. Resistive elements are places on both sides of the furnace in inner cavities for both zones. The power consumptions of the resistive elements are denoted by $P^{\text{u}}$ and $P^{\text{l}}$. At the end of the furnace, two temperature sensors are located, measuring the wall temperatures, $T^{\text{wu}}$ and $T^{\text{wl}}$. Hence, the actual zinc temperatures are unobserved. The lid is off during the galvanizing process. QU1 and QU2 are the contactors for the upper zone, whereas QL3 and QL4 are the contactors for the lower zone.}
+    % \Description{Schematic of zinc furnace.}
     \label{fig:furnace_schematic_tikz}
 \end{figure}
 
-Figure \ref{fig:data_visualization} shows the anonymized\footnote{The scale of the temperature has been anonymized.} one-minute resolution data provided. The upper panel shows the power consumption of the lower and upper zones, respectively, and the total consumption as well. It is clearly seen how two regimes are immediately identified: One where the lid is on the furnace and the power consumption is quite low, and one where the lid is off corresponding to a high power consumption due to direct temperature losses to the ambient. In both the middle and bottom panel of Figure \ref{fig:data_visualization}, the temperature dynamics behave differently in either regime: When the lid is on, the temperature varies slowly while it varies rapidly when the lid is off. Furthermore, the temperature dynamics are generally slower in the lower zone of the furnace (bottom panel), and its temperature setpoint is also a bit lower. The ON/OFF control of the power consumption to the two zones are visualized by the state of four contactors - two for each zone - as seen in the middle and bottom panel. The control logic is simple for a given zone: one contactor is switched ON (QU1 $=1$ or QL3 $=1$) when the temperature goes belows a pre-specified threshold, and the other one is turned ON (QU2 $=1$ or QL4 $=1$) as well if the temperature declines further below another pre-specified threshold. Exactly the same logic applies when the temperature rises above two pre-specified upper thresholds. This logic is statically programmed for both zones independently.
+Figure \ref{fig:data_visualization} shows the anonymized\footnote{The scale of the temperature has been anonymized.} one-minute resolution data. The upper plot shows the power consumption of the lower and upper zones, respectively, and the total consumption as well. It is clearly observed how two regimes are immediately identified: One where the lid is on the furnace and the power consumption is quite low, and one where the lid is off corresponding to a high power consumption due to direct temperature losses to the ambient. In both middle and bottom plots of Figure \ref{fig:data_visualization}, the temperature dynamics behave differently in either regime: When the lid is on, the temperature varies slowly while it varies rapidly when the lid is off. Furthermore, the temperature dynamics are generally slower in the lower zone of the furnace (bottom plot), and its temperature setpoint is also a bit lower. The ON/OFF control of the power consumption to the two zones are visualized by the state of four contactors -- two for each zone -- as depicted in the middle and bottom plots. The control logic is simple for a given zone: one contactor is switched ON (QU1 $=1$ or QL3 $=1$) when the temperature goes below a pre-specified threshold, and the other one is turned ON (QU2 $=1$ or QL4 $=1$) as well if the temperature declines further below another pre-specified threshold. The same logic applies when the temperature rises above two pre-specified upper thresholds. This logic is statically programmed for both zones independently.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{figures/data_visualization.png}
-    \caption{\textbf{Top}: Power consumption for lower and upper zone as well as total consumption. \textbf{Middle}: Temperature and contactor switches in upper zone. \textbf{Bottom}: Temperature and contactor switches in lower zone.}
+    \includegraphics[width=\columnwidth]{../figures/data_visualization.png}
+    \caption{\textbf{Top}: Power consumption for lower and upper zones as well as the total consumption. \textbf{Middle}: Temperature and contactor switches in the upper zone. \textbf{Bottom}: Temperature and contactor switches in the lower zone.}
+    % \Description{Plot of raw zinc furnace power and temperature data.}
     \label{fig:data_visualization}
 \end{figure}
 
 \subsubsection{Thermal modelling of zinc furnace}
 
-To model the temperature dynamics in both zones, a fourth-order state-space model is used (\ref{eq:StateSpaceModel}):
-
+To model the temperature dynamics in both zones, a fourth-order state-space model is developed as
+%
+\begingroup
+\allowdisplaybreaks
 \begin{subequations}\label{eq:StateSpaceModel}
     \begin{align}
         T^{\text{zu}}_{t+1} & = T^{\text{zu}}_{t} + dt \cdot \frac{1}{C^{\text{zu}}}\Bigl( \frac{1}{R^{\text{zuzl}}} (T^{\text{zl}}_{t} - T^{\text{zu}}_{t}) \notag                                     \\ & \mspace{5mu} + \frac{1}{R^{\text{wz}}} (T^{\text{wu}}_{t} - T^{\text{zu}}_{t}) \Bigr) \label{eq1:StateSpaceModel} \\
         T^{\text{zl}}_{t+1} & = T^{\text{zl}}_{t} + dt \cdot \frac{1}{C^{\text{zl}}}\Bigl( \frac{1}{R^{\text{zuzl}}} (T^{\text{zu}}_{t} - T^{\text{zl}}_{t}) \notag                                     \\ & \mspace{5mu} + \frac{1}{R^{\text{wz}}} (T^{\text{wl}}_{t} - T^{\text{zl}}_{t}) \Bigr) \label{eq2:StateSpaceModel} \\
         T^{\text{wu}}_{t+1} & = T^{\text{wu}}_{t} + dt \cdot \frac{1}{C^{\text{wu}}}\Bigl( (1-\mathbbm{1}^{\text{lid}}) \frac{1}{R^{\text{wua},\text{off}}} (T^{\text{a}} - T^{\text{wu}}_{t}) \notag + \\ & \mspace{5mu} \mathbbm{1}^{\text{lid}} \frac{1}{R^{\text{wua},\text{on}}} (T^{\text{a}} - T^{\text{wu}}_{t}) + \frac{1}{R^{\text{ww}}} (T^{\text{wl}}_{t} - T^{\text{wu}}_{t}) \notag \\ & \mspace{5mu} + \frac{1}{R^{\text{wz}}} (T^{\text{zu}}_{t} - T^{\text{wu}}_{t}) + p^{\text{u}}_{t} \Bigr) \label{eq3:StateSpaceModel} \\
-        T^{\text{wl}}_{t+1} & = T^{\text{wl}}_{t} + dt \cdot \frac{1}{C^{\text{wl}}}\Bigl( \frac{1}{R^{\text{wla}}} (T^{\text{a}} - T^{\text{wl}}_{t}) \notag                                           \\ & \mspace{5mu} + \frac{1}{R^{\text{ww}}} (T^{\text{wu}}_{t} - T^{\text{wl}}_{t}) + \frac{1}{R^{\text{wz}}} (T^{\text{zl}}_{t} - T^{\text{wl}}_{t}) + p^{\text{l}}_{t} \Bigr) \label{eq4:StateSpaceModel}
+        T^{\text{wl}}_{t+1} & = T^{\text{wl}}_{t} + dt \cdot \frac{1}{C^{\text{wl}}}\Bigl( \frac{1}{R^{\text{wla}}} (T^{\text{a}} - T^{\text{wl}}_{t}) \notag                                           \\ & \mspace{5mu} + \frac{1}{R^{\text{ww}}} (T^{\text{wu}}_{t} - T^{\text{wl}}_{t}) + \frac{1}{R^{\text{wz}}} (T^{\text{zl}}_{t} - T^{\text{wl}}_{t}) + p^{\text{l}}_{t} \Bigr). \label{eq4:StateSpaceModel}
     \end{align}
 \end{subequations}
+\endgroup
 
-Here, (\ref{eq1:StateSpaceModel}) and (\ref{eq3:StateSpaceModel}) represent the (latent) temperature of the zinc in the upper and lower zone, respectively. For both, there is a heat exchange between the furnace walls and the other zinc zone. In (\ref{eq3:StateSpaceModel}), the temperature dynamics of the upper part of the wall of the zinc furnace is shown. It depends on the heat loss to the ambient temperature, $T^{\text{a}}$, heat exchange with the lower wall, $T^{\text{wl}}$, with the zinc in the upper zone, $T^{\text{zu}}$, and the heat added from the resistive elements in the upper zone, $p^{\text{u}}$. Furthermore, there are two different resistance coefficients, $R^{\text{wua},\text{off}}$ and $R^{\text{wua},\text{on}}$, depending on whether the lid is on ($ \mathbbm{1}^{\text{lid}} = 1$) or off ($ \mathbbm{1}^{\text{lid}} = 0$). The index $t$ represents a minute and $dt = \frac{1}{60}$ is the timestep.
-
-The parameters and latent states in (\ref{eq:StateSpaceModel}) have been estimated using CTSM-R \cite{juhl2016ctsmr} and can be seen in \cite{code}. The one-step residuals in the estimation procedure are shown in Figure \ref{fig:4thOrderModelValidation} and resembles white noise (middle panel). Furthermore, the autocorrelation shows no significant lags, and the cumulated periodogram shows no frequencies with significant power. Hence, the model in (\ref{eq:StateSpaceModel}) captures the temperature dynamics well for both the upper and lower zone of the furnace.
-
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=\columnwidth]{figures/4thOrderModelValidation_V2.png}
-    \caption{Validation of state-space model in (\ref{eq:StateSpaceModel}). \textbf{Top}: upper zone wall temperature. \textbf{Bottom}: lower zone wall temperature. \textbf{Left}: autocorrelations of the model residuals. \textbf{Middle}: residuals. \textrm{Right}: cumulated periodogram of the residuals.}
-    \label{fig:4thOrderModelValidation}
-\end{figure}
+Here, (\ref{eq1:StateSpaceModel}) and (\ref{eq3:StateSpaceModel}) represent the (latent) temperature of the zinc in the upper and lower zones, respectively. For both, there is a heat exchange between the furnace walls and the other zinc zone. In (\ref{eq3:StateSpaceModel}), the temperature dynamics is modeled for the upper part of the wall of the zinc furnace. It depends on the heat loss to the ambient temperature ($T^{\text{a}}$), heat exchange with the lower wall ($T^{\text{wl}}$), with the zinc in the upper zone ($T^{\text{zu}}$), and the heat added from the resistive elements in the upper zone  ($p^{\text{u}}$). Furthermore, there are two different resistance coefficients, $R^{\text{wua},\text{off}}$ and $R^{\text{wua},\text{on}}$, depending on whether the lid is on ($ \mathbbm{1}^{\text{lid}} = 1$) or off ($ \mathbbm{1}^{\text{lid}} = 0$). The index $t$ represents a minute and $dt = \frac{1}{60}$ is the timestep. The remaining resistant coefficients are related to heat transfer within the furnace wall, $R^{\text{ww}}$, heat transfer from the wall to the zinc, $R^{\text{wz}}$, heat transfer from the wall to the ambient, $R^{\text{wa}}$, and heat transfer within the zinc, $R^{\text{zuzl}}$. The heat capacities of the wall and the zinc for both zones are denoted $C^{\text{wl}}$, $C^{\text{wu}}$, $C^{\text{zl}}$, and $C^{\text{zu}}$, respectively. The procedure of parameter estimation in (\ref{eq:StateSpaceModel}) is explained in Appendix A.
 
 
-\subsubsection{Going from ON/OFF control to steady-state control}
+\subsubsection{Moving from ON/OFF control to steady-state control}
 
-As seen in Figure \ref{fig:data_visualization}, the power consumption is rather unpredictable and varying with the ON/OFF control mechanism. Hence, it is difficult to predict the operational baseline power consumption of the zinc furnace. Therefore, if the furnace should benefit from providing flexibility to the power grid through ancillary services, it is necessary to change the control structure to a more granular one.\footnote{In theory, the furnace can still participate in the current market structure of mFRR with 1-hour blocks if it is part of a bigger portfolio that can compensate for its ON/OFF behavior.}
+As observed in Figure \ref{fig:data_visualization}, the power consumption is rather unpredictable and varying with the ON/OFF control mechanism. It is difficult to predict the operational baseline power consumption of the zinc furnace. Therefore, if the furnace should benefit from providing flexibility to the power grid through ancillary services, it is necessary to change the control structure to a more granular one.\footnote{In theory, the furnace can still participate in the current market structure of mFRR with 1-hour blocks if it is part of a bigger portfolio that can compensate for its ON/OFF behavior.}
 
-Using the model in (\ref{eq:StateSpaceModel}), we can estimate the steady-state power consumption for both regimes, i.e., when the lid is on and off:
-
+Using the model in (\ref{eq:StateSpaceModel}), we  estimate the steady-state power consumption for both regimes, i.e., when the lid is on and off, as
+%
 % p_{u}^{\text{Base}} & = \frac{T^{\text{u},\text{sp}} - T^{\text{a}}}{R^{\text{wua},1}}  + \frac{T^{\text{u},\text{sp}}-T^{\text{l},\text{sp}}}{R^{\text{ww}}} \label{eq1:steady-state-power} \\
 % p^{\text{u},\text{SS},2} & = \frac{T^{\text{u},\text{sp}} - T^{\text{a}}}{R^{\text{wua},2}} + \frac{T^{\text{u},\text{sp}}-T^{\text{l},\text{sp}}}{R^{\text{ww}}} \label{eq2:steady-state-power}  \\
 % p^{\text{l},\text{SS}}   & = \frac{T^{\text{l},\text{sp}} - T^{\text{a}}}{R^{\text{wla}}} - \frac{T^{\text{u},\text{sp}}-T^{\text{l},\text{sp}}}{R^{\text{ww}}} \label{eq3:steady-state-power}
-
+%
 \begin{equation}\label{eq1:steady-state-power}
     p^{\text{l},\text{Base}} = \frac{T^{\text{l},\text{sp}} - T^{\text{a}}}{R^{\text{wla}}} - \frac{T^{\text{u},\text{sp}}-T^{\text{l},\text{sp}}}{R^{\text{ww}}}
 \end{equation}
@@ -213,72 +220,56 @@ Using the model in (\ref{eq:StateSpaceModel}), we can estimate the steady-state 
 \begin{equation}\label{eq2:steady-state-power}
     p^{\text{u},\text{Base}}   =
     \begin{cases}
-        \frac{T^{\text{u},\text{sp}} - T^{\text{a}}}{R^{\text{wua},\text{off}}}  + \frac{T^{\text{u},\text{sp}}-T^{\text{l},\text{sp}}}{R^{\text{ww}}}, & \text{if} \ \text{Lid is on}  \\
-        \frac{T^{\text{u},\text{sp}} - T^{\text{a}}}{R^{\text{wua},\text{on}}} + \frac{T^{\text{u},\text{sp}}-T^{\text{l},\text{sp}}}{R^{\text{ww}}},   & \text{if} \ \text{Lid is off} \\
+        \frac{T^{\text{u},\text{sp}} - T^{\text{a}}}{R^{\text{wua},\text{off}}}  + \frac{T^{\text{u},\text{sp}}-T^{\text{l},\text{sp}}}{R^{\text{ww}}}, & \text{if} \ \text{the lid is on}   \\
+        \frac{T^{\text{u},\text{sp}} - T^{\text{a}}}{R^{\text{wua},\text{on}}} + \frac{T^{\text{u},\text{sp}}-T^{\text{l},\text{sp}}}{R^{\text{ww}}},   & \text{if} \ \text{the lid is off,} \\
     \end{cases}
 \end{equation}
+where $T^{\text{l},\text{sp}}$ and $T^{\text{u},\text{sp}}$ are the pre-specified setpoints in the lower and upper zones, respectively. In addition, $p^{\text{l},\text{Base}}$ is the steady-state power consumption for the lower zone, whereas $p^{\text{u},\text{Base}}$ is the steady-state power consumption for the upper zone, which takes two values depending of whether the lid is on or off.
 
-Here, $T^{\text{l},\text{sp}}$ and $T^{\text{u},\text{sp}}$ are the pre-specified setpoints in the lower and upper zone, respectively. $p^{\text{l},\text{Base}}$ is the steady-state power consumption for the lower zone, and $p^{\text{u},\text{Base}}$ is the steady-state power consumption for the upper zone which takes two values depending of whether the lid is on or off.
+Appendix B provides a simulation of (\ref{eq:StateSpaceModel}) using (\ref{eq1:steady-state-power}) and (\ref{eq2:steady-state-power}). The purpose of the steady-state operation is to highlight the benefit of flexibility provision from a more predictable, operational baseline consumption while the intricacies of the control logic is not investigated further here.
+%
+Furthermore, other benefits of using a  continuous power control include more optimal use of the heat in the furnace by being able to integrate the dipping schedule to the power consumption. Hence, smarter feed forward planning of the lid can be achieved and made possible by utilizing continuous power control.
 
-Figure \ref{fig:4thOrderModelVisualizationSteadyState} shows a 24-hour simulation (1440 time steps) of (\ref{eq:StateSpaceModel}) using (\ref{eq1:steady-state-power}) and (\ref{eq2:steady-state-power}) which was chosen to include both regimes where the lid was either on or off. The original data is shown in dashed, black lines and it can clearly be seen how the steady-state power consumptions in (\ref{eq1:steady-state-power}) and (\ref{eq2:steady-state-power}) and temperatures are much more stable and predictable. To achieve this, a controller is needed to keep the temperature at the setpoint. The purpose of the steady-state operation is to highlight the benefit of flexibility provision from a more predictable, operational baseline consumption while the intricacies of the control logic is not investigated further here.
+Early indications from the owner of the zinc furnace show a one-time cost of 0.5 million DKK into equipment and power electronics that allows for granular power control.
 
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=\columnwidth]{figures/4thOrderModelVisualizationSteadyState.png}
-    \caption{Simulation of (\ref{eq:StateSpaceModel}) with $p^{\text{u}}$ and $p^{\text{l}}$ set to the steady-state consumptions as specified in (\ref{eq1:steady-state-power}) and (\ref{eq2:steady-state-power}). \textbf{Top}: total power consumption in steady-state and original data (with ON/OFF control). \textbf{Middle}: upper zone wall temperature at steady-state power consumption and original data (with ON/OFF control). \textbf{Bottom}: lower zone wall temperature at steady-state power consumption and original data (with ON/OFF control).}
-    \label{fig:4thOrderModelVisualizationSteadyState}
+\subsection{Ancillary services: FCR and mFRR}
+
+FCR is the fastest responding ancillary service in DK1\footnote{DK1 is the western part of Denmark and shares the same frequency as continental Europe.} in Denmark. Power must be adjusted according to frequency deviations around $\pm 200$ mHz from 50 Hz \cite{energinet:prequalification}. The service is currently delivered primarily by thermal power plants and batteries, but flexible demands can potentially also deliver FCR, either by control of individual assets or from an aggregation of multiple assets that can be turned ON/OFF in a manner that adheres to the frequency response requirements. The service is bought by the Danish TSO, Energinet, in 4-hour blocks in one auction for the upcoming day as shown in Figure \ref{fig:timeline}. The auction starts at 8:00am the day before delivery. Flexibility providers receive the marginal price of the auction as payment for providing capacity.
+
+\begin{figure}
+    \begin{adjustbox}{width=\columnwidth}
+        \input{../figures/timeline.tikz}
+    \end{adjustbox}
+    \caption{Timeline of variables for bidding into FCR and mFRR. For FCR, the reservation bid for day $D$ is made the before at 8:00am, and the real-time power $\bm{p}^{q}$ is determined from the bids. For mFRR, reservation bids are made at 9:30am in $D-1$ while regulating power bids are submitted at 5:00pm. Real-time variables for mFRR are denoted by $\Gamma_{h}$.}
+    % \Description{Timeline of variables related to bidding into FCR and mFRR}
+    \label{fig:timeline}
 \end{figure}
 
-Furthermore, other benefits of using a more continuous power control include more optimal use of the heat in the furnace by being able to integrate the dipping schedule to the power consumption. Hence, smarter feed forward planning of the lid can be achieved and made possible by utilizing continuous power control.
 
-Early indications from the owner of the zinc furnace show a one-time cost of 0.5 mil. DKK into equipment and power electronics that allows for granular power control.
-
-\subsection{FCR}
-
-FCR is the fastest responding ancillary service in DK1 in Denmark. Power must be adjusted according to frequency deviations around $\pm 200$ mHz from 50 Hz \cite{energinet:prequalification}. The service is delivered primarily by thermal power plants and batteries, but flexible demand can potentially also deliver FCR; either by control of individual assets or from an aggregation of multiple assets that can be turned ON/OFF in a manner that adheres to the frequency response requirements.
-
-The service is bought by the Danish TSO in 4-hour blocks in one auction for the upcoming day. The auction starts at 8:00 AM the day before delivery. Flexibility providers receive the marginal price of the auction as payment for providing capacity.
-
-Figure \ref{fig:fcr_prices_2022} shows the FCR ($\lambda_{h}^{\text{FCR}}$) and spot prices ($\lambda_{h}^{\text{s}}$) in DK1 for 2021-2023. Notice how FCR prices went down after September 2022 where the Danish TSO opened up market participation from all of continental Europe. Furthermore, FCR prices have been somewhat proportional to spot prices as well.
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=\columnwidth]{figures/fcr_prices.png}
-    \caption{FCR and spot prices for 2021-2023 in DK1, Denmark. In September 2022, FCR tenders included continental Europe.}
-    \label{fig:fcr_prices_2022}
-\end{figure}
-
-\subsection{mFRR}
+%\subsection{mFRR}
 
 mFRR is an ancillary service operated by the TSO. It is the last service deployed after a frequency drop, and the energy content delivered to the grid can be several MW. In DK1 in Denmark, the TSO procures around 600 MW of mFRR \cite{energinet:scenario_report_2022}.
+%
+As described in \cite{gade2023load} and shown in Figure \ref{fig:timeline}, procurement of mFRR reserves happens before the day-ahead market clearing, and the subsequent balancing bid happens after the day-ahead market clearing. mFRR providers are paid at the marginal price according to the capacity they offer. In real-time, activation of reserves happens when the TSO demands it which leads to a balancing price higher than the spot price. mFRR providers are paid according to the amount they activate and penalized if they do not deliver their promised capacity. For TCLs, such as a zinc furnace, there will be an inevitable rebound which requires additional energy.
 
-As described in \cite{gade2023load}, procurement of mFRR reserves happens before the day-ahead market clearing, and the subsequent balancing bid happens after the day-ahead market clearing. mFRR providers are paid at the marginal price according to the capacity they offer. In real-time, activation of reserves happens when the TSO demands it which leads to a balancing price higher than the spot price. mFRR providers are paid according to the amount they activate and penalized if they do not deliver their promised capacity. For TCLs, such as a zinc furnace, there will be an inevitable rebound which requires additional energy.
+Appendix C provides historical prices in Denmark for 2021-2023 for FCR, mFRR and spot electricity prices.
 
-Figure \ref{fig:mfrr_prices_2022} shows the distribution of hourly balancing prices ($\lambda_{h}^{\text{b}}$) minus spot prices (referred to as balance price differentials) ordered from low to high in red. Corresponding capacity prices ($\lambda_{h}^{\text{mFRR}}$) in the same hours are shown in blue. When balance price differentials are below zero, down-regulation takes place, i.e., supply is greater than demand. When price differentials are above zero, up-regulation takes place, i.e., demand is higher than supply. mFRR capacity is for up-regulation only, but flexible providers can both down-regulate and up-regulate in the real-time balancing market if they choose. Here, however, we only consider the mFRR up-regulation capacity market where the zinc furnace is paid for both capacity (as shown in blue in Figure \ref{fig:mfrr_prices_2022}) and actual up-regulations (as shown in red when the balance price differential is above zero).
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=\columnwidth]{figures/mfrr_prices.png}
-    \caption{Hourly mFRR reserve prices prices and balancing price differentials in 2021-2023 in ascending order.}
-    \label{fig:mfrr_prices_2022}
-\end{figure}
 
 \section{Optimization models}
-
-The optimization models for FCR and mFRR are presented in this section. First, the FCR model is presented. Second, the mFRR model is presented in compact form. Both models are deterministic with full hindsight on prices. We thus provide an upper bound in the flexibility potential which is useful to know when deciding to make investments that enables power flexibility provision. Hence, if the upper bound potential is not attractive, then investments should not be made.
+This section presents an optimization model for offering FCR services, and then another optimization model to offer mFRR services.
+%The optimization models for FCR and mFRR are presented in this section. First, the FCR model is presented. Second, the mFRR model is presented in compact form.
+Both models are linear and deterministic with full hindsight on FCR/mFRR and day-ahead (spot) electricity prices. We thus provide an upper bound (in terms of profit) for the flexibility potential which is useful to know when deciding to make investments that enables power flexibility provision. If the upper bound potential is not attractive, then investments should not be made.
 
 \subsection{FCR}
 
-The linear optimization model for FCR reserve bidding and activation is shown in compact form in (\ref{P1:compact_model_fcr}) with bold indicating time vectors. The objective in (\ref{P1:eq1}) maximizes revenue from capacity payments and minimizes penalties. The aggregator incurs a penalty cost of at $\lambda^{\text{Pen}}$ DKK/kWh whenever the reserve, $\bm{p}^{r}$, cannot be met.
-
-Variables related to bidding capacity and penalty are indexed by hours, $\bm{\Gamma}_{h}$, and variables related to real-time control are indexed by minute, $\bm{\Gamma}_{t}$.
-
+The linear optimization model for offering FCR services is provided in a compact form as
+%
 % # TODO: be aware of different time scale: minute vs hourly!!
 \begin{subequations}\label{P1:compact_model_fcr}
     \begin{align}
-        \underset{\bm{\Gamma}_{h},\bm{\Gamma}_{t}}{\textrm{max}} \quad & \bm{p}^{r} \bm{\lambda}^{\text{FCR}} - \bm{s}\lambda^{\text{Pen}} \label{P1:eq1}
+        \underset{\bm{\Gamma}_{h},\bm{\Gamma}_{t}}{\textrm{max}} \quad & \bm{p}^{r} \bm{\lambda}^{\text{FCR}} - \bm{s}\bm{\lambda}^{\text{Pen}} \label{P1:eq1}
         \\
-        s.t \quad                                                      & q(\bm{\Gamma}_{h}, ) \leq 0 \label{P1:eq2}                                                                                                                    \\
+        s.t \quad                                                      & q(\bm{\Gamma}_{h}) \leq 0 \label{P1:eq2}                                                                                                                      \\
         \quad                                                          & \text{State-space model in } (\ref{eq:StateSpaceModel}), \label{P1:eq8}                                                                                       \\
         \quad
                                                                        & \bm{\Gamma}_{h} = \Bigl( \bm{p}^{r}, \bm{s} \Bigr) \in \mathbb{R}  \label{P1:eq9}                                                                             \\
@@ -286,9 +277,14 @@ Variables related to bidding capacity and penalty are indexed by hours, $\bm{\Ga
                                                                        & \bm{\Gamma}_{t} = \Bigl( \bm{p}, \bm{p}^{q}, \bm{s}^{q, \prime}, \bm{T}^{\text{z},q}, \bm{T}^{\text{w},q} \Bigr) \in \mathbb{R}, \ \forall{q} \label{P1:eq10}
     \end{align}
 \end{subequations}
-
-The inequality constraints in (\ref{P1:eq2}) are shown in (\ref{P1:constraints}) below. Since FCR is a symmetric service, auxiliary variables $\bm{s}^{\prime}$ are introduced to account for the power not delivered as shown in (\ref{P1:co3})-(\ref{P1:co4}). The superscript $q$ denotes the two zones $\{l, u\}$ in the zinc furnace, and the total reserve from the zinc furnace is simply the sum of these as seen in (\ref{P1:co6})-(\ref{P1:co7}).
-
+where $h$ and $t$ are index for hours and minutes, respectively. Bold symbols indicate time vectors. The objective function (\ref{P1:eq1}) maximizes the revenues (first term) minus penalties for failures (second term). The variable vector $\bm{p}^{r}$ includes hourly FCR capacity bids (in kW), while the hourly FCR prices $\bm{\lambda}^{\text{FCR}}$ (in DKK/kWh) are given. The flexibility provider incurs a penalty cost at rate $\bm{\lambda}^{\text{Pen}}$ (in DKK/kWh) when fails in delivering the promised service, measured by hourly variables $\bm{s}$ (in kW).
+Variables related to hourly bidding capacity and penalties are included in $\bm{\Gamma}_{h}$ as defined in \eqref{P1:eq9}. Similarly, variables related to real-time control, indexed by minute $t$, are within $\bm{\Gamma}_{t}$ as defined in \eqref{P1:eq10}.
+The inequality constraints in (\ref{P1:eq2}) are presented in (\ref{P1:constraints}).
+%Since FCR is a symmetric service, auxiliary variables $\bm{s}^{\prime}$ are introduced to account for the power not delivered as shown in (\ref{P1:co3})-(\ref{P1:co4}).
+The superscript $q$ denotes the two zones $\{l, u\}$ in the zinc furnace, and the total reserve from the zinc furnace is simply their summation. Note that $\bm{s}^{q}$ is the hourly variable vector indicating the amount of failure in the corresponding zone $q$ (either upper or lower zone), whereas $\bm{s}^{q, \prime}$ is similar but in the minute resolution. The set of constraints (\ref{P1:constraints}) indicated in (\ref{P1:eq2}) is
+%
+\begingroup
+\allowdisplaybreaks
 \begin{subequations} \label{P1:constraints}
     \begin{align}
               & \bm{p}^{q} = \bm{F} \bm{p}^{q,r} + \bm{s}^{q, \prime} + \bm{P}^{q, \text{Base}}, \quad \forall{q}  \label{P1:co2} \\
@@ -300,31 +296,35 @@ The inequality constraints in (\ref{P1:eq2}) are shown in (\ref{P1:constraints})
         \\
         \quad & \bm{p} = \sum_{q} \bm{p}^{q}   \label{P1:co5}                                                                     \\
         \quad & \bm{p}^{r} = \sum_{q} \bm{p}^{q,r}   \label{P1:co6}                                                               \\
-        \quad & \bm{s} = dt \sum_{q} \bm{s}^{q}   \label{P1:co7}
+        \quad & \bm{s} = dt \sum_{q} \bm{s}^{q},   \label{P1:co7}
     \end{align}
 \end{subequations}
-
-The parameter $\bm{F}$ is normalized between -1 and 1 depending on the frequency such that it represents the normalized response required \cite{energinet:prequalification}:
-
+\endgroup
+where the parameter $\bm{F}$ is normalized between -1 and 1 depending on the frequency. This parameter represents the normalized response required \cite{energinet:prequalification} as
+%
+\begingroup
+\allowdisplaybreaks
 \begin{equation}
     F_{t} =
     \begin{cases}
-        -1,                             & \text{if}\ F_{t} \leq 49.8\ \text{mHz}                                           \\
-        \frac{F_{t}-50+0.02}{0.2-0.02}, & \text{if}\ F_{t} \leq 49.98\ \text{mHz}\ \text{and}\ F_{t} \geq 49.8\ \text{mHz} \\
-        \frac{F_{t}-50-0.02}{0.2-0.02}, & \text{if}\ F_{t} \leq 50.2\ \text{mHz}\ \text{and}\ F_{t} \geq 50.02\ \text{mHz} \\
-        1,                              & \text{if}\ F_{t} \geq 50.2 \text{mHz}                                            \\
+        -1,                             & \text{if}\ F_{t} \leq 49.8\ \text{Hz}                                          \\
+        \frac{F_{t}-50+0.02}{0.2-0.02}, & \text{if}\ F_{t} \leq 49.98\ \text{Hz}\ \text{and}\ F_{t} \geq 49.8\ \text{Hz} \\
+        \frac{F_{t}-50-0.02}{0.2-0.02}, & \text{if}\ F_{t} \leq 50.2\ \text{Hz}\ \text{and}\ F_{t} \geq 50.02\ \text{Hz} \\
+        1,                              & \text{if}\ F_{t} \geq 50.2\ \text{Hz}.                                         \\
     \end{cases}
 \end{equation}
 
 \subsection{mFRR}
 
-The optimization model for mFRR is identical to \cite{gade2023load} with no scenarios and a different state-space model (\ref{eq:StateSpaceModel}) as shown in (\ref{P1:compact_model_mfrr}).
-
+The optimization model for offering mFRR services is identical to that in \cite{gade2023load}, which is the earlier publication of the authors. The only difference is that we consider the state-space model as represented in  (\ref{eq:StateSpaceModel}) and a deterministic framework. This linear optimization model reads as
+%
+%with no scenarios and a different state-space model (\ref{eq:StateSpaceModel}) as shown in (\ref{P1:compact_model_mfrr}).
+%
 \begin{subequations}\label{P1:compact_model_mfrr}
     \begin{align}
         \underset{\bm{p}^{\rm{r}}, \bm{p}^{q,\rm{r}}, \bm{\lambda}^{\rm{bid}}, \bm{\Gamma}}{\text{Maximize}} \  & f(\bm{p}^{\rm{r}}, \bm{p}^{q,\rm{r}}) + g(\bm{\Gamma}) \label{P1:eq1_mfrr}
         \\
-        \text{s.t.} \                                                                                           & h(\bm{p}^{\rm{r}}, \bm{p}^{q,\rm{r}}), \bm{\lambda}^{\rm{bid}}, \bm{\Gamma}) \leq 0, \label{P1:eq2_mfrr}                                             \\
+        \text{s.t.} \                                                                                           & h(\bm{p}^{\rm{r}}, \bm{p}^{q,\rm{r}}, \bm{\lambda}^{\rm{bid}}, \bm{\Gamma}) \leq 0, \label{P1:eq2_mfrr}                                              \\
         \                                                                                                       & \text{State-space model } (\ref{eq:StateSpaceModel}),  \label{P1:eq3_mfrr}
         \\
         \                                                                                                       & \bm{T}^{\text{z},q}, \bm{T}^{\text{w},q} \in \mathbb{R}, \forall{q} \label{P1:eq4_mfrr}
@@ -333,49 +333,54 @@ The optimization model for mFRR is identical to \cite{gade2023load} with no scen
         \\
         \                                                                                                       & \Bigl( \bm{p}, \bm{p}^{q}, \bm{p}^{\rm{r}}, \bm{p}^{q,\rm{r}}, \bm{\lambda}^{\rm{bid}}, \bm{p}^{\rm{b},\uparrow}, \bm{p}^{\rm{b},\downarrow}, \notag \\ & \bm{p}^{q,\rm{b},\uparrow}, \bm{p}^{q,\rm{b},\downarrow}, \bm{s}, \bm{s}^{q}, \bm{\phi} \Bigr) \in \mathbb{R}^{+}, \ \forall{q}  \label{P1:eq6_mfrr}
         \\
-        \                                                                                                       & \Bigl( \bm{g}, \bm{u}^{q,\uparrow}, \bm{z}^{q,\uparrow}, \bm{y}^{q,\uparrow}, \notag                                                                 \\ & \bm{u}^{q,\downarrow}, \bm{z}^{q,\downarrow}, \bm{y}^{q,\downarrow} \Bigr) \in \{0,1\}, \ \forall{q} \label{P1:eq7_mfrr}
+        \                                                                                                       & \Bigl( \bm{g}, \bm{u}^{q,\uparrow}, \bm{z}^{q,\uparrow}, \bm{y}^{q,\uparrow}, \notag                                                                 \\ & \bm{u}^{q,\downarrow}, \bm{z}^{q,\downarrow}, \bm{y}^{q,\downarrow} \Bigr) \in \{0,1\}, \ \forall{q}, \label{P1:eq7_mfrr}
     \end{align}
 \end{subequations}
+\endgroup
+which determines the optimal hourly mFRR capacity bids $\bm{p}^{r}$ and optimal hourly regulating price bids $\bm{\lambda}^{\text{bid}}$. The full model formulation can be seen in Appendix D.
 
-The objective maximizes first-stage decisions, i.e., payments for reserve capacity, by finding optimal reserve quantities and bids, $\bm{p}^{r,\uparrow}$ and $\bm{\lambda}^{\text{bid}}$, respectively. Second-stage decisions, $\bm{\Gamma}$, are merely a consequence of first-stage decisions and are related to real-time operation with cost components of activation, rebound, and penalty terms. See \cite{gade2023load} for a detailed description of the model.
+%the objective function maximizes first-stage decisions, i.e., payments for reserve capacity, by finding optimal reserve quantities and bids, $\bm{p}^{r,\uparrow}$ and $\bm{\lambda}^{\text{bid}}$, respectively. Second-stage decisions, $\bm{\Gamma}$, are merely a consequence of first-stage decisions and are related to real-time operation with cost components of activation, rebound, and penalty terms. See \cite{gade2023load} for a detailed description of the model.
 
 \section{Results and discussion}
 
-This section is structured as follows. First, we discuss monetary savings for both FCR and mFRR. Second, we investigate worst-case days (in terms of total up-regulation) for both FCR in mFRR. This include explanations of the zinc furnace's their behavior in those days. Third, the zinc temperature's impact on monetary savings is presented and analyzed. All analyses and code is published in \cite{code}.
+This section is structured as follows. First, we discuss monetary savings for both FCR and mFRR. Second, we investigate worst-case days (in terms of total up-regulation) for both FCR and mFRR. This includes explanations of the zinc furnace's behavior in those days. Third, the zinc temperature's impact on monetary savings is presented and analyzed. All analyses and code are publicly published in \cite{code}.
 
-Figure \ref{fig:cumulative_cost_comparison} shows the cumulative operational costs in 2021-2023 for the zinc furnace participating in FCR, mFRR, and state of today as a reference. Clearly, FCR provided significant revenue during the summer when prices were high. Revenues for FCR compared to mFRR seem to be mostly due to this as FCR stagnates a bit after September 2022 (where FCR bidding was open to all of Europe and not just Western Denmark).
+Figure \ref{fig:cumulative_cost_comparison} shows the cumulative operational costs in 2021-2023 for the zinc furnace participating in FCR, mFRR, and state of today as a reference. Clearly, FCR provides a significant revenue during the summer when prices are high. Revenues for FCR compared to mFRR seem to be mostly due to this as FCR stagnates a bit after September 2022 (where FCR bidding was open to all of Europe and not just the western Denmark).
 
-Keeping in mind that Figure \ref{fig:cumulative_cost_comparison} shows the upper bound potential, there is still significant benefit for a zinc furnace to participate with its flexibility. A saving of around 1 mil. DKK over a two and a haf year period can quickly recover the one-time investment cost of 0.5 mil. DKK needed to enable smart control of the power supply to the furnace. However, savings were not impressive in 2021 and 2023 when FCR prices were low. As mentioned, the Danish TSO expect more balancing demand in the future so FCR should remain an attractive source of revenue \cite{energinet:scenario_report_2022}.
+Keeping in mind that Figure \ref{fig:cumulative_cost_comparison} shows the upper bound profit potential, there is still a significant benefit for a zinc furnace to offer its flexibility. A saving of around 1 million DKK over a two and a half year period can quickly recover the one-time investment cost of 0.5 million DKK, needed to enable smart control of the power supply to the furnace. However, savings were not impressive in 2021 and 2023 when FCR prices were comparatively low. As mentioned, the Danish TSO expects more balancing demand in the future, so FCR should remain an attractive revenue stream \cite{energinet:scenario_report_2022}.
 
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{figures/cumulative_cost_comparison.png}
-    \caption{Cumulative operational cost in 2021-2023 when participating in FCR and mFRR compared to current baseline operational costs for a zinc furnace.}
+    \includegraphics[width=\columnwidth]{../figures/cumulative_cost_comparison.png}
+    \caption{Cumulative operational cost in 2021-2023 when participating in FCR and mFRR compared to the current baseline operational cost for a zinc furnace.}
+    % \Description{Plot of cumulative cost for FCR, mFRR, and baseline.}
     \label{fig:cumulative_cost_comparison}
 \end{figure}
 
 \subsection{Worst-case days}
 
-To investigate how flexibility provision differs for FCR and mFRR, the worst days are extracted and analyzed.
+To investigate how the flexibility provision differs for FCR and mFRR, the worst days are extracted and analyzed.
 
-For FCR, the worst day is defined as the day where the frequency deviated the most from 50 Hz. This day is shown in Figure \ref{fig:fcr_single_case}. First of all, it can clearly be seen how all of the operational baseline consumption is bid as reserve (top plot). This happens in all days during the year and maximizes the revenue from FCR. The implication is that the furnace has to provide a frequency response \textit{continuously} for all hours all year long which has an impact on the temperature (middle upper plot). However, the temperature only declines slightly and is still well within the thresholds before solidification occurs \footnote{Note, due to the anonymization, thresholds and the y-axis scale can not be showed.}. The frequency response (middle lower plot) shows how most of the response is up-regulation, i.e., turning down the power consumption which happens when the frequency is below 50 Hz.
+For FCR, the worst day is defined as the day where the frequency deviated the most from 50 Hz. The operational results for this day are shown in Figure \ref{fig:fcr_single_case}. The entire operational baseline consumption is offered as reserve service (top plot). This happens in all days during the year and maximizes the revenue from FCR. The implication is that the furnace has to provide a frequency response \textit{continuously} for all hours  which has an impact on the temperature (middle upper plot). However, the temperature only declines slightly and is still well within the thresholds before solidification occurs \footnote{Note, due to the anonymization, thresholds and the y-axis scale cannot be showed.}. The frequency response (middle lower plot) shows how most of the response is up-regulation, i.e., turning down the power consumption which happens when the frequency is below 50 Hz.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{figures/fcr_single_case.png}
-    \caption{Worst-case day in terms of cumulative frequency deviation to 50 Hz. \textbf{Top}: total baseline operational power and reserve capacity. \textbf{Middle upper}: wall temperature of upper and lower zone of the furnace with and without (denoted "Base") frequency participation. \textbf{Middle lower}: operational power consumption of lower and upper zone as well as total consumption with the baseline operational consumption in solid lines. \textbf{Bottom}: spot and FCR prices for worst-case day.}
+    \includegraphics[width=\columnwidth]{../figures/fcr_single_case.png}
+    \caption{Worst-case day in terms of cumulative frequency deviation to 50 Hz. \textbf{Top}: total baseline operational power and reserve capacity. \textbf{Middle upper}: wall temperature of upper and lower zones of the furnace with and without (denoted "Base") frequency participation. \textbf{Middle lower}: operational power consumption of lower and upper zones as well as the total consumption with the baseline operational consumption in solid lines. \textbf{Bottom}: spot and FCR prices for the worst-case day.}
+    % \Description{Plot of worst-case day for FCR.}
     \label{fig:fcr_single_case}
 \end{figure}
 
-For mFRR, the reserve quantities are slightly lower than for FCR as seen in Figure \ref{fig:mfrr_single_case} (top). This is due the penalty of not being able to deliver all up-regulation that was promised as can be seen by comparing the bottom plot with the reserve (top) and actual consumption (middle lower): whenever the bid is lower than the balancing price \textit{and} a reserve is promised, then the actual power consumption should correspond to $P^{\text{Base}}_{h} - p_{h}^{r, \uparrow}$. For example, this does not happen in hour 12. Also, the optimization model in (\ref{P1:compact_model_mfrr}) requires an immediate rebound after activation which prohibits the zinc furnace from up-regulating more than 12 hours per day. For these reasons, the reserved power is not equal to the operational baseline power.
+For mFRR, the reserve quantities are slightly lower than that for FCR as observed in Figure \ref{fig:mfrr_single_case} (top). This is due the penalty of not being able to deliver all up-regulation that was promised as can be seen by comparing the bottom plot with the reserve (top) and actual consumption (middle lower): whenever the bid is lower than the balancing price \textit{and} a reserve is promised, then the actual power consumption should correspond to $P^{\text{Base}}_{h} - p_{h}^{r, \uparrow}$. For example, this does not happen in hour 12. Also, the optimization model in (\ref{P1:compact_model_mfrr}) requires an immediate rebound after activation which prohibits the zinc furnace from up-regulating more than 12 hours per day. For these reasons, the reserved power is not equal to the operational baseline power.
 
-Furthermore, turning off the power consumption for five consecutive hours severally affect the temperature as seen in the middle, upper plot. Here, the impact is much bigger than for FCR and exceeds the pre-specified thresholds by an order of magnitude.
+Furthermore, turning off the power consumption for five consecutive hours severally affects the temperature as observed in the middle upper plot. Here, the impact is much bigger than that for FCR and exceeds the pre-specified thresholds by an order of magnitude.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{figures/mfrr_single_case.png}
-    \caption{Worst-case day in terms of up-regulation in the power grid. \textbf{Top}: total baseline operational power and mFRR reserve capacity. \textbf{Middle upper}: wall temperature of upper and lower zone of the furnace with and without (denoted "Base") frequency participation. \textbf{Middle lower}: operational power consumption of lower and upper zone as well as total consumption with the baseline operational consumption in solid lines. \textbf{Bottom}: spot and balancing prices for worst-case day together with the mFRR activation bid.}
+    \includegraphics[width=\columnwidth]{../figures/mfrr_single_case.png}
+    \caption{Worst-case day in terms of up-regulation in the power grid. \textbf{Top}: total baseline operational power and mFRR reserve capacity. \textbf{Middle upper}: wall temperature of upper and lower zones of the furnace with and without (denoted "Base") frequency participation. \textbf{Middle lower}: operational power consumption of lower and upper zones as well as the total consumption with the baseline operational consumption in solid lines. \textbf{Bottom}: spot and balancing prices for the worst-case day together with the mFRR activation bid.}
+    % \Description{Plot of worst-case day for mFRR.}
     \label{fig:mfrr_single_case}
 \end{figure}
 
@@ -383,60 +388,236 @@ Furthermore, turning off the power consumption for five consecutive hours severa
 
 To assess the available flexibility in the zinc furnace, it is prudent to investigate the temperature deviation impact on the monetary savings for both FCR and mFRR. For optimization models in (\ref{P1:compact_model_fcr}) and (\ref{P1:compact_model_mfrr}), additional constraints $\bm{T^{w},q} - \Delta \leq \bm{T^{w},q} \leq \bm{T^{w},q} + \Delta \ \forall{q}$ are added to constrain the allowed temperature deviation.
 
-As indicated already in Figure \ref{fig:fcr_single_case}, the temperature is not affected to any significant degree for FCR. This is again shown in Figure \ref{fig:profit_vs_delta_temp_fcr} where an allowed temperature deviation of 1 C$^{\circ}$ is enough to provide substantial monetary savings.
+As indicated already in Figure \ref{fig:fcr_single_case}, the temperature is not affected to any significant degree for FCR. This is again shown in Figure \ref{fig:profit_vs_delta_temp_fcr} where an allowed temperature deviation of 1 C$^{\circ}$ is enough to provide substantial monetary savings. This is not the case for mFRR as observed in Figure \ref{fig:profit_vs_delta_temp_mfrr} and alluded to previously in Figure \ref{fig:mfrr_single_case}. Figure \ref{fig:profit_vs_delta_temp_mfrr} clearly shows diminishing value at lower temperature deviations while the most savings are obtained when allowing temperature deviations of at least 6 C$^{\circ}$.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{figures/profit_vs_delta_temp_fcr.png}
+    \includegraphics[width=\columnwidth]{../figures/profit_vs_delta_temp_fcr.png}
     \caption{Monetary savings when delivering FCR as a function of constraining the allowed temperature deviation of the zinc to the setpoint.}
+    % \Description{Plot of effect on profit when allowing more temperature deviation for FCR.}
     \label{fig:profit_vs_delta_temp_fcr}
 \end{figure}
 
-The same can not be said of mFRR as seen in Figure \ref{fig:profit_vs_delta_temp_mfrr} and alluded to previously in Figure \ref{fig:mfrr_single_case}. Figure \ref{fig:profit_vs_delta_temp_mfrr} clearly shows diminishing value at lower temperature deviations while the best savings are obtained when allowing temperature deviations of at least 6 C$^{\circ}$.
+
 % (which is of course unrealistic to cope with for the zinc furnace operator).
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{figures/profit_vs_delta_temp_mfrr_and_energy.png}
+    \includegraphics[width=\columnwidth]{../figures/profit_vs_delta_temp_mfrr_and_energy.png}
     \caption{Monetary savings when delivering mFRR as a function of constraining the allowed temperature deviation of the zinc to the setpoint.}
+    % \Description{Plot of effect on profit when allowing more temperature deviation for mFRR.}
     \label{fig:profit_vs_delta_temp_mfrr}
 \end{figure}
 
 
-The revenue generated from FCR and mFRR needs is typically shared between the aggregator and flexible consumer as explained in \cite{gade2022ecosystem}. Hence, the provided upper bound savings reported are also bound to a payment agreement with the aggregator. That can potentially make it less attractive for flexible demand to participate in ancillary services. However, FCR still seems like an obvious option and likewise for the investments made to enable FCR provision. mFRR, however, is not too attractive as it can have a detrimental impact on the zinc temperature on days with severe up-regulation. Other, although perhaps less profitable, mFRR strategies can be employed. For example, only providing real-time balancing without reserves is a viable option since no commitments are made beforehand.
+The revenue earned from FCR and mFRR provision is typically shared between the aggregator and flexible consumer as explained in \cite{gade2022ecosystem}. Hence, the upper bound savings reported are also bound to a payment agreement with the aggregator. That can potentially make it less attractive for a flexible demand to participate in ancillary service markets. However, the FCR still seems like an obvious option and likewise for the investments made to enable the FCR provision. mFRR, however, is not too attractive as it can have a detrimental impact on the zinc temperature on days with severe up-regulation. Although less profitable, mFRR strategies can be employed. For example, the provision of real-time balancing only without reserves is a viable option since no commitments are made beforehand.
 
-Other revenue streams such as load shifting and aFRR were not considered here, but they can potentially also be profitable in certain market regimes with high aFRR demand or very volatile spot prices as seen in 2022.
+Other revenue streams such as load shifting and automatic frequency restoration reserve (aFRR) services were not considered in this paper. However, they can potentially also be profitable in certain market regimes with a high aFRR demand or very volatile spot prices as experienced in 2022.
 
-\input{sections/conclusion}
+\section{Conclusion}
 
-This paper explored how a simple, single-state industry process as exemplified by a real-world case study of a zinc galvanizing process can make modest investments to enable flexibility provision in FCR and mFRR. By switching static control logic to continuous power control, economic benefits can achieved. Comparing FCR and mFRR, it is certainly not realistic to expect a full up-regulation of five consecutive hours for mFRR for a zinc furnace, which will not happen when delivering FCR as seen in the worst-case days analyzed. Also, FCR is more profitable over a two and a half year period. FCR provision is thus a very attractive opportunity for a zinc furnace owner as it provides a stable and passive source of income once investments into continuous power control are made.
+This paper explored how a single-state industry process as exemplified by a real-world case study of a zinc galvanizing process can make modest investments to enable flexibility provision in FCR and mFRR. By switching static control logic to continuous power control, economic benefits can achieved. Comparing FCR and mFRR, it is certainly not realistic to expect a full up-regulation of five consecutive hours for mFRR for a zinc furnace, which will not happen when delivering FCR as seen in the worst-case days analyzed. Also, FCR is more profitable over a two and a half year period. The FCR provision is thus an attractive opportunity for a zinc furnace owner as it provides a stable and passive source of income once investments into continuous power control are made.
 
-% \input{sections/appendix}
+\section*{Acknowledgement}
 
-\input{sections/acknowledgement}
+The authors would like to acknowledge the financial support from Innovation Fund Denmark under grant number 0153-00205B for partially funding the work in this paper. The authors would also like to thank DOT Nordic for giving access to their factory and providing the data used in this paper.
+
+
+{\appendices
+\vspace{-1mm}
+
+
+\section*{Appendix A: Parameter Estimation of State-space Model}\label{app:parameter-estimation}
+
+
+The parameters and latent states in (\ref{eq:StateSpaceModel}) have been estimated using CTSM-R \cite{juhl2016ctsmr} as implemented in \cite{code}. The one-step residuals in the estimation procedure are shown in Figure \ref{fig:4thOrderModelValidation} and resembles white noise (middle plot). Furthermore, the autocorrelation shows no significant lags, and the cumulative periodogram shows no frequencies with significant power. Hence, the model in (\ref{eq:StateSpaceModel}) captures the temperature dynamics well for both  upper and lower zones of the furnace.
+
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\columnwidth]{../figures/4thOrderModelValidation_V2.png}
+    \caption{Validation of state-space model in (\ref{eq:StateSpaceModel}). \textbf{Top}: upper zone wall temperature. \textbf{Bottom}: lower zone wall temperature. \textbf{Left}: autocorrelations of the model residuals. \textbf{Middle}: residuals. \textrm{Right}: cumulated periodogram of the residuals.}
+    % \Description{Plot of residuals in parameter estimation procedure of state-space model.}
+    \label{fig:4thOrderModelValidation}
+\end{figure}
+
+\section*{Appendix B: Steady-state Simulation of State-space Model}\label{app:steady-state-simulation}
+
+
+Figure \ref{fig:4thOrderModelVisualizationSteadyState} shows a 24-hour simulation (1440 time steps) of (\ref{eq:StateSpaceModel}) using (\ref{eq1:steady-state-power}) and (\ref{eq2:steady-state-power}) which was chosen to include both regimes where the lid was either on or off. The original data is shown in dashed black lines. It is evident how the steady-state power consumptions in (\ref{eq1:steady-state-power}) and (\ref{eq2:steady-state-power}) and temperatures are  more stable and predictable. To achieve this, a controller is needed to keep the temperature at the setpoint.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\columnwidth]{../figures/4thOrderModelVisualizationSteadyState.png}
+    \caption{Simulation of (\ref{eq:StateSpaceModel}) with $p^{\text{u}}$ and $p^{\text{l}}$ set to the steady-state consumptions as specified in (\ref{eq1:steady-state-power}) and (\ref{eq2:steady-state-power}). \textbf{Top}: the total power consumption in steady-state and original data (with ON/OFF control). \textbf{Middle}: the upper zone wall temperature at steady-state power consumption and original data (with ON/OFF control). \textbf{Bottom}: the lower zone wall temperature at steady-state power consumption and original data (with ON/OFF control).}
+    % \Description{Plot of simulation of state-space model using steady-state power consumption.}
+    \label{fig:4thOrderModelVisualizationSteadyState}
+\end{figure}
+
+\section*{Appendix C: Market Prices}\label{app:market-prices}
+
+%\subsection{FCR and spot prices}
+
+Figure \ref{fig:fcr_prices_2022} shows the FCR ($\lambda_{h}^{\text{FCR}}$) and spot prices ($\lambda_{h}^{\text{s}}$) in DK1 for 2021-2023. Notice how FCR prices went down after September 2022 where the Danish TSO opened up market participation from the entire continental Europe. Furthermore, FCR prices have been proportional to spot prices.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\columnwidth]{../figures/fcr_prices.png}
+    \caption{FCR and spot prices for 2021-2023 in DK1, Denmark. In September 2022, FCR tenders included continental Europe.}
+    % \Description{Plot of FCR prices.}
+    \label{fig:fcr_prices_2022}
+\end{figure}
+
+%\subsection{mFRR prices}
+
+Figure \ref{fig:mfrr_prices_2022} shows the distribution of hourly balancing prices ($\lambda_{h}^{\text{b}}$) minus spot prices (referred to as balance price differentials) ordered from low to high in red. Corresponding capacity prices ($\lambda_{h}^{\text{mFRR}}$) in the same hours are shown in blue. When balance price differentials are below zero, down-regulation takes place, i.e., supply is greater than demand. When price differentials are above zero, up-regulation takes place, i.e., demand is higher than supply. The mFRR capacity is for up-regulation only, but flexible providers can both down- and up-regulate in the real-time balancing market if they choose. Here, however, we only consider the mFRR up-regulation capacity market where the zinc furnace is paid for both capacity (as shown in blue in Figure \ref{fig:mfrr_prices_2022}) and actual up-regulations (as shown in red when the balance price differential is above zero).
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\columnwidth]{../figures/mfrr_prices.png}
+    \caption{Hourly mFRR prices and balancing price differentials in 2021-2023 in ascending order.}
+    % \Description{Plot of mFRR prices.}
+    \label{fig:mfrr_prices_2022}
+\end{figure}
+
+\section*{Appendix D: MILP problem formulation}\label{appendix:D}
+% \addcontentsline{toc}{section}{Appendices}
+% \renewcommand{\thesubsection}{\Alph{subsection}}
+%\subsection{MILP problem formulation}\label{appendix:A}
+
+%\subsection{Final model formulation}\label{sec:final_model}
+
+% Describe objective function for mFRR and load shifting.
+
+% The set, $\Psi$, then contains all the optimization variables:
+
+% \begin{align}\label{set:OptVariables}
+%     \Psi = \{p_{h,\omega}, p^{\rm{r}}_{h}, & s_{h,\omega}, p^{\rm{b}, \uparrow}_{h,\omega}, p^{\rm{b}, \downarrow}_{h,\omega}, u^{\uparrow}_{h,\omega}, y^{\uparrow}_{h,\omega}, z^{\uparrow}_{h,\omega}, u^{\downarrow}_{h,\omega}, y^{\downarrow}_{h,\omega}, z^{\downarrow}_{h,\omega}, \notag \\ & T^{f}_{\omega, t}, T^{c}_{\omega, t}, T^{f,B}_{t}, T^{c, B}_{t}, \lambda_{h}^{bid}, \phi_{h,\omega}, g_{h,\omega}, \Delta \}
+% \end{align}
+
+
+
+%(\ref{P1:eq4})-(\ref{P1:eq5})
+
+\begingroup
+\allowdisplaybreaks
+The two-stage stochastic MILP problem for the zinc furnace to optimally bid in the mFRR market reads as
+% First, the objective function is presented. Then all auxillary variables and constraints are presented. Third, constraints related to the power consumption for the freezer is shown. Fourth, the physical constraints for the temperatures are presented. Lastly, the rebound constraints are presented.
+% \subsubsection{Objective function}\label{sec:objective_function}
+%
+\begin{subequations}\label{P2:FinalModel}
+    \begin{align}
+           & \underset{\bm{p}^{\rm{r}}, \bm{p}^{q,\rm{r}}, \bm{\lambda}^{\rm{bid}}, \bm{\Gamma}}{\text{Maximize}} \ \sum_{h=1}^{24}\lambda_{h}^{\rm{r}} p^{\rm{r}}_{h}+ \Bigl(\sum_{h=1}^{24}  \lambda_{h}^{\rm{b}} p^{\rm{b},\uparrow}_{h} - \notag                                                                                                                                                                                                                                                            \\  &  \hspace{0.5cm}\sum_{h=1}^{24}  \lambda_{h}^{\rm{b}} p^{\rm{b},\downarrow}_{h} - \sum_{h=1}^{24}  \lambda^{\rm{p}}s_{h} \Bigr) \label{P2:1} \\
+        %
+           & \   \text{s.t.}  \  (\ref{P1:co8}), (\ref{P1:co5}), (\ref{P1:co6}), (\ref{P1:co7}), \ \forall{h},   \label{P2:2}                                                                                                                                                                                                                                                                                                                                                                                                                                                           \\
+           & \ p^{\rm{b},\downarrow}_{h} = p^{\rm{zu}, \rm{b},\downarrow}_{h} + p^{\rm{zl}, \rm{b},\downarrow}_{h}, \ \forall{h} \label{P2:3} \\
+           & \ p^{\rm{b},\uparrow}_{h} = p^{\rm{zu}, \rm{b},\uparrow}_{h} + p^{\rm{zl}, \rm{b},\uparrow}_{h}, \ \forall{h} \label{P2:33} \\
+        %
+        T^{\text{zu}}_{t+1} & = T^{\text{zu}}_{t} + dt \cdot \frac{1}{C^{\text{zu}}}\Bigl( \frac{1}{R^{\text{zuzl}}} (T^{\text{zl}}_{t} - T^{\text{zu}}_{t}) \notag                                     \\ & \mspace{5mu} + \frac{1}{R^{\text{wz}}} (T^{\text{wu}}_{t} - T^{\text{zu}}_{t}) \Bigr), \quad \forall{t} < J-1 \label{P2:StateSpace1} \\
+        T^{\text{zl}}_{t+1} & = T^{\text{zl}}_{t} + dt \cdot \frac{1}{C^{\text{zl}}}\Bigl( \frac{1}{R^{\text{zuzl}}} (T^{\text{zu}}_{t} - T^{\text{zl}}_{t}) \notag                                     \\ & \mspace{5mu} + \frac{1}{R^{\text{wz}}} (T^{\text{wl}}_{t} - T^{\text{zl}}_{t}) \Bigr), \quad \forall{t} < J-1 \label{P2:StateSpace2} \\
+        T^{\text{wu}}_{t+1} & = T^{\text{wu}}_{t} + dt \cdot \frac{1}{C^{\text{wu}}}\Bigl( (1-\mathbbm{1}^{\text{lid}}) \frac{1}{R^{\text{wua},\text{off}}} (T^{\text{a}} - T^{\text{wu}}_{t}) \notag + \\ & \mspace{5mu} \mathbbm{1}^{\text{lid}} \frac{1}{R^{\text{wua},\text{on}}} (T^{\text{a}} - T^{\text{wu}}_{t}) + \frac{1}{R^{\text{ww}}} (T^{\text{wl}}_{t} - T^{\text{wu}}_{t}) \notag \\ & \mspace{5mu} + \frac{1}{R^{\text{wz}}} (T^{\text{zu}}_{t} - T^{\text{wu}}_{t}) + p^{\text{u}}_{t} \Bigr), \quad \forall{t} < J-1 \label{P2:StateSpace3} \\
+        T^{\text{wl}}_{t+1} & = T^{\text{wl}}_{t} + dt \cdot \frac{1}{C^{\text{wl}}}\Bigl( \frac{1}{R^{\text{wla}}} (T^{\text{a}} - T^{\text{wl}}_{t}) \notag                                           \\ & \mspace{5mu} + \frac{1}{R^{\text{ww}}} (T^{\text{wu}}_{t} - T^{\text{wl}}_{t})  \notag \\
+        + & \mspace{5mu} \frac{1}{R^{\text{wz}}} (T^{\text{zl}}_{t} - T^{\text{wl}}_{t}) + p^{\text{l}}_{t} \Bigr), \quad \forall{t} < J-1 \label{P2:StateSpace4} \\
+        T^{\text{zu, Base}}_{t+1} & = T^{\text{zu, Base}}_{t} + dt \cdot \frac{1}{C^{\text{zu}}}\Bigl( \frac{1}{R^{\text{zuzl}}} (T^{\text{zl, Base}}_{t} - T^{\text{zu, Base}}_{t}) \notag                                     \\ & \mspace{5mu} + \frac{1}{R^{\text{wz}}} (T^{\text{wu, Base}}_{t} - T^{\text{zu, Base}}_{t}) \Bigr), \quad \forall{t} < J-1 \label{P2:StateSpaceBase1} \\
+        T^{\text{zl, Base}}_{t+1} & = T^{\text{zl, Base}}_{t} + dt \cdot \frac{1}{C^{\text{zl}}}\Bigl( \frac{1}{R^{\text{zuzl}}} (T^{\text{zu, Base}}_{t} - T^{\text{zl, Base}}_{t}) \notag                                     \\ & \mspace{5mu} + \frac{1}{R^{\text{wz}}} (T^{\text{wl, Base}}_{t} - T^{\text{zl, Base}}_{t}) \Bigr), \quad \forall{t} < J-1 \label{P2:StateSpaceBase2} \\
+        T^{\text{wu, Base}}_{t+1} & = T^{\text{wu, Base}}_{t} + dt \cdot \frac{1}{C^{\text{wu}}}\Bigl( (1-\mathbbm{1}^{\text{lid}}) \frac{1}{R^{\text{wua},\text{off}}} (T^{\text{a}} - T^{\text{wu, Base}}_{t}) \notag  \\ & \mspace{5mu} + \mathbbm{1}^{\text{lid}} \frac{1}{R^{\text{wua},\text{on}}} (T^{\text{a}} - T^{\text{wu, Base}}_{t}) + \frac{1}{R^{\text{ww}}} (T^{\text{wl, Base}}_{t} - T^{\text{wu, Base}}_{t}) \notag \\ & \mspace{5mu} + \frac{1}{R^{\text{wz}}} (T^{\text{zu, Base}}_{t} - T^{\text{wu, Base}}_{t}) + p^{\text{u, Base}}_{t} \Bigr), \quad \forall{t} < J-1 \label{P2:StateSpaceBase3} \\
+        T^{\text{wl, Base}}_{t+1} & = T^{\text{wl, Base}}_{t} + dt \cdot \frac{1}{C^{\text{wl}}}\Bigl( \frac{1}{R^{\text{wla}}} (T^{\text{a}} - T^{\text{wl, Base}}_{t}) \notag                                           \\ & \mspace{5mu} + \frac{1}{R^{\text{ww}}} (T^{\text{wu, Base}}_{t} - T^{\text{wl, Base}}_{t}) \notag \\ & \mspace{5mu}  + \frac{1}{R^{\text{wz}}} (T^{\text{zl, Base}}_{t} - T^{\text{wl, Base}}_{t}) + p^{\text{l, Base}}_{t} \Bigr), \quad \forall{t} < J-1 \label{P2:StateSpaceBase4} \\
+        % McCormick
+        \lambda_{h}^{\rm{bid}} & - M  (1 - g_{h}) \leq \lambda_{h}^{\rm{b}} - \lambda_{h}^{\rm{s}} \leq \lambda_{h}^{\rm{bid}} + M  g_{h}, \ \forall{h}                               \label{con_bid:subeq1} \\
+        p^{\rm{b}, \uparrow}_{h} & \leq \phi_{h}  \mathbbm{1}^{\lambda^{\rm{b}}_{h} > \lambda^{\rm{s}}_{h}}, \  \forall{h}                          \label{con_bid:subeq3}                                                \\
+        p^{\rm{b}, \uparrow}_{h} + s_{h} & \geq \phi_{h}  \mathbbm{1}^{\lambda^{\rm{b}}_{h} > \lambda^{\rm{s}}_{h}},  \ \forall{h}            \label{con_bid:subeq4}                                               \\
+         -g_{h}  M & \leq \phi_{h} \leq g_{h}  M,\  \forall{h}                                   \label{con_bid:subeq5}                                                                                                            \\
+         & -(1 - g_{h})  M \leq \phi_{h} - p^{\rm{r},\uparrow}_{h} \leq (1 - g_{h}) M,  \forall{h}\                                                                                    \label{con_bid:subeq7} \\
+        %
+        %    & \ p_{h} = P^{\rm{Base}}_{h} - p^{\rm{b}, \uparrow}_{h} + p^{\rm{b}, \downarrow}_{h}, \                                                                                                  \forall{h}                                                                             \label{power:6}                                                                                                                                                                                                                           \\
+           & \ p_{h}^{\rm{q}} = P^{\rm{q},\rm{Base}}_{h} - p^{\rm{q},\rm{b}, \uparrow}_{h} + p^{\rm{q},\rm{b}, \downarrow}_{h}, \                                                                                                  \forall{h, q}                                                                             \label{power:6q}                                                                                                                                                                                                                           \\
+        % \  & p^{\rm{r}}_h \leq P^{\rm{Base}}_h,
+        % \                                                                                                                                                        \forall{h}                                                                                     \label{power:7}                                                                                                                                                                                                                                                                                   \\
+        % \  & p^{\rm{b}, \uparrow}_{h} \leq p^{\rm{r}}_h \mathbbm{1}_{h}^{\lambda^{\rm{b}}_{h} > \lambda^{\rm{s}}_{h}} , \                                                                            \forall{h}                                                                             \label{power:8}                                                                                                                                                                                                          \\
+        \  & p^{\rm{q},\rm{b}, \uparrow}_{h} \leq p^{\rm{r}}_h \mathbbm{1}_{h}^{\lambda^{\rm{b}}_{h} > \lambda^{\rm{s}}_{h}} , \                                                                            \forall{h,q}                                                                             \label{power:8q}                                                                                                                                                                                                          \\
+        % \  & p^{\rm{b}, \uparrow}_{h} \leq u_{h}^{\uparrow} \big(P^{\rm{Base}}_{h} - P^{\rm{Min}}\big) , \                                                                                                       \forall{h}                                                                             \label{power:9}                                                                                                                                                                                                                      \\
+        \  & p^{\rm{q},\rm{b}, \uparrow}_{h} \leq u_{h}^{\rm{q},\uparrow} \big(P^{\rm{q},\rm{Base}}_{h} - P^{\rm{q},\rm{Min}}\big) , \                                                                                                       \forall{h,q}                                                                             \label{power:9q}                                                                                                                                                                                                                      \\
+        % \  & p^{\rm{b}, \downarrow}_{h} \leq u^{\downarrow}_{h} \big(P^{\rm{Nom}} -P^{\rm{Base}}_{h}\big), \                                                                                              \forall{h}                                                                             \label{power:10}                                                                                                                                                                                                                            \\
+        \  & p^{\rm{q},\rm{b}, \downarrow}_{h} \leq u^{\rm{q},\downarrow}_{h} \big(P^{\rm{q},\rm{Nom}} -P^{\rm{q},\rm{Base}}_{h}\big), \                                                                                              \forall{h,q}                                                                             \label{power:10q}                                                                                                                                                                                                                            \\
+        % \  & P^{\rm{Min}} \leq p_{h} \leq P^{\rm{Nom}}, \                                                                                                                                           \forall{h}                                                                             \label{power:11}                                                                                                                                                                                                                                         \\
+        \  & P^{\rm{q},\rm{Min}} \leq p_{h}^{\rm{q}} \leq P^{\rm{q},\rm{Nom}}, \                                                                                                                                           \forall{h,q}                                                                             \label{power:11q}                                                                                                                                                                                                                                         \\
+        % \  & 0 \leq s_{h} \leq P^{\rm{Base}}_{h}, \                                                                                                                                                   \forall{h}                                                                             \label{power:12}                                                                                                                                                                                                                                       \\
+        \  & 0 \leq s_{h}^{\rm{q}} \leq P^{\rm{q},\rm{Base}}_{h}, \                                                                                                                                                   \forall{h,q}                                                                             \label{power:12q}                                                                                                                                                                                                                                       \\
+        % \                                                                                             & \ p^{\rm{b}, \uparrow}_{h} + s_{h} \geq p^{\rm{r},\uparrow}_{h} \  \mathbbm{1}_{h}^{(\lambda^{\rm{bid}}_{h} < \lambda^{\rm{b}}_{h}, \lambda^{\rm{b}}_{h} > \lambda^{s}_{h})}, \                                                                                                              \forall{h} \label{power:13} \\
+        % \  & p^{\rm{b}, \downarrow}_{h} \geq 0.10 \  u^{\downarrow}_{h} \big(P^{\rm{Nom}} - P^{\rm{Base}}_{h}\big), \                                                                                  \forall{h}                                                                             \label{power:14}                                                                                                                                                                                                                               \\
+        \  & p^{\rm{q},\rm{b}, \downarrow}_{h} \geq 0.10 \  u^{\rm{q},\downarrow}_{h} \big(P^{\rm{q},\rm{Nom}} - P^{\rm{q},\rm{Base}}_{h}\big), \                                                                                  \forall{h,q}                                                                             \label{power:14q}                                                                                                                                                                                                                               \\
+        \  & u_{h-1}^{\rm{q},\uparrow} - u_{h}^{\rm{q},\uparrow} + y_{h}^{\rm{q},\uparrow} - z_{h}^{\rm{q},\uparrow} = 0, \    \forall{h>1,q},                                                                                                         \label{aux:1}                                                                                                                                                                                                                                                                                         \\
+        \  & y_{h}^{\rm{q},\uparrow} + z_{h}^{\rm{q},\uparrow} \leq 1 \                                                             \forall{h,q}                                                                                                                                                                     \label{aux:2}                                                                                                                                                                                                                           \\
+        \  & u_{h-1}^{\rm{q},\downarrow} - u_{h}^{\rm{q},\downarrow} + y_{h}^{\rm{q},\downarrow} - z_{h}^{\rm{q},\downarrow} = 0, \                                                                                                                                                                                                                                                    \forall{h>1,q},                                                                                                                                        \label{aux:3} \\
+        \  & y_{h}^{\rm{q},\downarrow} + z_{h}^{\rm{q},\downarrow} \leq 1 \                                                         \forall{h,q}                                                                                                                                                                     \label{aux:4}                                                                                                                                                                                                                           \\
+        \  & u_{h}^{\rm{q},\uparrow} + u_{h}^{\rm{q},\downarrow} \leq 1 \                                                           \forall{h,q}                                                                                                                                                                     \label{aux:5}                                                                                                                                                                                                                           \\
+        \  & y_{h}^{\rm{q},\uparrow} + y_{h}^{\rm{q},\downarrow} \leq 1 \                                                           \forall{h,q}                                                                                                                                                                                   \label{aux:6}                                                                                                                                                                                                             \\
+        \  & z_{h}^{\rm{q},\uparrow} + z_{h}^{\downarrow} \leq 1 \                                                           \forall{h,q} \label{aux:7}                                                                                                                                                                                                                                                                                                                                                                                               \\
+        % \  & T^{\rm{zu}}_{J} \leq T^{\rm{zu}, \rm{Base}}_{J}, \label{temp:1}                                                                                                                                                                                                                                                                                                                                                                                                                                                               \\
+        % \  & T^{\rm{zl}}_{J} \leq T^{\rm{zl}, \rm{Base}}_{J}, \label{temp:2}                                                                                                                                                                                                                                                                                                                                                                                                                                                               \\
+        \  & y^{\rm{q},\downarrow}_{h} \geq z^{\rm{q},\uparrow}_{h}, \                                                                                                                                                                                                                                                                 \forall{h,q} \label{rebound:1}                                                                                                                                                                                     \\
+        % \                                                                                             & \ y^{\downarrow}_{h} \leq z^{\uparrow}_{h}, \                                                                                                                                                                                                                                                                 \forall{h} \label{rebound:2}        \\
+        \  & \sum_{t=4(h-1)}^{4 h} T^{\rm{q}}_{t} - T^{\rm{q}, \rm{Base}}_{t} \geq \big( z^{\rm{q},\downarrow}_{h} -1\big)  M,  \  \forall{h>1,q} \label{rebound:3}                                                                                                                                                                                                                                                                                                                                                                                 \\
+        % \  & \sum_{t=4(h-1)}^{4 h} T^{\rm{zl}}_{t} - T^{\rm{zl}, \rm{Base}}_{t} \leq \big(1 - z^{\rm{zl},\downarrow}_{h}\big) M,  \  \forall{h>1} \label{rebound:4}                                                                                                                                                                                                                                                                                                                                                                                  \\
+        \  & \sum_{k=1}^{h} y^{\rm{q},\downarrow}_{k} \leq y^{\rm{q},\uparrow}_{k}, \ \forall{h,q}. \label{up_reg_first}
+    \end{align}
+\end{subequations}
+
+The objective function (\ref{P2:1}) maximizes the expected flexibility value of the zinc furnace.
+%
+% Constraint \eqref{P2:2} contains
+% (\ref{eq:bid_constraint_relaxed}), representing the McCormick relaxation of activation conditions. Recall that $\lambda^{\rm{bid}}_{h, \omega}$ in (\ref{eq:bid_constraint_relaxed}) should be replaced as defined in \eqref{eq:affine_policy}. Constraint \eqref{P2:3} declares continuous and binary variables.
+%There is a set of identical constraints to (\ref{P2:2}) that simulate the baseline temperatures, $T^{\rm{f},\rm{B}}_{t}$ and $T^{\rm{c},\rm{B}}_{t}$, using the baseline power, $P^{\rm{Base}}_{h}$.. Note, the freezer specific variables are indexed by $t$, representing a time step $dt = 0.25$ whereas all other variables are indexed by hour $h$.
+%from mFRR while reducing the rebound and penalty cost for all equiprobable scenarios.
+
+Constraints \eqref{P2:2} represent the sum of zone power variables, i.e., total power, balancing power, and slack variable. The slack variable $s_h$ represents power not delivered as promised. Constraints \eqref{P2:3}-\eqref{P2:33} represent sum of total balancing power as the sum of balancing power in both zones.
+
+Aligned with (\ref{eq:StateSpaceModel}), constraints \eqref{P2:StateSpace1}-\eqref{P2:StateSpace4} are the state-space model for the zinc and furnace wall temperature dynamics. Similarly, \eqref{P2:StateSpaceBase1}-\eqref{P2:StateSpaceBase4} include the baseline temperatures for the zinc and furnace wall, and model temperature dynamics for the baseline power. %These variables are used in subsequent constraints to determine when the rebound stops.
+%Note that the freezer-specific variables are indexed by $t$, representing a time step $dt = 0.25$, whereas all other variables are indexed by hour $h$.
+Recall in case the hour index $h$ runs from 1 to 24, index $t$ runs from 1 to $J=1440$.
+
+Constraint \eqref{con_bid:subeq1}-\eqref{con_bid:subeq7} represent the McCormick relaxation of activation conditions for mFRR, i.e., that the zinc furnace should activate its capacity whenever there is a positive reserve bid, $p^{r}_{h} > 0$, and when the regulation power bid is below the balancing price, $\lambda_{h}^{\rm{bid}} < \lambda_{h}^{\rm{b}}$, given that the balancing price is strictly greater than the spot price, $\lambda_{h}^{\rm{b}} > \lambda_{h}^{\rm{s}}$, i.e., whenever the system required balancing. See more details in \cite{gade2023load}.
+
+%
+Constraint \eqref{power:6q} sets the real-time power consumption $p_{h}^{\rm{q}}$ for both zones equal to the baseline power $P^{\rm{q},\rm{Base}}_{h}$ unless there is up-regulation $p^{\rm{q},\rm{b}, \uparrow}_{h}$ or down-regulation $p^{\rm{q},\rm{b}, \downarrow}_{h}$.
+%
+% Constraint (\ref{power:7}) binds the mFRR reservation $p_{h}^{\rm{r},\uparrow}$ to the baseline power.
+%
+Constraint (\ref{power:8q}) ensures that up-regulation is zero when there is no need for up-regulation, and at the same time binds it to the reservation power.
+%
+Constraint (\ref{power:9q}) includes the binary variable $u^{\rm{q},\uparrow}_{h}$, indicating whether the zinc furnace is up-regulated in hour $h$. This constraint ensures that up-regulation is zero whenever $u^{\rm{q},\uparrow}_{h} = 0$, and otherwise restricted to the maximum up-regulation service $P^{\rm{q},\rm{Base}}_{h}-P^{\rm{q},\rm{Min}}$ that can be provided. Note that $P^{\rm{q},\rm{Min}}$ is the minimum consumption level of the zinc furnace for zone $q$.
+%
+Constraint (\ref{power:10q}) works similarly for down-regulation. Note that the binary variable $u^{\rm{q},\downarrow}_{h}$ indicates whether down-regulation happens, whereas $P^{\rm{q}\rm{Nom}}$ is the nominal (maximum) consumption level of the zinc furnace.
+%
+Constraint (\ref{power:11q}) restricts the power consumption to lie within the minimum and nominal rates for each zone.
+%
+Constraint (\ref{power:12q}) binds the slack variable $s_{h}^{\rm{q}}$, representing the service not delivered as promised.
+%
+Constraint (\ref{power:14q}) ensures that down-regulation is equal to at least 10\% of the down-regulation capacity.
+%
+% Constraint (\ref{power:15}) prohibits any up-regulation when defrosting occurs.
+%
+Constraints \eqref{aux:1}-\eqref{aux:7} define auxiliary binary variables $y^{\rm{q},\uparrow}_{h}$, $y^{\rm{q},\downarrow}_{h}$, $z^{\rm{q},\uparrow}_{h}$, and $z^{\rm{q},\downarrow}_{h}$, identifying transitions from/to up-regulation and down-regulation.
+During all hours with up-regulation, $y^{\rm{q},\uparrow}_{h}=1$. In the hour that up-regulation is stopped, $z^{\rm{q},\uparrow}_{h}$ is 1. There is a similar definition for $y^{\rm{q},\downarrow}_{h}$ and $z^{\rm{q},\downarrow}_{h}$ related to down-regulation.
+See Chapter 5 of  \cite{morales2013integrating} for complete details.
+%
+% Constraint \eqref{temp:1} restricts the food temperature for the last time period $J$.
+%For every time period $t$, \eqref{temp:2} and \eqref{temp:3} bind the air temperature by enforcing the maximum deviation $\Delta^{\rm{max}}$.
+%
+Constraints \eqref{rebound:1}-\eqref{rebound:3} control the rebound behavior such that the rebound finishes when the temperature is below the baseline temperature. Note that $M$ is a sufficiently big positive constant such that the zinc temperature is allowed to deviate from the baseline. Also, they ensure that the rebound happens right after up-regulation.
+%
+Lastly, (\ref{up_reg_first}) ensures that up-regulation happens first. This makes sense since it impossible (or at least difficult) to anticipate potential up-regulation events in the power system. As such, it does not make sense to pre-cool (or pre-heat) a TCL in the context of mFRR.
+
+
+\endgroup
+
+}
+
 
 
 \bibliographystyle{IEEEtran}
+\bibliography{../bibliography/Bibliography}
 % \bibliography{tex/bibliography/Bibliography}
-\bibliography{bibliography/Bibliography}
-
-% \newpage
-
-% \begin{IEEEbiographynophoto}{Peter A.V. Gade}
-%     is an Industrial PhD researcher at IBM and affiliated with the Technical University of Denmark, Kongens Lyngby, Denmark, in the Energy Markets and Analytics Section within the Power and Energy Systems division at the Wind and Energy Systems Department. His research focuses on demand-side flexibility and the revenue streams from utilization of demand-side flexibility. He holds a M.S. in Mathematical Modelling and Computing and a B.S. in Biomedical Engineering, both from the Technical University of Denmark.
-% \end{IEEEbiographynophoto}
-% \begin{IEEEbiographynophoto}{Trygve Skjøtskfit}
-%     is an Associate Partner at IBM Denmark, with focus on energy transformation and demand-side flexibility. His solid experience and deep knowledge within intelligent energy systems, buildings, and civil infrastructures makes him a leading figure, strategic advisor, and a first mover in the flexibility market with a strong track record to find and deliver new cutting-edge solutions. He holds an MBA in Strategy from Universitat Pompeu Fabra, and a Master of Export Engineering from Copenhagen University, College of Engineering.
-% \end{IEEEbiographynophoto}
-% \begin{IEEEbiographynophoto}{Henrik W. Bindner}
-%     received the MSc in Electrical Engineering from Technical University of Denmark in 1988. He is currently a senior researcher with the Department of Wind and Energy Systems, Technical University of Denmark. He is heading the \textit{Distributed Energy Systems} Section and his research interests include control and management of smart grids, active distribution networks, and integrated energy systems.
-% \end{IEEEbiographynophoto}
-% \begin{IEEEbiographynophoto}{Charalampos Ziras}
-%     ...
-% \end{IEEEbiographynophoto}
-% \begin{IEEEbiographynophoto}{Jalal Kazempour}
-%     is an Associate Professor with the Department of Wind and Energy Systems, Technical University of Denmark, where he is heading the \textit{Energy Markets and Analytics} Section. He received the Ph.D. degree in Electrical Engineering from the University of Castilla-La Mancha, Ciudad Real, Spain, in 2013. His research interests include intersection of multiple fields, including power and energy systems, electricity markets, optimization, game theory, and machine learning.
-% \end{IEEEbiographynophoto}
 
 
 \vfill

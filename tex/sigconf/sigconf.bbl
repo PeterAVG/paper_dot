@@ -1,0 +1,309 @@
+%%% -*-BibTeX-*-
+%%% Do NOT edit. File created by BibTeX with style
+%%% ACM-Reference-Format-Journals [18-Jan-2012].
+
+\begin{thebibliography}{21}
+
+%%% ====================================================================
+%%% NOTE TO THE USER: you can override these defaults by providing
+%%% customized versions of any of these macros before the \bibliography
+%%% command.  Each of them MUST provide its own final punctuation,
+%%% except for \shownote{}, \showDOI{}, and \showURL{}.  The latter two
+%%% do not use final punctuation, in order to avoid confusing it with
+%%% the Web address.
+%%%
+%%% To suppress output of a particular field, define its macro to expand
+%%% to an empty string, or better, \unskip, like this:
+%%%
+%%% \newcommand{\showDOI}[1]{\unskip}   % LaTeX syntax
+%%%
+%%% \def \showDOI #1{\unskip}           % plain TeX syntax
+%%%
+%%% ====================================================================
+
+\ifx \showCODEN    \undefined \def \showCODEN     #1{\unskip}     \fi
+\ifx \showDOI      \undefined \def \showDOI       #1{#1}\fi
+\ifx \showISBNx    \undefined \def \showISBNx     #1{\unskip}     \fi
+\ifx \showISBNxiii \undefined \def \showISBNxiii  #1{\unskip}     \fi
+\ifx \showISSN     \undefined \def \showISSN      #1{\unskip}     \fi
+\ifx \showLCCN     \undefined \def \showLCCN      #1{\unskip}     \fi
+\ifx \shownote     \undefined \def \shownote      #1{#1}          \fi
+\ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
+\ifx \showURL      \undefined \def \showURL       {\relax}        \fi
+% The following commands are used for tagged output and should be
+% invisible to TeX
+\providecommand\bibfield[2]{#2}
+\providecommand\bibinfo[2]{#2}
+\providecommand\natexlab[1]{#1}
+\providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[ene(2023a)]%
+        {energinet:scenario_report_2022}
+ \bibinfo{year}{2023}\natexlab{a}.
+\newblock \showarticletitle{Energinet Scenario Report 2022}.
+\newblock \bibinfo{journal}{\emph{Energinet}} (\bibinfo{year}{2023}).
+\newblock
+\urldef\tempurl%
+\url{https://energinet.dk/el/systemydelser/nyheder-om-systemydelser/2022/10/31-10-2022-scenarierapport/}
+\showURL{%
+\tempurl}
+\newblock
+\shownote{Accessed: 2023-09-05}.
+
+
+\bibitem[cod(2023)]%
+        {code}
+ \bibinfo{year}{2023}\natexlab{}.
+\newblock \bibinfo{title}{GitHub repository}.
+\newblock
+\newblock
+\urldef\tempurl%
+\url{https://github.com/PeterAVG/paper_dot}
+\showURL{%
+\tempurl}
+
+
+\bibitem[ene(2023b)]%
+        {energinet:prequalification}
+ \bibinfo{year}{2023}\natexlab{b}.
+\newblock \showarticletitle{Prequalification of units and aggregated
+  portfolios}.
+\newblock \bibinfo{journal}{\emph{Energinet}} (\bibinfo{year}{2023}).
+\newblock
+\urldef\tempurl%
+\url{https://en.energinet.dk/Electricity/Ancillary-Services/Prequalification-and-test}
+\showURL{%
+\tempurl}
+\newblock
+\shownote{Accessed 2023-09-11}.
+
+
+\bibitem[Contreras-Ocana et~al\mbox{.}(2018)]%
+        {contreras2018tractable}
+\bibfield{author}{\bibinfo{person}{Jesus~E Contreras-Ocana},
+  \bibinfo{person}{Miguel~A Ortega-Vazquez}, \bibinfo{person}{Daniel Kirschen},
+  {and} \bibinfo{person}{Baosen Zhang}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Tractable and robust modeling of building
+  flexibility using coarse data}.
+\newblock \bibinfo{journal}{\emph{IEEE Transactions on Power Systems}}
+  \bibinfo{volume}{33}, \bibinfo{number}{5} (\bibinfo{year}{2018}),
+  \bibinfo{pages}{5456--5468}.
+\newblock
+
+
+\bibitem[De~Zotti and Madsen(2019)]%
+        {de2019leveraging}
+\bibfield{author}{\bibinfo{person}{Giulia De~Zotti} {and}
+  \bibinfo{person}{Henrik Madsen}.} \bibinfo{year}{2019}\natexlab{}.
+\newblock \showarticletitle{Leveraging consumers flexibility for the provision
+  of ancillary services}.
+\newblock \bibinfo{journal}{\emph{PhD thesis}} (\bibinfo{year}{2019}).
+\newblock
+
+
+\bibitem[Finck et~al\mbox{.}(2018)]%
+        {finck2018quantifying}
+\bibfield{author}{\bibinfo{person}{Christian Finck}, \bibinfo{person}{Rongling
+  Li}, \bibinfo{person}{Rick Kramer}, {and} \bibinfo{person}{Wim Zeiler}.}
+  \bibinfo{year}{2018}\natexlab{}.
+\newblock \showarticletitle{Quantifying demand flexibility of power-to-heat and
+  thermal energy storage in the control of building heating systems}.
+\newblock \bibinfo{journal}{\emph{Applied Energy}}  \bibinfo{volume}{209}
+  (\bibinfo{year}{2018}), \bibinfo{pages}{409--425}.
+\newblock
+
+
+\bibitem[Gade et~al\mbox{.}(2022)]%
+        {gade2022ecosystem}
+\bibfield{author}{\bibinfo{person}{Peter~AV Gade}, \bibinfo{person}{Trygve
+  Skj{\o}tskift}, \bibinfo{person}{Henrik~W Bindner}, {and}
+  \bibinfo{person}{Jalal Kazempour}.} \bibinfo{year}{2022}\natexlab{}.
+\newblock \showarticletitle{Ecosystem for Demand-side Flexibility Revisited:
+  The Danish Solution}.
+\newblock \bibinfo{journal}{\emph{The Electricity Journal}}
+  \bibinfo{volume}{35}, \bibinfo{number}{9} (\bibinfo{year}{2022}),
+  \bibinfo{pages}{107206}.
+\newblock
+
+
+\bibitem[Gade et~al\mbox{.}(2023)]%
+        {gade2023load}
+\bibfield{author}{\bibinfo{person}{Peter A.~V. Gade}, \bibinfo{person}{Trygve
+  Skjøtskift}, \bibinfo{person}{Charalampos Ziras}, \bibinfo{person}{Henrik~W.
+  Bindner}, {and} \bibinfo{person}{Jalal Kazempour}.}
+  \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Load Shifting Versus Manual Frequency Reserve:
+  Which One is More Appealing to Flexible Loads?}
+\newblock  (\bibinfo{year}{2023}).
+\newblock
+\showeprint[arxiv]{2309.01987}~[eess.SY]
+
+
+\bibitem[Hao et~al\mbox{.}(2014)]%
+        {hao2014aggregate}
+\bibfield{author}{\bibinfo{person}{He Hao}, \bibinfo{person}{Borhan~M
+  Sanandaji}, \bibinfo{person}{Kameshwar Poolla}, {and}
+  \bibinfo{person}{Tyrone~L Vincent}.} \bibinfo{year}{2014}\natexlab{}.
+\newblock \showarticletitle{Aggregate flexibility of thermostatically
+  controlled loads}.
+\newblock \bibinfo{journal}{\emph{IEEE Transactions on Power Systems}}
+  \bibinfo{volume}{30}, \bibinfo{number}{1} (\bibinfo{year}{2014}),
+  \bibinfo{pages}{189--198}.
+\newblock
+
+
+\bibitem[Juhl et~al\mbox{.}(2016)]%
+        {juhl2016ctsmr}
+\bibfield{author}{\bibinfo{person}{Rune Juhl}, \bibinfo{person}{Jan~Kloppenborg
+  M{\o}ller}, {and} \bibinfo{person}{Henrik Madsen}.}
+  \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{ctsmr-Continuous time stochastic modeling in R}.
+\newblock \bibinfo{journal}{\emph{arXiv preprint arXiv:1606.00242}}
+  (\bibinfo{year}{2016}).
+\newblock
+
+
+\bibitem[Junker et~al\mbox{.}(2020)]%
+        {junker2020stochastic}
+\bibfield{author}{\bibinfo{person}{Rune~Gr{\o}nborg Junker},
+  \bibinfo{person}{Carsten~Skovmose Kalles{\o}e}, \bibinfo{person}{Jaume~Palmer
+  Real}, \bibinfo{person}{Bianca Howard}, \bibinfo{person}{Rui~Amaral Lopes},
+  {and} \bibinfo{person}{Henrik Madsen}.} \bibinfo{year}{2020}\natexlab{}.
+\newblock \showarticletitle{Stochastic nonlinear modelling and application of
+  price-based energy flexibility}.
+\newblock \bibinfo{journal}{\emph{Applied Energy}}  \bibinfo{volume}{275}
+  (\bibinfo{year}{2020}), \bibinfo{pages}{115096}.
+\newblock
+
+
+\bibitem[Mallapragada et~al\mbox{.}(2023)]%
+        {mallapragada2023decarbonization}
+\bibfield{author}{\bibinfo{person}{Dharik~S Mallapragada},
+  \bibinfo{person}{Yury Dvorkin}, \bibinfo{person}{Miguel~A Modestino},
+  \bibinfo{person}{Daniel~V Esposito}, \bibinfo{person}{Wilson~A Smith},
+  \bibinfo{person}{Bri-Mathias Hodge}, \bibinfo{person}{Michael~P Harold},
+  \bibinfo{person}{Vincent~M Donnelly}, \bibinfo{person}{Alice Nuz},
+  \bibinfo{person}{Casey Bloomquist}, {et~al\mbox{.}}}
+  \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Decarbonization of the chemical industry through
+  electrification: Barriers and opportunities}.
+\newblock \bibinfo{journal}{\emph{Joule}} \bibinfo{volume}{7},
+  \bibinfo{number}{1} (\bibinfo{year}{2023}), \bibinfo{pages}{23--41}.
+\newblock
+
+
+\bibitem[Misaghian et~al\mbox{.}(2022)]%
+        {misaghian2022fast}
+\bibfield{author}{\bibinfo{person}{M~Saeed Misaghian}, \bibinfo{person}{Ciara
+  O'Dwyer}, {and} \bibinfo{person}{Damian Flynn}.}
+  \bibinfo{year}{2022}\natexlab{}.
+\newblock \showarticletitle{Fast frequency response provision from commercial
+  demand response, from scheduling to stability in power systems}.
+\newblock \bibinfo{journal}{\emph{IET Renewable Power Generation}}
+  (\bibinfo{year}{2022}).
+\newblock
+
+
+\bibitem[O’Connell et~al\mbox{.}(2013)]%
+        {o2013modelling}
+\bibfield{author}{\bibinfo{person}{Niamh O’Connell}, \bibinfo{person}{Henrik
+  Madsen}, \bibinfo{person}{Pierre Pinson}, {and} \bibinfo{person}{Mark
+  O’Malley}.} \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{Modelling and Assessment of the Capabilities of a
+  Supermarket Refrigeration System for the Provision of Regulating Power}.
+\newblock \bibinfo{journal}{\emph{Technical University of Denmark}}
+  (\bibinfo{year}{2013}).
+\newblock
+
+
+\bibitem[Paulus and Borggrefe(2011)]%
+        {paulus2011potential}
+\bibfield{author}{\bibinfo{person}{Moritz Paulus} {and}
+  \bibinfo{person}{Frieder Borggrefe}.} \bibinfo{year}{2011}\natexlab{}.
+\newblock \showarticletitle{The potential of demand-side management in
+  energy-intensive industries for electricity markets in Germany}.
+\newblock \bibinfo{journal}{\emph{Applied energy}} \bibinfo{volume}{88},
+  \bibinfo{number}{2} (\bibinfo{year}{2011}), \bibinfo{pages}{432--441}.
+\newblock
+
+
+\bibitem[Pedersen et~al\mbox{.}(2016)]%
+        {pedersen2016improving}
+\bibfield{author}{\bibinfo{person}{Rasmus Pedersen}, \bibinfo{person}{John
+  Schwensen}, \bibinfo{person}{Benjamin Biegel}, \bibinfo{person}{Torben
+  Green}, {and} \bibinfo{person}{Jakob Stoustrup}.}
+  \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Improving demand response potential of a
+  supermarket refrigeration system: A food temperature estimation approach}.
+\newblock \bibinfo{journal}{\emph{IEEE Transactions on Control Systems
+  Technology}} (\bibinfo{year}{2016}).
+\newblock
+
+
+\bibitem[Plechinger(2023)]%
+        {energinetOmkostninger}
+\bibfield{author}{\bibinfo{person}{Maz Plechinger}.}
+  \bibinfo{year}{2023}\natexlab{}.
+\newblock \showarticletitle{Omkostninger til reservekraft eksploderer}.
+\newblock \bibinfo{journal}{\emph{Energiwatch}} (\bibinfo{year}{2023}).
+\newblock
+\urldef\tempurl%
+\url{"https://energiwatch.dk/Energinyt/Politik___Markeder/article14846461.ece"}
+\showURL{%
+\tempurl}
+
+
+\bibitem[Samani et~al\mbox{.}(2022)]%
+        {samani2022flexible}
+\bibfield{author}{\bibinfo{person}{Arash~E Samani}, \bibinfo{person}{Jeroen~DM
+  De~Kooning}, \bibinfo{person}{C{\'e}sar A~Urbina Blanco}, {and}
+  \bibinfo{person}{Lieven Vandevelde}.} \bibinfo{year}{2022}\natexlab{}.
+\newblock \showarticletitle{Flexible operation strategy for formic acid
+  synthesis providing frequency containment reserve in smart grids}.
+\newblock \bibinfo{journal}{\emph{International Journal of Electrical Power \&
+  Energy Systems}}  \bibinfo{volume}{139} (\bibinfo{year}{2022}),
+  \bibinfo{pages}{107969}.
+\newblock
+
+
+\bibitem[Sossan et~al\mbox{.}(2016)]%
+        {sossan2016grey}
+\bibfield{author}{\bibinfo{person}{Fabrizio Sossan},
+  \bibinfo{person}{Venkatachalam Lakshmanan}, \bibinfo{person}{Giuseppe~Tommaso
+  Costanzo}, \bibinfo{person}{Mattia Marinelli}, \bibinfo{person}{Philip~J
+  Douglass}, {and} \bibinfo{person}{Henrik Bindner}.}
+  \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Grey-box modelling of a household refrigeration
+  unit using time series data in application to demand side management}.
+\newblock \bibinfo{journal}{\emph{Sustainable Energy, Grids and Networks}}
+  (\bibinfo{year}{2016}).
+\newblock
+
+
+\bibitem[Thilker et~al\mbox{.}(2021)]%
+        {thilker2021non}
+\bibfield{author}{\bibinfo{person}{Christian~Ankerstjerne Thilker},
+  \bibinfo{person}{Peder Bacher}, \bibinfo{person}{Hj{\"o}rleifur~G
+  Bergsteinsson}, \bibinfo{person}{Rune~Gr{\o}nborg Junker},
+  \bibinfo{person}{Davide Cali}, {and} \bibinfo{person}{Henrik Madsen}.}
+  \bibinfo{year}{2021}\natexlab{}.
+\newblock \showarticletitle{Non-linear grey-box modelling for heat dynamics of
+  buildings}.
+\newblock \bibinfo{journal}{\emph{Energy and Buildings}}  \bibinfo{volume}{252}
+  (\bibinfo{year}{2021}), \bibinfo{pages}{111457}.
+\newblock
+
+
+\bibitem[Vrettos et~al\mbox{.}(2016)]%
+        {vrettos2016fast}
+\bibfield{author}{\bibinfo{person}{Evangelos Vrettos},
+  \bibinfo{person}{Charalampos Ziras}, {and} \bibinfo{person}{G{\"o}ran
+  Andersson}.} \bibinfo{year}{2016}\natexlab{}.
+\newblock \showarticletitle{Fast and reliable primary frequency reserves from
+  refrigerators with decentralized stochastic control}.
+\newblock \bibinfo{journal}{\emph{IEEE Transactions on Power Systems}}
+  (\bibinfo{year}{2016}).
+\newblock
+
+
+\end{thebibliography}

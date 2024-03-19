@@ -15,4 +15,7 @@
         "limits": "cpp"
     },
     "r.lsp.promptToInstall": false,
+    "[latex]": {
+        "editor.formatOnSave": false,
+    },
 }
