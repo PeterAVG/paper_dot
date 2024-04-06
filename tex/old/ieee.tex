@@ -20,6 +20,7 @@
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \usepackage{url}
+\usepackage{subcaption} % for subfigures
 
 \newcommand{\red}[1]{\textcolor{red}{#1}}
 \newcommand{\figspace}{\vspace{-0.5cm}}
@@ -168,7 +169,9 @@ The industry process exemplified in this paper is a galvanization process, in wh
 
 \begin{figure}[t]
     \centering
-    \input{../figures/furnace_schematic_tikz.tikz}
+    \begin{adjustbox}{width=0.55\columnwidth}
+        \input{../figures/furnace_schematic_tikz.tikz}
+    \end{adjustbox}
     \caption{Schematic of the zinc furnace. Resistive elements are places on both sides of the furnace in inner cavities for both zones. The power consumptions of the resistive elements are denoted by $P^{\text{u}}$ and $P^{\text{l}}$. At the end of the furnace, two temperature sensors are located, measuring the wall temperatures, $T^{\text{wu}}$ and $T^{\text{wl}}$. Hence, the actual zinc temperatures are unobserved. The lid is off during the galvanizing process. QU1 and QU2 are the contactors for the upper zone, whereas QL3 and QL4 are the contactors for the lower zone.}
     % \Description{Schematic of zinc furnace.}
     \label{fig:furnace_schematic_tikz}
@@ -279,26 +282,27 @@ The linear optimization model for offering FCR services is provided in a compact
 \end{subequations}
 where $h$ and $t$ are index for hours and minutes, respectively. Bold symbols indicate time vectors. The objective function (\ref{P1:eq1}) maximizes the revenues (first term) minus penalties for failures (second term). The variable vector $\bm{p}^{r}$ includes hourly FCR capacity bids (in kW), while the hourly FCR prices $\bm{\lambda}^{\text{FCR}}$ (in DKK/kWh) are given. The flexibility provider incurs a penalty cost at rate $\bm{\lambda}^{\text{Pen}}$ (in DKK/kWh) when fails in delivering the promised service, measured by hourly variables $\bm{s}$ (in kW).
 Variables related to hourly bidding capacity and penalties are included in $\bm{\Gamma}_{h}$ as defined in \eqref{P1:eq9}. Similarly, variables related to real-time control, indexed by minute $t$, are within $\bm{\Gamma}_{t}$ as defined in \eqref{P1:eq10}.
-The inequality constraints in (\ref{P1:eq2}) are presented in (\ref{P1:constraints}).
+The inequality constraints in (\ref{P1:eq2}) are presented in (\ref{P1:constraints-1}) and (\ref{P1:constraints-2}).
 %Since FCR is a symmetric service, auxiliary variables $\bm{s}^{\prime}$ are introduced to account for the power not delivered as shown in (\ref{P1:co3})-(\ref{P1:co4}).
-The superscript $q$ denotes the two zones $\{l, u\}$ in the zinc furnace, and the total reserve from the zinc furnace is simply their summation. Note that $\bm{s}^{q}$ is the hourly variable vector indicating the amount of failure in the corresponding zone $q$ (either upper or lower zone), whereas $\bm{s}^{q, \prime}$ is similar but in the minute resolution. The set of constraints (\ref{P1:constraints}) indicated in (\ref{P1:eq2}) is
+The superscript $q$ denotes the two zones $\{l, u\}$ in the zinc furnace, and the total reserve from the zinc furnace is simply their summation. Note that $\bm{s}^{q}$ is the hourly variable vector indicating the amount of failure in the corresponding zone $q$ (either upper or lower zone), whereas $\bm{s}^{q, \prime}$ is similar but in the minute resolution. The set of constraints in (\ref{P1:eq2}) related to frequency response are:
 %
 \begingroup
 \allowdisplaybreaks
-\begin{subequations} \label{P1:constraints}
-    \begin{align}
-              & \bm{p}^{q} = \bm{F} \bm{p}^{q,r} + \bm{s}^{q, \prime} + \bm{P}^{q, \text{Base}}, \quad \forall{q}  \label{P1:co2} \\
-        \quad & \bm{s}^{q} \geq \bm{s}^{q, \prime}, \quad \forall{q}  \label{P1:co3}
-        \\
-        \quad & \bm{s}^{q} \geq -\bm{s}^{q,\prime}, \quad \forall{q}  \label{P1:co4}
-        \\
-        \quad & \bm{p}^{q,r} \leq \bm{P}^{q,\text{Base}} , \quad \forall{q} \label{P1:co8}
-        \\
-        \quad & \bm{p} = \sum_{q} \bm{p}^{q}   \label{P1:co5}                                                                     \\
-        \quad & \bm{p}^{r} = \sum_{q} \bm{p}^{q,r}   \label{P1:co6}                                                               \\
-        \quad & \bm{s} = dt \sum_{q} \bm{s}^{q},   \label{P1:co7}
-    \end{align}
-\end{subequations}
+\begin{align}
+    \bm{p}^{q} = \bm{F} \bm{p}^{q,r} + \bm{s}^{q, \prime} + \bm{P}^{q, \text{Base}}
+    \quad \bm{s}^{q} \geq |\bm{s}^{q, \prime}|,
+    \quad \forall{q}  \label{P1:constraints-1}
+    %       & \bm{p}^{q} = \bm{F} \bm{p}^{q,r} + \bm{s}^{q, \prime} + \bm{P}^{q, \text{Base}}, \quad \forall{q}  \label{P1:co2} \\
+    % \quad & \bm{s}^{q} \geq \bm{s}^{q, \prime}, \quad \forall{q}  \label{P1:co3}
+    % \\
+    % \quad & \bm{s}^{q} \geq -\bm{s}^{q,\prime}, \quad \forall{q}  \label{P1:co4}
+    % \\
+    % \quad & \bm{p}^{q,r} \leq \bm{P}^{q,\text{Base}} , \quad \forall{q} \label{P1:co8}
+    % \\
+    % \quad & \bm{p} = \sum_{q} \bm{p}^{q}   \label{P1:co5}                                                                     \\
+    % \quad & \bm{p}^{r} = \sum_{q} \bm{p}^{q,r}   \label{P1:co6}                                                               \\
+    % \quad & \bm{s} = dt \sum_{q} \bm{s}^{q},   \label{P1:co7}
+\end{align}
 \endgroup
 where the parameter $\bm{F}$ is normalized between -1 and 1 depending on the frequency. This parameter represents the normalized response required \cite{energinet:prequalification} as
 %
@@ -313,6 +317,20 @@ where the parameter $\bm{F}$ is normalized between -1 and 1 depending on the fre
         1,                              & \text{if}\ F_{t} \geq 50.2\ \text{Hz}.                                         \\
     \end{cases}
 \end{equation}
+\endgroup
+
+The remaining constraints in (\ref{P1:eq2}) are related to total power and violation from both zones in the furnace:
+
+\begin{subequations} \label{P1:constraints-2}
+    \begin{align}
+        \quad & \bm{p}^{q,r} \leq \bm{P}^{q,\text{Base}} , \quad \forall{q} \label{P1:co8}
+        \\
+        \quad & \bm{p} = \sum_{q} \bm{p}^{q},
+        \quad \bm{p}^{r} = \sum_{q} \bm{p}^{q,r},
+        \quad \bm{s} = dt \sum_{q} \bm{s}^{q},   \label{P1:co7}
+    \end{align}
+\end{subequations}
+
 
 \subsection{mFRR}
 
@@ -336,7 +354,7 @@ The optimization model for offering mFRR services is identical to that in \cite{
         \                                                                                                       & \Bigl( \bm{g}, \bm{u}^{q,\uparrow}, \bm{z}^{q,\uparrow}, \bm{y}^{q,\uparrow}, \notag                                                                 \\ & \bm{u}^{q,\downarrow}, \bm{z}^{q,\downarrow}, \bm{y}^{q,\downarrow} \Bigr) \in \{0,1\}, \ \forall{q}, \label{P1:eq7_mfrr}
     \end{align}
 \end{subequations}
-\endgroup
+% \endgroup
 which determines the optimal hourly mFRR capacity bids $\bm{p}^{r}$ and optimal hourly regulating price bids $\bm{\lambda}^{\text{bid}}$. The full model formulation can be seen in Appendix D.
 
 %the objective function maximizes first-stage decisions, i.e., payments for reserve capacity, by finding optimal reserve quantities and bids, $\bm{p}^{r,\uparrow}$ and $\bm{\lambda}^{\text{bid}}$, respectively. Second-stage decisions, $\bm{\Gamma}$, are merely a consequence of first-stage decisions and are related to real-time operation with cost components of activation, rebound, and penalty terms. See \cite{gade2023load} for a detailed description of the model.
@@ -352,7 +370,7 @@ Keeping in mind that Figure \ref{fig:cumulative_cost_comparison} shows the upper
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{../figures/cumulative_cost_comparison.png}
+    \includegraphics[width=0.70\columnwidth]{../figures/cumulative_cost_comparison.png}
     \caption{Cumulative operational cost in 2021-2023 when participating in FCR and mFRR compared to the current baseline operational cost for a zinc furnace.}
     % \Description{Plot of cumulative cost for FCR, mFRR, and baseline.}
     \label{fig:cumulative_cost_comparison}
@@ -388,26 +406,44 @@ Furthermore, turning off the power consumption for five consecutive hours severa
 
 To assess the available flexibility in the zinc furnace, it is prudent to investigate the temperature deviation impact on the monetary savings for both FCR and mFRR. For optimization models in (\ref{P1:compact_model_fcr}) and (\ref{P1:compact_model_mfrr}), additional constraints $\bm{T^{w},q} - \Delta \leq \bm{T^{w},q} \leq \bm{T^{w},q} + \Delta \ \forall{q}$ are added to constrain the allowed temperature deviation.
 
-As indicated already in Figure \ref{fig:fcr_single_case}, the temperature is not affected to any significant degree for FCR. This is again shown in Figure \ref{fig:profit_vs_delta_temp_fcr} where an allowed temperature deviation of 1 C$^{\circ}$ is enough to provide substantial monetary savings. This is not the case for mFRR as observed in Figure \ref{fig:profit_vs_delta_temp_mfrr} and alluded to previously in Figure \ref{fig:mfrr_single_case}. Figure \ref{fig:profit_vs_delta_temp_mfrr} clearly shows diminishing value at lower temperature deviations while the most savings are obtained when allowing temperature deviations of at least 6 C$^{\circ}$.
+As indicated already in Figure \ref{fig:fcr_single_case}, the temperature is not affected to any significant degree for FCR. This is again shown in Figure \ref{subfig:profit_vs_delta_temp_fcr} where an allowed temperature deviation of 1 C$^{\circ}$ is enough to provide substantial monetary savings. This is not the case for mFRR as observed in Figure \ref{subfig:profit_vs_delta_temp_mfrr} and alluded to previously in Figure \ref{fig:mfrr_single_case}. Figure \ref{subfig:profit_vs_delta_temp_mfrr} clearly shows diminishing value at lower temperature deviations while the most savings are obtained when allowing temperature deviations of at least 6 C$^{\circ}$.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{../figures/profit_vs_delta_temp_fcr.png}
-    \caption{Monetary savings when delivering FCR as a function of constraining the allowed temperature deviation of the zinc to the setpoint.}
-    % \Description{Plot of effect on profit when allowing more temperature deviation for FCR.}
-    \label{fig:profit_vs_delta_temp_fcr}
+    \begin{subfigure}{0.49\columnwidth}
+        \centering
+        \includegraphics[width=0.98\columnwidth]{../figures/profit_vs_delta_temp_fcr.png}
+        \caption{Monetary savings for FCR}
+        \label{subfig:profit_vs_delta_temp_fcr}
+    \end{subfigure}
+    \begin{subfigure}{0.49\columnwidth}
+        \centering
+        \includegraphics[width=0.98\columnwidth]{../figures/profit_vs_delta_temp_mfrr_and_energy.png}
+        \caption{Monetary savings for mFRR}
+        \label{subfig:profit_vs_delta_temp_mfrr}
+    \end{subfigure}
+    \caption{Monetary savings as a function of constraining the allowed temperature deviation of the zinc to the setpoint.}
+    \label{fig:profit_vs_delta_temp}
 \end{figure}
 
+% \begin{figure}[t]
+%     \centering
+%     \includegraphics[width=\columnwidth]{../figures/profit_vs_delta_temp_fcr.png}
+%     \caption{Monetary savings when delivering FCR as a function of constraining the allowed temperature deviation of the zinc to the setpoint.}
+%     % \Description{Plot of effect on profit when allowing more temperature deviation for FCR.}
+%     \label{fig:profit_vs_delta_temp_fcr}
+% \end{figure}
 
-% (which is of course unrealistic to cope with for the zinc furnace operator).
 
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=\columnwidth]{../figures/profit_vs_delta_temp_mfrr_and_energy.png}
-    \caption{Monetary savings when delivering mFRR as a function of constraining the allowed temperature deviation of the zinc to the setpoint.}
-    % \Description{Plot of effect on profit when allowing more temperature deviation for mFRR.}
-    \label{fig:profit_vs_delta_temp_mfrr}
-\end{figure}
+% % (which is of course unrealistic to cope with for the zinc furnace operator).
+
+% \begin{figure}[t]
+%     \centering
+%     \includegraphics[width=\columnwidth]{../figures/profit_vs_delta_temp_mfrr_and_energy.png}
+%     \caption{Monetary savings when delivering mFRR as a function of constraining the allowed temperature deviation of the zinc to the setpoint.}
+%     % \Description{Plot of effect on profit when allowing more temperature deviation for mFRR.}
+%     \label{fig:profit_vs_delta_temp_mfrr}
+% \end{figure}
 
 
 The revenue earned from FCR and mFRR provision is typically shared between the aggregator and flexible consumer as explained in \cite{gade2022ecosystem}. Hence, the upper bound savings reported are also bound to a payment agreement with the aggregator. That can potentially make it less attractive for a flexible demand to participate in ancillary service markets. However, the FCR still seems like an obvious option and likewise for the investments made to enable the FCR provision. mFRR, however, is not too attractive as it can have a detrimental impact on the zinc temperature on days with severe up-regulation. Although less profitable, mFRR strategies can be employed. For example, the provision of real-time balancing only without reserves is a viable option since no commitments are made beforehand.
@@ -509,7 +545,7 @@ The two-stage stochastic MILP problem for the zinc furnace to optimally bid in t
     \begin{align}
            & \underset{\bm{p}^{\rm{r}}, \bm{p}^{q,\rm{r}}, \bm{\lambda}^{\rm{bid}}, \bm{\Gamma}}{\text{Maximize}} \ \sum_{h=1}^{24}\lambda_{h}^{\rm{r}} p^{\rm{r}}_{h}+ \Bigl(\sum_{h=1}^{24}  \lambda_{h}^{\rm{b}} p^{\rm{b},\uparrow}_{h} - \notag                                                                                                                                                                                                                                                            \\  &  \hspace{0.5cm}\sum_{h=1}^{24}  \lambda_{h}^{\rm{b}} p^{\rm{b},\downarrow}_{h} - \sum_{h=1}^{24}  \lambda^{\rm{p}}s_{h} \Bigr) \label{P2:1} \\
         %
-           & \   \text{s.t.}  \  (\ref{P1:co8}), (\ref{P1:co5}), (\ref{P1:co6}), (\ref{P1:co7}), \ \forall{h},   \label{P2:2}                                                                                                                                                                                                                                                                                                                                                                                                                                                           \\
+           & \   \text{s.t.}  \  (\ref{P1:constraints-2}), \ \forall{h},   \label{P2:2}                                                                                                                                                                                                                                                                                                                                                                                                                                                           \\
            & \ p^{\rm{b},\downarrow}_{h} = p^{\rm{zu}, \rm{b},\downarrow}_{h} + p^{\rm{zl}, \rm{b},\downarrow}_{h}, \ \forall{h} \label{P2:3} \\
            & \ p^{\rm{b},\uparrow}_{h} = p^{\rm{zu}, \rm{b},\uparrow}_{h} + p^{\rm{zl}, \rm{b},\uparrow}_{h}, \ \forall{h} \label{P2:33} \\
         %

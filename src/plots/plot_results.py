@@ -438,7 +438,7 @@ def plot_yearly_earnings() -> None:
         for d in days
     ]
 
-    fig, ax = plt.subplots(1, 1, figsize=(10, 8))
+    fig, ax = plt.subplots(1, 1, figsize=(6, 4))
     ax.plot(
         days,
         np.cumsum(base_cost_today),
@@ -448,10 +448,11 @@ def plot_yearly_earnings() -> None:
     )
     ax.plot(days, np.cumsum(fcr_cost), label="FCR")
     ax.plot(days, np.cumsum(mfrr_cost), label="mFRR")
-    ax.set_ylabel("Cumulative operational cost [DKK]")
+    # ax.set_ylabel("Cumulative operational cost [DKK]")
+    ax.set_ylabel("[DKK]")
     ax.legend(loc="best")
     ax.xaxis.set_tick_params(rotation=45)
-    _set_font_size(ax, misc=22,legend=20)
+    _set_font_size(ax, misc=14,legend=14)
     plt.tight_layout()
     plt.savefig("tex/figures/cumulative_cost_comparison.png", dpi=300)
     # plt.show()
@@ -509,11 +510,11 @@ def main() -> None:
     if True:
         # plot_mFRR_case_result()
         # plot_fcr_case_result()
-        # plot_yearly_earnings()
+        plot_yearly_earnings()
         # plot_fcr_prices()
         # plot_mfrr_prices()
         # plot_profit_vs_delta_max(Case.FCR)
-        plot_profit_vs_delta_max(Case.mFRR_AND_ENERGY)
+        # plot_profit_vs_delta_max(Case.mFRR_AND_ENERGY)
 
 
 if __name__ == "__main__":
