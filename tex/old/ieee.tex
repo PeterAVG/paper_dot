@@ -1,3 +1,5 @@
+% \newcommand{\CLASSINPUTtoptextmargin}{0.7in}
+\newcommand{\CLASSINPUTbottomtextmargin}{0.88in}
 \documentclass[conference]{IEEEtran}
 \IEEEoverridecommandlockouts
 
@@ -10,12 +12,15 @@
 \usepackage{booktabs}
 \usepackage{multirow}
 \usepackage{siunitx}
-\usepackage{eurosym}
 \usepackage{mhchem}
 \usepackage{amssymb}
 \usepackage{multirow}
 \usepackage{graphicx}
-\usepackage{hyperref}
+% \usepackage[draft]{hyperref}
+% \usepackage{hyperref}
+% \hypersetup{
+%     bookmarks=false % Disable bookmarks
+% }
 \usepackage{eurosym}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
@@ -36,6 +41,16 @@
 \usepackage{xcolor}
 \usepgfplotslibrary{fillbetween}
 
+% \usepackage[letterpaper]{geometry}
+% \usepackage[paperwidth=8.5in, paperheight=11in]{geometry}
+% \geometry{
+%     left=1.41cm,
+%     right=1.39cm,
+%     % top=2.66cm,
+%     bottom=3cm
+%     % bottom=0.7in
+% }
+
 \usepackage{alphalph}
 \usepackage{etoolbox}
 
@@ -50,8 +65,11 @@
 
 \definecolor{RectangleColor}{RGB}{197,210,180}
 
+% \pagestyle{empty} % Remove page numbers
 
 \begin{document}
+
+
 
 \title{Energy-Intensive Industries Providing Ancillary Services: A  Real Case of Zinc Galvanizing Process}
 
@@ -85,12 +103,11 @@
     Demand-side flexibility, thermostatically controlled loads, ancillary services
 \end{IEEEkeywords}
 
-
 \section{Introduction}
 \vspace{-1mm}
 Power prices in Europe increased massively in 2022. Meanwhile, the increasing share of renewable energy sources with stochastic production stresses the grid to an unprecedented level. In 2022, the Danish transmission system operator (TSO), Energinet, spent 2.7 billion DKK for the procurement of various ancillary services, showing an increase of 1.3 billion DKK from 2021 \cite{energinetOmkostninger}. Energinet expects this cost to be increased further as the integration of additional stochastic renewables requires more balancing resources.
 
-It is more appealing to exploit existing infrastructure to produce power flexibility and  meet the increasing demand for balancing resources. In particular, energy-intensive consumers can become flexible to some degree, i.e., their power consumption can vary within some thresholds for a certain amount of time as facilitated by a flexibility aggregator. IBM has created a platform, so called \textit{Flex Platform}, that harnesses demand-side flexibility to be offered into various ancillary service markets. One may hypothesize a modest investment making industrial plants  to some extent flexible is financially advantageous for their owners. This paper explores it with a particular focus on industries with \textit{single-state} processes. 
+It is more appealing to exploit existing infrastructure to supply power flexibility and  meet the increasing demand for balancing resources. In particular, energy-intensive consumers can become flexible to some degree, i.e., their power consumption can vary within some thresholds for a certain amount of time as facilitated by a flexibility aggregator. IBM has created a platform, so called \textit{Flex Platform}, that harnesses demand-side flexibility to be offered into various ancillary service markets. One may hypothesize a modest investment making industrial plants  to some extent flexible is financially advantageous for their owners. This paper explores it with a particular focus on industries with \textit{single-state} processes. 
 
 Single-state processes are characterized by being solely sequential, i.e., the next step occurs after the previous step is done. They are repetitive as well, relatively simple and uncomplicated. Their state is often a temperature level. They exist everywhere: iron and steel foundries, cooling houses, and a zinc galvanizing operation as it is the case study of this paper. See \cite{paulus2011potential} for an extensive list of energy-intensive industry processes. Such processes are prone to become flexible with respect to their power consumption as it requires little to no extra effort or adjustment. Furthermore, it could be more desirable to harness the flexibility from one big asset as supposed to several hundreds smaller assets\footnote{This might not be the case for flexibility required for grid congestion management, while for frequency services needed for balancing the system, the location does not necessarily matter. Our focus in this paper is on flexibility resources for frequency services.}.
 
@@ -109,7 +126,7 @@ We address four research questions: (\textit{i}) are there incentives for an ene
 %\subsection{Investments should facilitate power flexibility}
 %\subsection{Value streams from power flexibility}
 
-New investments into equipment and improvements in the industry process can be tailored to facilitate power flexibility. For example, instead of relying on mechanical relay switches for power lines, frequency transformers or thyristors can be used with a modest cost. The pay-back time for such an investment should ideally be within a few years, and other benefits could potentially be exploited as well, e.g., better feed-forward planning.
+New investments into equipment and improvements in the industry process can be tailored to facilitate power flexibility. For example, instead of relying on mechanical relay switches for power lines, frequency transformers or thyristors can be used with a modest investment cost. The pay-back time for such an investment should ideally be within a few years, and other benefits could potentially be exploited as well, e.g., better feed-forward planning.
 %
 % Early indications for the owner of the zinc furnace indicate a one-time cost of 0.5 mio. DKK into equipment that allows for granular power control to the furnace.
 %
@@ -156,8 +173,14 @@ Section \ref{opt} proposes two optimization problems for the zinc furnace owner 
 
 %First, we describe the process in detail and explain how the thermal characteristics of the zinc furnace can be formulated. Second, we show how investments into a more granular, continuous control of the power supply to the furnace enables it to deliver power flexibility. Two quite different ancillary services, i.e., FCR and mFRR, are targeted. For both services, full-hindsight optimizations are provided to compute upper-bound profit potentials. Lastly, an analysis of the zinc temperature's impact on the flexibility potential is carried out.
 
-\vspace{2mm}
+% \newgeometry{left=1.41cm}
+% \newgeometry{right=1.39cm}
+% \newgeometry{top=2.66cm}
+% \newgeometry{bottom=3.65cm}
+
+\vspace{0.5mm}
 \section{Preliminaries: \\ Characterizing the zinc furnace}\label{sec:zinc_furnace_description}
+
 \vspace{-1mm}
 %This section describes the zinc galvanizing process  along with its ability to provide power flexibility by converting to a continuous control mechanism.
 %
@@ -167,11 +190,11 @@ This section describes the zinc galvanizing process and how to characterize the 
 %\vspace{1mm}
 %\subsection{Characterizing a zinc furnace as a TCL}
 %\vspace{-1mm}
-A straightforward mathematical model of a TCL is presented in  \cite{hao2014aggregate}, where a first-order model with two terms characterizes the TCL, including a term that explains temperature losses due to temperature differences and a term that explains temperature gains due to a power source. We expand upon this model, using instead a 4$^{\text{th}}$ order model to characterize a zinc furnace. While a linear model is used for modeling FCR provision in this paper, the model introduced in \cite{gade2023load} is used to model mFRR provision.
+A straightforward mathematical model of a TCL is presented in  \cite{hao2014aggregate}, where a first-order model with two terms characterizes the TCL. It includes a term that explains temperature losses due to temperature differences and a term that explains temperature gains due to a power source. We expand upon this model, using instead a 4$^{\text{th}}$ order model to characterize a zinc furnace. While a linear model is used for modeling FCR provision in this paper, the model introduced in \cite{gade2023load} is used to model mFRR provision.
 
 %\subsubsection{Description of zinc furnace in a galvanizing process}
 
-The industry process exemplified in this paper is a galvanization process, in which the authors have kindly been allowed to visit and learn about by the owner, DOT Nordic. Steel elements are galvanized by lowering them into a molten zinc furnace at a high temperature setpoint. As illustrated in Fig. \ref{fig:furnace_schematic_tikz}, the furnace is heated up by resistive elements placed on the sides of the furnace (in an inner cavity). The upper and lower zones of the furnace are controlled separately with $P^{\text{u}}$ and $P^{\text{l}}$, representing the power supplied to the upper and lower zone, respectively. Temperature sensors are placed in each zone at the end of the furnace on the wall as denoted by $T^{\text{wu}}$ and $T^{\text{wl}}$, hence the actual zinc temperatures, $(T^{\text{zu}})$ and $(T^{\text{zl}})$, are latent, unobserved states. The lid of the furnace is removed when lowering steel into the furnace. We denote QU1 and QU2 as the contactors for the upper zone, whereas QL3 and QL4 are the contactors for the lower zone.
+The industry process exemplified in this paper is a galvanization process, in which the authors have kindly been allowed to visit and learn about by the owner, DOT Nordic. Steel elements are galvanized by lowering them into a molten zinc furnace at a high temperature setpoint. As illustrated in Fig. \ref{fig:furnace_schematic_tikz}, the furnace is heated up by resistive elements placed on the sides of the furnace (in an inner cavity). The upper and lower zones of the furnace are controlled separately with $P^{\text{u}}$ and $P^{\text{l}}$, representing the power supplied to the upper and lower zones, respectively. Temperature sensors are placed in each zone at the end of the furnace on the wall as denoted by $T^{\text{wu}}$ and $T^{\text{wl}}$, hence the actual zinc temperatures, $(T^{\text{zu}})$ and $(T^{\text{zl}})$, are latent, unobserved states. The lid of the furnace is removed when lowering steel into the furnace. We denote QU1 and QU2 as the contactors for the upper zone, whereas QL3 and QL4 are the contactors for the lower zone.
 
 \begin{figure}[t]
     \centering
@@ -179,7 +202,7 @@ The industry process exemplified in this paper is a galvanization process, in wh
         \input{../figures/furnace_schematic_tikz.tikz}
     \end{adjustbox}
     \caption{\small{Schematic of the zinc furnace. 
-            \vspace{-3mm}
+            \vspace{-4mm}
     %Resistive elements are places on both sides of the furnace in inner cavities for both zones. The power consumptions of the upper and lower resistive elements are denoted by $P^{\text{u}}$ and $P^{\text{l}}$, respectively. At the end of the furnace, two temperature sensors are located, measuring the wall temperatures, $T^{\text{wu}}$ and $T^{\text{wl}}$. Hence, the actual zinc temperatures are unobserved. The lid is off during the galvanizing process. 
     %QU1 and QU2 are the contactors for the upper zone, whereas QL3 and QL4 are the contactors for the lower zone.
     }}
@@ -191,17 +214,19 @@ Fig. \ref{fig:data_visualization} shows the one-minute resolution data. The scal
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{../figures/data_visualization.png}
+    \includegraphics[width=0.90\columnwidth]{../figures/data_visualization.png}
     \caption{\small{\textbf{Top}: Power consumption for lower and upper zones and the total consumption. \textbf{Middle}: Temperature and contactor switches in the upper zone. \textbf{Bottom}: The same for the lower zone.
-                \vspace{-2mm}}}
+                \vspace{-4mm}}}
     % \Description{Plot of raw zinc furnace power and temperature data.}
     \label{fig:data_visualization}
 \end{figure}
 
-\vspace{2mm}
+% \vspace{-2mm}
+\vspace{0.2mm}
 \subsection{Thermal modeling of the zinc furnace}
 \vspace{-1mm}
 To model the temperature dynamics in both zones, a fourth-order state-space model is developed as
+% \vspace{-0.1mm}
 %
 \begingroup
 \allowdisplaybreaks
@@ -245,6 +270,7 @@ Appendix B provides a simulation of (\ref{eq:StateSpaceModel}) using (\ref{eq1:s
 Furthermore, other benefits of using a  continuous power control include more optimal use of the heat in the furnace by being able to integrate the dipping schedule to the power consumption. Hence, smarter feed-forward planning of the lid can be achieved by utilizing continuous power control.
 
 Early indications from the owner of the zinc furnace show a one-time cost of 0.5 million DKK into equipment and power electronics that allows for granular power control.
+
 
 \vspace{1mm}
 \section{Formulation for service provision} 
@@ -451,7 +477,7 @@ Furthermore, turning off the power consumption for five consecutive hours  affec
 \vspace{1mm}
 \subsection{Constraining temperature deviations}
 \vspace{-1mm}
-To assess the available flexibility in the zinc furnace, it is prudent to investigate the temperature deviation impact on the monetary savings for both FCR and mFRR services. For optimization models in (\ref{P1:compact_model_fcr}) and (\ref{P1:compact_model_mfrr}), additional constraints $\bm{T^{w},q} - \Delta \leq \bm{T^{w},q} \leq \bm{T^{w},q} + \Delta \ \forall{q}$ are added to constrain the allowed temperature deviation.
+To assess the available flexibility in the zinc furnace, it is prudent to investigate the temperature deviation impact on the monetary savings for both FCR and mFRR services. For optimization models in (\ref{P1:compact_model_fcr}) and (\ref{P1:compact_model_mfrr}), additional constraints $ \Delta_{\text{min}} \leq \bm{T^{w,q}} \leq \Delta^{\text{max}} \ \forall{q}$ are added to constrain the allowed temperature deviation.
 %
 As already indicated  in Fig. \ref{fig:fcr_single_case}, the temperature is unaffected to any significant degree for FCR. This is again shown in Fig. \ref{subfig:profit_vs_delta_temp_fcr}, where an allowed temperature deviation of 1 C$^{\circ}$ is enough to provide substantial monetary savings. This is not the case for mFRR as observed in Fig. \ref{subfig:profit_vs_delta_temp_mfrr} and alluded to previously in Fig. \ref{fig:mfrr_single_case}. Fig. \ref{subfig:profit_vs_delta_temp_mfrr} shows diminishing value at lower temperature deviations while the most savings are obtained when allowing temperature deviations of at least 6 C$^{\circ}$.
 
@@ -540,6 +566,8 @@ Fig. \ref{fig:4thOrderModelVisualizationSteadyState} shows a 24-hour simulation 
 \bibliographystyle{IEEEtran}
 %\bibliography{../bibliography/Bibliography}
 \bibliography{tex/bibliography/Bibliography}
+
+% \restoregeometry
 
 \newpage
 
