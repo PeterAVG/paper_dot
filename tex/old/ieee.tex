@@ -1,5 +1,5 @@
 % \newcommand{\CLASSINPUTtoptextmargin}{0.7in}
-\newcommand{\CLASSINPUTbottomtextmargin}{0.88in}
+% \newcommand{\CLASSINPUTbottomtextmargin}{0.88in}
 \documentclass[conference]{IEEEtran}
 \IEEEoverridecommandlockouts
 
@@ -65,7 +65,7 @@
 
 \definecolor{RectangleColor}{RGB}{197,210,180}
 
-% \pagestyle{empty} % Remove page numbers
+\pagestyle{empty} % Remove page numbers
 
 \begin{document}
 
@@ -89,8 +89,8 @@
 
 \IEEEaftertitletext{\vspace{-0.8\baselineskip}}
 \maketitle
-\thispagestyle{plain}
-\pagestyle{plain}
+% \thispagestyle{plain}
+% \pagestyle{plain}
 
 % \tableofcontents
 \begin{abstract}
@@ -477,7 +477,7 @@ Furthermore, turning off the power consumption for five consecutive hours  affec
 \vspace{1mm}
 \subsection{Constraining temperature deviations}
 \vspace{-1mm}
-To assess the available flexibility in the zinc furnace, it is prudent to investigate the temperature deviation impact on the monetary savings for both FCR and mFRR services. For optimization models in (\ref{P1:compact_model_fcr}) and (\ref{P1:compact_model_mfrr}), additional constraints $ \Delta_{\text{min}} \leq \bm{T^{w,q}} \leq \Delta^{\text{max}} \ \forall{q}$ are added to constrain the allowed temperature deviation.
+To assess the available flexibility in the zinc furnace, it is prudent to investigate the temperature deviation impact on the monetary savings for both FCR and mFRR services. For optimization models in (\ref{P1:compact_model_fcr}) and (\ref{P1:compact_model_mfrr}), additional constraints $ \Delta^{\text{min}} \leq \bm{T^{w,q}} \leq \Delta^{\text{max}} \ \forall{q}$ are added to constrain the allowed temperature deviation.
 %
 As already indicated  in Fig. \ref{fig:fcr_single_case}, the temperature is unaffected to any significant degree for FCR. This is again shown in Fig. \ref{subfig:profit_vs_delta_temp_fcr}, where an allowed temperature deviation of 1 C$^{\circ}$ is enough to provide substantial monetary savings. This is not the case for mFRR as observed in Fig. \ref{subfig:profit_vs_delta_temp_mfrr} and alluded to previously in Fig. \ref{fig:mfrr_single_case}. Fig. \ref{subfig:profit_vs_delta_temp_mfrr} shows diminishing value at lower temperature deviations while the most savings are obtained when allowing temperature deviations of at least 6 C$^{\circ}$.
 
