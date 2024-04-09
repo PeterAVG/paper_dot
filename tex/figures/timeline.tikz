@@ -21,7 +21,7 @@
   \node at (12,-2.7) {\large (5:00pm)};
 
   \draw[rounded corners, fill=RectangleColor, very thick] (15, 1) rectangle (19, 3) node[midway]{\large Real time};
-  \node at (17,0) {\large $\Gamma_{h,\omega}$};
+  \node at (17,0) {\large $\Gamma_{h}$};
   % {\large $\Bigl( \bm{p}^{\rm{r},\uparrow}, \bm{\lambda}_{\omega}^{\text{bid}}, \bm{p}_{\omega}^{b,\uparrow}, \bm{p}_{\omega}^{b,\downarrow}, \bm{s}_{\omega}, \bm{T}_{\omega}^{c}, \bm{T}_{\omega}^{f}, \notag \\ \quad & \quad \bm{T}_{\omega}^{c, B}, \bm{T}_{\omega}^{f,B}, \bm{\phi}_{\omega}, \bm{g}_{\omega} \Bigr)$};
   \node at (17,-2) {\large D};
   \node at (17,-2.7) {\large (12pm -- 12am)};
